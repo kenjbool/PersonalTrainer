@@ -1,0 +1,166 @@
+﻿@model PersonalTrainer.Models.Parq
+
+
+<h2>Physical Activity Readiness Questionnaire (PAR-Q)</h2>
+
+<p>
+    Many health benefits are associated with regular exercise, and the completion of PAR-Q is a sensible first step to take if
+you are planning to increase the amount of physical activity in your life.
+</p>
+
+<p>
+    For most people physical activity should not pose any problem or hazard. PAR-Q is designed to identify the small number
+of adults for whom physical activity might be inappropriate or those who should have medical advice concerning the
+type of activity most suitable for them. Common sense is the best guide in answering these few questions.
+</p>
+@using (Html.BeginForm())
+{
+<html>
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <p>
+                    Has your doctor ever said that you have a bone or joint problems, such as arthritis that has been aggravated by
+exercise or might be made worse with exercise?
+                </p>
+            </td>
+            <td>@Html.LabelFor(x => x.answerOne) @Html.DropDownListFor(x => x.answerOne, new[] {
+                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+        <tr>
+            <td>
+                <p>Do you have high blood pressure?</p>
+            </td>
+            <td>@Html.LabelFor(x => x.answerTwo) @Html.DropDownListFor(x => x.answerTwo, new[] {
+                           new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                           new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+        <tr>
+            <td>
+                <p>Do you have low blood pressure?</p>
+            </td>
+            <td>@Html.LabelFor(x => x.answerThree) @Html.DropDownListFor(x => x.answerThree, new[] {
+                           new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                           new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+        <tr>
+            <td>
+                <p>Do you have Diabetes Mellitus or any other metabolic disease?</p>
+
+            </td>
+            <td>@Html.LabelFor(x => x.answerFour) @Html.DropDownListFor(x => x.answerFour, new[] {
+                           new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                           new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+        <tr>
+            <td>
+                <p>Has your doctor ever said you have raised cholesterol (serum level above 6.2mmol/L)?</p>
+
+            </td>
+            <td>@Html.LabelFor(x => x.answerFive) @Html.DropDownListFor(x => x.answerFive, new[] {
+                           new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                           new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+        <tr>
+            <td>
+                <p>Has your doctor ever said that you have a heart condition arid that you should only do physical activity recommended by a doctor?</p>
+            </td>
+            <td>@Html.LabelFor(x => x.answerSix) @Html.DropDownListFor(x => x.answerSix, new[] {
+                           new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                           new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+        <tr>
+            <td>
+                <p>Have you ever felt pain in your chest when you do physical exercise? </p>
+            </td>
+            <td>@Html.LabelFor(x => x.answerSeven) @Html.DropDownListFor(x => x.answerSeven, new[] {
+                           new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                           new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+        <tr>
+            <td>
+                <p>Is your doctor currently prescribing you drugs or medication?</p>
+            </td>
+            <td>@Html.LabelFor(x => x.answerEight) @Html.DropDownListFor(x => x.answerEight, new[] {
+                           new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                           new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+        <tr>
+            <td>
+                <p>Have you ever suffered from unusual shortness of breath at rest or with mild exertion?</p>
+            </td>
+            <td>@Html.LabelFor(x => x.answerNine) @Html.DropDownListFor(x => x.answerNine, new[] {
+                           new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                           new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+        <tr>
+            <td>
+                <p>Is there any history of Coronary Heart Disease in your family?</p>
+            </td>
+            <td>@Html.LabelFor(x => x.answerTen) @Html.DropDownListFor(x => x.answerTen, new[] {
+                           new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                           new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+        <tr>
+            <td>
+                <p>Do you often feel faint, have spells of severe dizziness or have lost consciousness?</p>
+            </td>
+            <td>@Html.LabelFor(x => x.answerEleven) @Html.DropDownListFor(x => x.answerEleven, new[] {
+                           new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                           new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+        <tr>
+            <td>
+                <p>Do you currently drink more than the average amount of alcohol per week (21 units for men and 14 units for women)?</p>
+            </td>
+            <td>@Html.LabelFor(x => x.answerTwelve) @Html.DropDownListFor(x => x.answerTwelve, new[] {
+                           new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                           new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+        <tr>
+            <td>
+                <p>Do you currently smoke?</p>
+            </td>
+            <td>@Html.LabelFor(x => x.answerThirteen) @Html.DropDownListFor(x => x.answerThirteen, new[] {
+                           new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                           new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+        <tr>
+            <td>
+                <p>Do you <b>NOT</b> currently exercise on a regular basis (at least 3 times a week) and/or work in a job that is physically demanding?</p>
+            </td>
+            <td>@Html.LabelFor(x => x.answerFourteen) @Html.DropDownListFor(x => x.answerFourteen, new[] {
+                           new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                           new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+        <tr>
+            <td>
+                <p>Are you, or is there any possibility that you might be pregnant?</p>
+            </td>
+            <td>@Html.LabelFor(x => x.answerFifteen) @Html.DropDownListFor(x => x.answerFifteen, new[] {
+                           new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                           new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+        <tr>
+            <td>
+                <p>Do you know of any other reason why you should not participate in a physical activity programme?</p>
+            </td>
+            <td>@Html.LabelFor(x => x.answerSixteen) @Html.DropDownListFor(x => x.answerSixteen, new[] {
+                           new SelectListItem() {Text = "Yes", Value= bool.TrueString},
+                           new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+        </tr>
+    </table>
+</body>
+</html>
+    <input type="submit", value="Let's Begin..." />
+}

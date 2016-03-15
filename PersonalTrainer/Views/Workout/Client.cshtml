@@ -1,0 +1,45 @@
+﻿@model PersonalTrainer.Models.Workout
+@ViewBag.Title
+
+<h2>Let's start with the basics</h2>
+@using (Html.BeginForm())
+{
+    <div class="float-left">@Html.LabelFor(x => x.FName) @Html.TextBoxFor(x => x.FName)</div>
+
+    <div class="float-right">@Html.LabelFor(x => x.LName) @Html.TextBoxFor(x => x.LName)</div>
+    <div class="clear"></div>
+    
+    <div class="float-left">@Html.LabelFor(x => x.Gender) @Html.DropDownListFor(x => x.Gender, new[] {
+                           new SelectListItem() {Text = "Male", Value= bool.TrueString},
+                           new SelectListItem() {Text = "Female", Value= bool.FalseString}}, "Choose an option")</div>
+    <div class="clear"></div>
+    
+    <div class="float-left">@Html.LabelFor(x => x.DateOfBirth) @Html.TextBoxFor(x => x.DateOfBirth, new {Value=""})</div>
+    <div class="clear"></div>
+
+    <div class="float-right">@Html.LabelFor(x => x.Age) @Html.TextBoxFor(x => x.Age)</div><br />
+    <div class="clear"></div>
+    
+    <div class="float-left">@Html.LabelFor(x => x.Email) @Html.TextBoxFor(x => x.Email)</div><br />
+    <div class="clear"></div>
+
+    <div class="float-right">@Html.LabelFor(x => x.Phone) @Html.TextBoxFor(x => x.Phone)</div><br />
+    <div class="clear"></div>
+    
+    <div class="float-left">@Html.LabelFor(x => x.Height) @Html.TextBoxFor(x => x.Height, new {Value=""})</div><br />
+    <div class="clear"></div>
+
+    <div class="float-left">@Html.LabelFor(x => x.Weight) @Html.TextBoxFor(x => x.Weight, new {Value=""})</div><br />
+    <div class="clear"></div>
+
+    <div class="float-left">@Html.LabelFor(x => x.BodyMass) @Html.DisplayFor(x => x.BodyMass)</div><br />
+    <div class="clear"></div>
+
+    <div class="float-left">@Html.LabelFor(x => x.Goal) @Html.TextBoxFor(x => x.Goal)</div><br />
+    <div class="clear"></div>
+
+    <div class="float-left">@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfo)</div><br />
+    <div class="clear"></div>
+    
+    <input type="submit", value="Next Page" />
+}

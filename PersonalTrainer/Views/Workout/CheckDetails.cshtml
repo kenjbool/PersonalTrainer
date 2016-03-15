@@ -1,0 +1,46 @@
+﻿@model PersonalTrainer.Models.Workout
+
+<h2>So... Let's just clarify those details, @Model.FName</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="float-left">@Html.LabelFor(x => x.FName) @Html.DisplayFor(x => x.FName)</div>
+    <div class="clear"></div>
+
+    <div class="float-right">@Html.LabelFor(x => x.LName) @Html.DisplayFor(x => x.LName)</div>
+    <div class="clear"></div>
+    
+    <div class="float-left">@Html.LabelFor(x => x.Gender) @Html.DisplayFor(x => x.Gender)</div>
+    <div class="clear"></div>
+    
+    <div class="float-left">@Html.LabelFor(x => x.DateOfBirth) @Html.DisplayFor(x => x.DateOfBirth, new {Value=""})</div>
+    <div class="clear"></div>
+
+    <div class="float-right">@Html.LabelFor(x => x.Age) @Html.DisplayFor(x => x.Age)</div><br />
+    <div class="clear"></div>
+    
+    <div class="float-left">@Html.LabelFor(x => x.Email) @Html.DisplayFor(x => x.Email)</div><br />
+    <div class="clear"></div>
+
+    <div class="float-right">@Html.LabelFor(x => x.Phone) @Html.DisplayFor(x => x.Phone)</div><br />
+    <div class="clear"></div>
+    
+    <div class="float-left">@Html.LabelFor(x => x.Height) @Html.DisplayFor(x => x.Height, new {Value=""})</div><br />
+    <div class="clear"></div>
+
+    <div class="float-left">@Html.LabelFor(x => x.Weight) @Html.DisplayFor(x => x.Weight, new {Value=""})</div><br />
+    <div class="clear"></div>
+
+    <div class="float-left">@Html.LabelFor(x => x.BodyMass) @Html.DisplayFor(x => x.BodyMass)</div><br />
+    <div class="clear"></div>
+
+    <div class="float-left">@Html.LabelFor(x => x.Goal) @Html.DisplayFor(x => x.Goal)</div><br />
+    <div class="clear"></div>
+
+    <div class="float-left">@Html.LabelFor(x => x.AddInfo) @Html.DisplayFor(x => x.AddInfo)</div><br />
+    <div class="clear"></div>
+    
+    <div class="float-left"></div>
+    
+    <input type="submit", value="Plan a workout" />
+}

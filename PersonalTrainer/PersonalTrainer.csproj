@@ -182,6 +182,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WorkoutController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -190,6 +191,8 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Create.cs" />
+    <Compile Include="Models\list.cs" />
+    <Compile Include="Models\MacroCounter.cs" />
     <Compile Include="Models\Parq.cs" />
     <Compile Include="Models\Workout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -312,6 +315,7 @@
     <Content Include="Views\Workout\GetClient.cshtml" />
     <Content Include="Views\Workout\CheckDetails.cshtml" />
     <Content Include="Views\Workout\ParQ.cshtml" />
+    <Content Include="Views\Food\MacroCounter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

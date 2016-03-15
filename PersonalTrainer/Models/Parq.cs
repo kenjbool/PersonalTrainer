@@ -8,6 +8,8 @@ namespace PersonalTrainer.Models
 {
     public class Parq
     {
+        public class answers
+        {
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name="Yes/No")]
         public bool answerOne { get; set; }
@@ -75,5 +77,22 @@ namespace PersonalTrainer.Models
         [Display(Name = "If you answered YES to any of the questions above please give details:")]
         public string AddInfo { get; set; }
 
+        public string AddInfoOne { get; set; }
+        public string AddInfoTwo { get; set; }
+        public string AddInfoThree { get; set; }
+        public string AddInfoFour { get; set; }
+        public string AddInfoFive { get; set; }
+        public string AddInfoSix { get; set; }
+        public string AddInfoSeven { get; set; }
+        public string AddInfoEight { get; set; }
+        public string AddInfoNine { get; set; }
+        public string AddInfoTen { get; set; }
+        public string AddInfoEleven { get; set; }
+        public string AddInfoTwelve { get; set; }
+        public string AddInfoThirteen { get; set; }
+        public string AddInfoFourteen { get; set; }
+        public string AddInfoFifteen { get; set; }
+        public string AddInfoSixteen { get; set; }
+        }
     }
 }

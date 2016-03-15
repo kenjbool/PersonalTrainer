@@ -22,7 +22,7 @@ namespace PersonalTrainer.Controllers
         //
         // POST: /Workout/Parq
         [HttpPost]
-        public ActionResult ParQ(Parq parq)
+        public ActionResult ParQ(Parq.answers parq)
         {
             if (!ModelState.IsValid && (parq.AddInfo != null))
             {

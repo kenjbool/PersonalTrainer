@@ -1,4 +1,4 @@
-﻿@model PersonalTrainer.Models.Parq
+﻿@model PersonalTrainer.Models.Parq.answers
 
 
 <h2>Physical Activity Readiness Questionnaire (PAR-Q)</h2>
@@ -28,14 +28,16 @@ type of activity most suitable for them. Common sense is the best guide in answe
     <table style="width: 100%">
         <tr>
             <td>
-                <p>
-                    Has your doctor ever said that you have a bone or joint problems, such as arthritis that has been aggravated by
-exercise or might be made worse with exercise?
-                </p>
+                <p>Has your doctor ever said that you have a bone or joint problems, such as arthritis that has been aggravated by exercise or might be made worse with exercise?</p>
             </td>
             <td>@Html.LabelFor(x => x.answerOne) @Html.DropDownListFor(x => x.answerOne, new[] {
                             new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                             new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+            
+            @if (Model.answerOne != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoOne)</td>
+            }
         </tr>
         <tr>
             <td>
@@ -44,6 +46,11 @@ exercise or might be made worse with exercise?
             <td>@Html.LabelFor(x => x.answerTwo) @Html.DropDownListFor(x => x.answerTwo, new[] {
                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+
+            @if (Model.answerTwo != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoTwo)</td>
+            }
         </tr>
         <tr>
             <td>
@@ -52,6 +59,11 @@ exercise or might be made worse with exercise?
             <td>@Html.LabelFor(x => x.answerThree) @Html.DropDownListFor(x => x.answerThree, new[] {
                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+            
+            @if (Model.answerThree != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoThree)</td>
+            }
         </tr>
         <tr>
             <td>
@@ -61,6 +73,11 @@ exercise or might be made worse with exercise?
             <td>@Html.LabelFor(x => x.answerFour) @Html.DropDownListFor(x => x.answerFour, new[] {
                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+
+            @if (Model.answerFour != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoFour)</td>
+            }
         </tr>
         <tr>
             <td>
@@ -70,6 +87,12 @@ exercise or might be made worse with exercise?
             <td>@Html.LabelFor(x => x.answerFive) @Html.DropDownListFor(x => x.answerFive, new[] {
                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+             
+            @if (Model.answerFive != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoFive)</td>
+            }
+
         </tr>
         <tr>
             <td>
@@ -78,6 +101,11 @@ exercise or might be made worse with exercise?
             <td>@Html.LabelFor(x => x.answerSix) @Html.DropDownListFor(x => x.answerSix, new[] {
                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+
+            @if (Model.answerSix != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoSix)</td>
+            }
         </tr>
         <tr>
             <td>
@@ -86,6 +114,11 @@ exercise or might be made worse with exercise?
             <td>@Html.LabelFor(x => x.answerSeven) @Html.DropDownListFor(x => x.answerSeven, new[] {
                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+
+            @if (Model.answerSeven != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoSeven)</td>
+            }
         </tr>
         <tr>
             <td>
@@ -94,6 +127,11 @@ exercise or might be made worse with exercise?
             <td>@Html.LabelFor(x => x.answerEight) @Html.DropDownListFor(x => x.answerEight, new[] {
                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+
+            @if (Model.answerEight != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoEight)</td>
+            }
         </tr>
         <tr>
             <td>
@@ -102,6 +140,11 @@ exercise or might be made worse with exercise?
             <td>@Html.LabelFor(x => x.answerNine) @Html.DropDownListFor(x => x.answerNine, new[] {
                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+
+            @if (Model.answerNine != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoNine)</td>
+            }
         </tr>
         <tr>
             <td>
@@ -110,6 +153,11 @@ exercise or might be made worse with exercise?
             <td>@Html.LabelFor(x => x.answerTen) @Html.DropDownListFor(x => x.answerTen, new[] {
                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+
+            @if (Model.answerTen != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoTen)</td>
+            }
         </tr>
         <tr>
             <td>
@@ -118,6 +166,11 @@ exercise or might be made worse with exercise?
             <td>@Html.LabelFor(x => x.answerEleven) @Html.DropDownListFor(x => x.answerEleven, new[] {
                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+
+            @if (Model.answerEleven != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoEleven)</td>
+            }
         </tr>
         <tr>
             <td>
@@ -126,6 +179,11 @@ exercise or might be made worse with exercise?
             <td>@Html.LabelFor(x => x.answerTwelve) @Html.DropDownListFor(x => x.answerTwelve, new[] {
                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+
+            @if (Model.answerTwelve != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoTwelve)</td>
+            }
         </tr>
         <tr>
             <td>
@@ -134,6 +192,11 @@ exercise or might be made worse with exercise?
             <td>@Html.LabelFor(x => x.answerThirteen) @Html.DropDownListFor(x => x.answerThirteen, new[] {
                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+
+            @if (Model.answerThirteen != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoThirteen)</td>
+            }
         </tr>
         <tr>
             <td>
@@ -142,6 +205,11 @@ exercise or might be made worse with exercise?
             <td>@Html.LabelFor(x => x.answerFourteen) @Html.DropDownListFor(x => x.answerFourteen, new[] {
                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+
+            @if (Model.answerFourteen != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoFourteen)</td>
+            }
         </tr>
         <tr>
             <td>
@@ -150,6 +218,11 @@ exercise or might be made worse with exercise?
             <td>@Html.LabelFor(x => x.answerFifteen) @Html.DropDownListFor(x => x.answerFifteen, new[] {
                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+
+            @if (Model.answerFifteen != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoFifteen)</td>
+            }
         </tr>
         <tr>
             <td>
@@ -158,8 +231,14 @@ exercise or might be made worse with exercise?
             <td>@Html.LabelFor(x => x.answerSixteen) @Html.DropDownListFor(x => x.answerSixteen, new[] {
                            new SelectListItem() {Text = "Yes", Value= bool.TrueString},
                            new SelectListItem() {Text = "No", Value= bool.FalseString}}, "Choose an option")</td>
+
+            @if (Model.answerSixteen != true)
+            {
+                <td>@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfoSixteen)</td>
+            }
         </tr>
     </table>
+      
 </body>
 </html>
     <input type="submit", value="Let's Begin..." />

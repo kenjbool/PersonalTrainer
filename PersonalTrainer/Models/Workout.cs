@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+using Newtonsoft.Json.Serialization;
 
 namespace PersonalTrainer.Models
 {
@@ -14,6 +16,14 @@ namespace PersonalTrainer.Models
         [Display(Name = "Last Name:")]
         public string LName { get; set; }
 
+        [Required(ErrorMessage = "Please enter a valid postcode")]
+        [Display (Name="Post code")]
+        public string Postcode { get; set; }
+
+        [Required(ErrorMessage = "Please enter house name/number")]
+        [Display(Name="Please select your address")]
+        public string Address { get; set; }
+
         [Required(ErrorMessage = "Please enter your age")]
         [Display(Name = "Age:")]
         public int Age { get; set; }
@@ -24,6 +34,7 @@ namespace PersonalTrainer.Models
 
         [Required(ErrorMessage = "Please enter your Date of Birth")]
         [Display(Name = "Date Of Birth:")]
+        [RegularExpression("/d{2}[/]/d{2}[/]/d{4}", ErrorMessage="Please enter a valid date of Birth")]
         public DateTime DateOfBirth { get; set; }
 
         [Required(ErrorMessage = "Please enter your email address")]
@@ -35,6 +46,9 @@ namespace PersonalTrainer.Models
         //// [RegularExpression("\b{5}[ ]{6}\b", ErrorMessage="Please enter a valid phone number in the format \"XXXXX XXXXXX\"")]
         [Display(Name = "Phone Number:")]
         public string Phone { get; set; }
+
+        [Display(Name = "Emergency Contact Number")]
+        public string EmergencyContact { get; set; }
 
         [Required(ErrorMessage = "Please enter your height in centimeters")]
         [Display(Name = "Height:")]
@@ -54,16 +68,21 @@ namespace PersonalTrainer.Models
         [Display(Name = "Additional Info:")]
         public string AddInfo { get; set; }
 
-        public int ClientAge() 
-        {
-            var today = DateTime.Today;
-            if (DateOfBirth != null)
-            {
-                var dateBorn = DateOfBirth;
-            }
-            var clientAge = (today.Year - DateOfBirth.Year);
-
-            return clientAge;
-        }
+        public string AddInfoOne { get; set; }
+        public string AddInfoTwo { get; set; }
+        public string AddInfoThree { get; set; }
+        public string AddInfoFour { get; set; }
+        public string AddInfoFive { get; set; }
+        public string AddInfoSix { get; set; }
+        public string AddInfoSeven { get; set; }
+        public string AddInfoEight { get; set; }
+        public string AddInfoNine { get; set; }
+        public string AddInfoTen { get; set; }
+        public string AddInfoEleven { get; set; }
+        public string AddInfoTwelve { get; set; }
+        public string AddInfoThirteen { get; set; }
+        public string AddInfoFourteen { get; set; }
+        public string AddInfoFifteen { get; set; }
+        public string AddInfoSixteen { get; set; }
     }
 }

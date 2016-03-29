@@ -1,5 +1,8 @@
 ﻿@model PersonalTrainer.Models.Workout
 @ViewBag.Title
+@{
+    ViewBag.Title = "Paul Fawcett PT";
+}
 
 @using (Html.BeginForm())
 {
@@ -19,5 +22,5 @@
     <br />
     <p>Let's get started... Just click the button below and off we gooooo!!</p>
     <br />
-    <div class="float-left">@Html.ActionLink("Next Step", "ParQ")</div><br />
+    <div align="center">@Html.ActionLink("PAR-Q", "Parq")</div><br />
 }

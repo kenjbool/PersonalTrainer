@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace PersonalTrainer.Models
 {
     public class Parq
     {
-        public class answers
-        {
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name="Yes/No")]
         public bool answerOne { get; set; }
@@ -74,8 +73,22 @@ namespace PersonalTrainer.Models
         [Display(Name = "Yes/No")]
         public bool answerSixteen { get; set; }
 
+        [Required(ErrorMessage = "Please enter your Name")]
+        [Display(Name="Name")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "Please enter your current email address")]
+        [Display(Name = "Email Address")]
+        public string Email { get; set; }
+
         [Display(Name = "If you answered YES to any of the questions above please give details:")]
         public string AddInfo { get; set; }
+
+        [Display(Name = "Comments/Add info")]
+        public string AddInfoParq { get; set; }
+
+        [Required(ErrorMessage = "Please tick this box before you can continue")]
+        public bool ParqAgreement { get; set; }
 
         public string AddInfoOne { get; set; }
         public string AddInfoTwo { get; set; }
@@ -93,6 +106,6 @@ namespace PersonalTrainer.Models
         public string AddInfoFourteen { get; set; }
         public string AddInfoFifteen { get; set; }
         public string AddInfoSixteen { get; set; }
-        }
+
+        } 
     }
-}

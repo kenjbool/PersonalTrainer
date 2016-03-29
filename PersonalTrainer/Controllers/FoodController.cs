@@ -11,7 +11,16 @@ namespace PersonalTrainer.Controllers
     {
         //
         // GET: /Food/
-
+        [HttpGet]
+        public ActionResult MacroCounter()
+        {
+            return View();
+        }
+        
+        
+        //
+        // POST: /Food/
+        [HttpPost]
         public ActionResult MacroCounter(MacroCounter counter)
         {
             var weightCalc = counter.Weight * 10;
@@ -19,7 +28,7 @@ namespace PersonalTrainer.Controllers
             var ageCalc = counter.Age * 5;
 
             var totalCalc = 0.0;
-            if (counter.Gender == male)
+            if (counter.Gender == "male")
             {
                 totalCalc = (weightCalc + heightCalc - ageCalc) + 5;
             }
@@ -42,7 +51,7 @@ namespace PersonalTrainer.Controllers
                 case "Moderately Active (moderate exercise/sports 3-5 days/week)":
                     activity = 1.6;
                     break;
-                case "Very active= (Hard exercise/sports 6-7 days per/week)":
+                case "Very active (Hard exercise/sports 6-7 days per/week)":
                     activity = 1.8;
                     break;
                 case "Extremely active (Very hard daily exercise/sports & physical job or twice a day training)":
@@ -52,7 +61,7 @@ namespace PersonalTrainer.Controllers
 
             var activityCounter = totalCalc * activity;
 
-            return View();
+            return View(counter);
         }
 
     }

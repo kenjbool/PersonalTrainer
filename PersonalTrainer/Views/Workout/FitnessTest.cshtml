@@ -1,0 +1,127 @@
+﻿@model PersonalTrainer.Models.FitnessTest
+@ViewBag.Title = "FitnessTest";
+
+<html>
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>FitnessTest</h2>
+
+    <h3>One Rep Max Calculator</h3>
+
+    <b>Weight</b>
+    <input type="text" id="weight">
+
+    <b>Reps</b>
+    <input type="text" id="reps" />
+
+    <button id="button">Calculate Your ORM</button>
+
+    <p id="demo"></p>
+
+    @using (Html.BeginForm())
+    {
+
+        // Use Javascript to trigger button
+
+        <span id="hiddenTable" style="visibility: hidden">
+
+            <div class="left">
+                <table style="width: 40%">
+                    <tr>
+                        <th>Weight</th>
+                        <th>Percent</th>
+                        <th>Reps</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>100%</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>95%</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>93%</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>90%</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>87%</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>85%</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>83%</td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>80%</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>77%</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>75%</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>67%</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>65%</td>
+                        <td>15</td>
+                    </tr>
+                </table>
+
+
+            </div>
+        </span>
+        <input type="submit" value="Make the plan!" />
+    }
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+    $("#button").click(function () {
+        var weight = parseInt($('#weight').val());
+        var reps = parseInt($('#reps').val());
+        var max = weight * ((reps * 0.33) + 1);
+        $('#demo').html("If you can lift " + weight + " for " + reps + " reps then you have an estimated max of " + max + " !");
+        @Model.ORM = max;
+        $('#hiddenTable')._show();
+    });
+</script>

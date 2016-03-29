@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -191,6 +192,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Create.cs" />
+    <Compile Include="Models\FitnessTest.cs" />
     <Compile Include="Models\list.cs" />
     <Compile Include="Models\MacroCounter.cs" />
     <Compile Include="Models\Parq.cs" />
@@ -316,6 +318,7 @@
     <Content Include="Views\Workout\CheckDetails.cshtml" />
     <Content Include="Views\Workout\ParQ.cshtml" />
     <Content Include="Views\Food\MacroCounter.cshtml" />
+    <Content Include="Views\Workout\FitnessTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

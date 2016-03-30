@@ -74,7 +74,7 @@ namespace PersonalTrainer.Controllers
         //
         // GET: /Workout/Client
         [HttpGet]
-        public ViewResult Client(Workout workout)
+        public ActionResult Client(Workout workout)
         {
             return View(workout);
         }
@@ -84,11 +84,11 @@ namespace PersonalTrainer.Controllers
         [HttpPost]
         public ActionResult Client(Workout client, Parq parq)
         {
-            if (!ModelState.IsValid)
-            {
-                ViewBag.Message = "Please complete all fields before continuing";
-                return View();
-            }
+           //// if (!ModelState.IsValid)
+           //// {
+           ////     ViewBag.Message = "Please complete all fields before continuing";
+           ////     return View();
+           //// }
             var today = DateTime.Today;
             var clientInfo = client;
             client.FName = clientInfo.FName;
@@ -102,15 +102,15 @@ namespace PersonalTrainer.Controllers
                 clientInfo.Gender = "Female";
             }
 
-            ////var dateOfBirthToString = client.DateOfBirth.ToString(CultureInfo.InvariantCulture);
+            var dateOfBirthToString = client.DateOfBirth.ToString(CultureInfo.InvariantCulture);
 
-            ////var day = string.Format(dateOfBirthToString).Substring(0, 2);
-            ////var month = string.Format(dateOfBirthToString).Substring(3, 2);
-            ////var year = string.Format(dateOfBirthToString).Substring(5, 4);
+            var day = string.Format(dateOfBirthToString).Substring(0, 2);
+            var month = string.Format(dateOfBirthToString).Substring(3, 2);
+            var year = string.Format(dateOfBirthToString).Substring(5, 4);
 
-            ////var dateOfBirthFormat = string.Format(day + "/" + month + "/" + year);
+            var dateOfBirthFormat = string.Format(day + "/" + month + "/" + year);
 
-            client.DateOfBirth = clientInfo.DateOfBirth;
+            clientInfo.DateOfBirth.ToString(dateOfBirthFormat);
 
             if (client.DateOfBirth != null)
             {

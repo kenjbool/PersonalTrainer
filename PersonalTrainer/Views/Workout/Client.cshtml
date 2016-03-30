@@ -5,9 +5,9 @@
 <head>
     <meta charset="utf-8">
     <title>jQuery UI Datepicker - Default functionality</title>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="~/Content/themes/base/jquery-ui.css">
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
 
     @{ var state = new ModelState(); }
 </head>
@@ -43,7 +43,7 @@
     </div>
     <div class="clear-fix"></div>
 
-    <div class="leftfield">@Html.LabelFor(x => x.DateOfBirth) <span id="dateOfBirth datepicker">@Html.TextBoxFor(x => x.DateOfBirth, new {Value=""})</span></div>
+    <div class="leftfield">@Html.LabelFor(x => x.DateOfBirth) <input type="text" id="datepicker"></div>
 
     <div class="rightfield">@Html.LabelFor(x => x.Age) <span id="age"></span></div>
     <div class="clear-fix"></div>
@@ -66,8 +66,8 @@
 
     <div class="main-content">@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfo)</div>
     <div class="clear-fix"></div>
-    <div class="rightfield">
 
+    <div class="rightfield">
         <input type="submit" value="Next Stage..."/>
     </div>
 }
@@ -79,7 +79,7 @@
        $("#datepicker").datepicker();
    });
 
-   function getAge(dateOfBirth) {
+   $(function getAge(dateOfBirth) {
        var today = new Date();
        var birthDate = ("#dateOfBirth");
        var age = today.getFullYear() - birthDate.getFullYear();
@@ -88,5 +88,5 @@
            age--;
        }
        return age;
-   }
+   });
 </script>

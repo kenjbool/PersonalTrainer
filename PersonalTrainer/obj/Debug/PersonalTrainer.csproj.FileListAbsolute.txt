@@ -93,7 +93,6 @@ D:\Stash\PersonalTrainer\PersonalTrainer\bin\DotNetOpenAuth.OAuth.Consumer.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\DotNetOpenAuth.OAuth.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\DotNetOpenAuth.OpenId.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
-D:\Stash\PersonalTrainer\PersonalTrainer\bin\EntityFramework.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\Microsoft.Data.Edm.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\Microsoft.Data.OData.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\Microsoft.Web.Infrastructure.dll
@@ -115,7 +114,6 @@ D:\Stash\PersonalTrainer\PersonalTrainer\bin\System.Web.WebPages.Razor.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\WebGrease.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\WebMatrix.Data.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\WebMatrix.WebData.dll
-D:\Stash\PersonalTrainer\PersonalTrainer\bin\EntityFramework.xml
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\Newtonsoft.Json.xml
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\System.Net.Http.Formatting.xml
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\System.Web.Helpers.xml

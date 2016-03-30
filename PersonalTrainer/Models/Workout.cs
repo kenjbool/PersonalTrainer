@@ -18,6 +18,7 @@ namespace PersonalTrainer.Models
 
         [Required(ErrorMessage = "Please enter a valid postcode")]
         [Display (Name="Post code")]
+        // [RegularExpression("^ (([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0 - 9][0 - 9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$]", ErrorMessage = "Please enter a valid postcode" )]
         public string Postcode { get; set; }
 
         [Required(ErrorMessage = "Please enter house name/number")]
@@ -43,7 +44,7 @@ namespace PersonalTrainer.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter a valid Phone number")]
-        //// [RegularExpression("\b{5}[ ]{6}\b", ErrorMessage="Please enter a valid phone number in the format \"XXXXX XXXXXX\"")]
+        [RegularExpression("\b{5}[ ]{6}\b", ErrorMessage="Please enter a valid phone number in the format \"XXXXX XXXXXX\"")]
         [Display(Name = "Phone Number:")]
         public string Phone { get; set; }
 

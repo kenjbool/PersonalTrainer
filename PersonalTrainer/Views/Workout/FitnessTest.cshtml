@@ -114,14 +114,14 @@
 </body>
 </html>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script>
     $("#button").click(function () {
         var weight = parseInt($('#weight').val());
         var reps = parseInt($('#reps').val());
         var max = weight * ((reps * 0.33) + 1);
         $('#demo').html("If you can lift " + weight + " for " + reps + " reps then you have an estimated max of " + max + " !");
-        @Model.ORM = max;
+        ORM = max;
         $('#hiddenTable')._show();
     });
-</script>
+</script>*@

@@ -1,8 +1,10 @@
 ﻿@model PersonalTrainer.Models.FitnessTest
-@ViewBag.Title = "FitnessTest";
+@ViewBag.Title;
 
 <html>
 <head>
+    <title>Paul Fawcett PT</title>
+
     <style>
         table, th, td {
             border: 1px solid black;
@@ -18,7 +20,7 @@
 <body>
     <h2>FitnessTest</h2>
 
-    <h3>One Rep Max Calculator</h3>
+    <h3>Three Rep Max Calculator</h3>
 
     <b>Weight</b>
     <input type="text" id="weight">
@@ -26,102 +28,97 @@
     <b>Reps</b>
     <input type="text" id="reps" />
 
-    <button id="button">Calculate Your ORM</button>
+    <button id="button">Calculate</button>
 
     <p id="demo"></p>
 
     @using (Html.BeginForm())
     {
-
+        
         // Use Javascript to trigger button
 
-        <span id="hiddenTable" style="visibility: hidden">
-
-            <div class="left">
-                <table style="width: 40%">
+                <table style="width: 40%; visibility: hidden" id="hiddenTable" class="left">
                     <tr>
                         <th>Weight</th>
                         <th>Percent</th>
                         <th>Reps</th>
                     </tr>
                     <tr>
-                        <td>0</td>
+                        <td>@Model.WeightLifted</td>
                         <td>100%</td>
                         <td>1</td>
                     </tr>
                     <tr>
-                        <td>0</td>
+                        <td>@Model.WeightLifted*0.95</td>
                         <td>95%</td>
                         <td>2</td>
                     </tr>
                     <tr>
-                        <td>0</td>
+                        <td>@Model.WeightLifted*0.93</td>
                         <td>93%</td>
                         <td>3</td>
                     </tr>
                     <tr>
-                        <td>0</td>
+                        <td>@Model.WeightLifted*0.9</td>
                         <td>90%</td>
                         <td>4</td>
                     </tr>
                     <tr>
-                        <td>0</td>
+                        <td>@Model.WeightLifted*0.87</td>
                         <td>87%</td>
                         <td>5</td>
                     </tr>
                     <tr>
-                        <td>0</td>
+                        <td>@Model.WeightLifted*0.85</td>
                         <td>85%</td>
                         <td>6</td>
                     </tr>
                     <tr>
-                        <td>0</td>
+                        <td>@Model.WeightLifted*0.83</td>
                         <td>83%</td>
                         <td>7</td>
                     </tr>
                     <tr>
-                        <td>0</td>
+                        <td>@Model.WeightLifted*0.8</td>
                         <td>80%</td>
                         <td>8</td>
                     </tr>
                     <tr>
-                        <td>0</td>
+                        <td>@Model.WeightLifted*0.77</td>
                         <td>77%</td>
                         <td>9</td>
                     </tr>
                     <tr>
-                        <td>0</td>
+                        <td>@Model.WeightLifted*0.75</td>
                         <td>75%</td>
                         <td>10</td>
                     </tr>
                     <tr>
-                        <td>0</td>
+                        <td>@Model.WeightLifted*0.67</td>
                         <td>67%</td>
                         <td>12</td>
                     </tr>
                     <tr>
-                        <td>0</td>
+                        <td>@Model.WeightLifted*0.65</td>
                         <td>65%</td>
                         <td>15</td>
                     </tr>
                 </table>
-
-
-            </div>
-        </span>
         <input type="submit" value="Make the plan!" />
     }
 </body>
 </html>
 
-@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script>
-    $("#button").click(function () {
+    $("#button").click(function() {
         var weight = parseInt($('#weight').val());
         var reps = parseInt($('#reps').val());
         var max = weight * ((reps * 0.33) + 1);
-        $('#demo').html("If you can lift " + weight + " for " + reps + " reps then you have an estimated max of " + max + " !");
+        var threeMax = max * 0.93;
+        $('#demo').html("If you can lift " + weight + "kg for " + reps + " reps then you have an estimated Three rep max of " + +threeMax.toFixed(2) + "kg !");
         ORM = max;
-        $('#hiddenTable')._show();
+        // $('#button').click(function() {
+        //     $("hiddenTable").show()});
     });
-</script>*@
+</script>

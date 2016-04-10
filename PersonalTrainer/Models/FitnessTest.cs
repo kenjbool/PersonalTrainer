@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace PersonalTrainer.Models
+﻿namespace PersonalTrainer.Models
 {
     public class FitnessTest
     {
@@ -11,5 +6,10 @@ namespace PersonalTrainer.Models
         public int WeightLifted { get; set; }
 
         public double ORM { get; set; }
+
+        public string WorkoutName { get; set; }
+
+        public string Comments { get; set; }
+
     }
 }

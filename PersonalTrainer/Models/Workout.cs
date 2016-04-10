@@ -16,14 +16,17 @@ namespace PersonalTrainer.Models
         [Display(Name = "Last Name:")]
         public string LName { get; set; }
 
-        [Required(ErrorMessage = "Please enter a valid postcode")]
-        [Display (Name="Post code")]
-        // [RegularExpression("^ (([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0 - 9][0 - 9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$]", ErrorMessage = "Please enter a valid postcode" )]
-        public string Postcode { get; set; }
-
         [Required(ErrorMessage = "Please enter house name/number")]
-        [Display(Name="Please select your address")]
-        public string Address { get; set; }
+        [Display(Name="Please enter your address:")]
+        public string AddressLine1 { get; set; }
+
+        public string AddressLine2 { get; set; }
+
+        public string AddressLine3 { get; set; }
+
+        [Required(ErrorMessage = "Please enter a valid postcode")]
+        [Display(Name = "Post code")]
+        public string Postcode { get; set; }
 
         [Required(ErrorMessage = "Please enter your age")]
         [Display(Name = "Age:")]
@@ -48,16 +51,16 @@ namespace PersonalTrainer.Models
         [Display(Name = "Phone Number:")]
         public string Phone { get; set; }
 
-        [Display(Name = "Emergency Contact Number")]
+        [Display(Name = "Emergency Contact:")]
         public string EmergencyContact { get; set; }
 
         [Required(ErrorMessage = "Please enter your height in centimeters")]
         [Display(Name = "Height:")]
-        public decimal Height { get; set; }
+        public int Height { get; set; }
 
         [Required(ErrorMessage = "Please enter your weight in kg's")]
         [Display(Name = "Weight:")]
-        public decimal Weight { get; set; }
+        public float Weight { get; set; }
 
         [Display(Name = "Clients BMI:")]
         public string BodyMass { get; set; }

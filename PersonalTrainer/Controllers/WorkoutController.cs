@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Runtime.Remoting.Messaging;
 using System.Web.Mvc;
@@ -9,9 +11,19 @@ namespace PersonalTrainer.Controllers
 {
     public class WorkoutController : Controller
     {
+        SqlConnection myConnection = new SqlConnection(@"user id=AppLogin; password=C0smopolitan1; server=LT035368\PT; trusted_Connection=yes; database=PersonalTrainer; connection timeout=30");
 
         public ActionResult Index()
         {
+          try
+            {
+                myConnection.Open();
+            }
+            catch (Exception e)
+            {
+               
+            }
+
             return View();
         }
 
@@ -44,13 +56,33 @@ namespace PersonalTrainer.Controllers
                         workout.LName = afterSplit[1];
                     }
 
-                    if (parq.answerOne == true)
+                    if (parq.AnswerOne == true)
                     {
                         parq.AddInfoOne = workout.AddInfoOne;
                     }
                     else
                     {
                         workout.AddInfoOne = "lalalalalalalala";
+                    }
+
+                    using (myConnection)
+                    {
+                        string parqCommand = "INSERT INTO ParqAnswers(AnswerOne, AnswerTwo, AnswerThree, AnswerFour, AnswerFive, AnswerSix, AnswerSeven, AnswerEight, AnswerNine, AnswerTen, AnswerEleven, AnswerTwelve, AnswerThirteen, AnswerFourteen, AnswerFifteen, AnswerSixteen, AddInfoOne, AddInfoTwo, AddInfoThree, AddInfoFour, AddInfoFive, AddInfoSix, AddInfoSeven, AddInfoEight, AddInfoNine, AddInfoTen, AddInfoEleven, AddInfoTwelve, AddInfoThirteen, AddInfoFourteen, AddInfoFifteen, AddInfoSixteen, AdditionalInfo) " +
+                                             "VALUES(@parq.AnswerOne, @parq.AnswerTwo, @parq.AnswerThree, @parq.AnswerFour, @parq.AnswerFive, @parq.AnswerSix, @parq.AnswerSeven, @parq.AnswerEight, @parq.AnswerNine, @parq.AnswerTen, @parq.AnswerEleven, @parq.AnswerTwelve, @parq.AnswerThirteen, @parq.AnswerFourteen, @parq.AnswerFifteen, @parq.AnswerSixteen, @parq.AddInfoOne, @parq.AddInfoTwo, @parq.AddInfoThree, @parq.AddInfoFour, @parq.AddInfoFive, @parq.AddInfoSix, @parq.AddInfoSeven, @parq.AddInfoEight, @parq.AddInfoNine, @parq.AddInfoTen, @parq.AddInfoEleven, @parq.AddInfoTwelve, @parq.AddInfoThirteen, @parq.AddInfoFourteen, @parq.AddInfoFifteen, @parq.AddInfoSixteen, @parq.AdditionalInfo)";
+
+                        using (SqlCommand queryParqCommand = new SqlCommand(parqCommand))
+                        {
+                            if (myConnection.State == ConnectionState.Open)
+                            {
+                                queryParqCommand.Connection = myConnection;
+                            }
+                            else
+                            {
+                                myConnection.Open();
+                                queryParqCommand.Connection = myConnection;
+                            }
+                            myConnection.Close();
+                        }
                     }
 
                     return RedirectToAction("Client", workout);
@@ -76,6 +108,7 @@ namespace PersonalTrainer.Controllers
         [HttpGet]
         public ActionResult Client(Workout workout)
         {
+            ModelState.Clear();
             return View(workout);
         }
 
@@ -93,14 +126,7 @@ namespace PersonalTrainer.Controllers
             var clientInfo = client;
             client.FName = clientInfo.FName;
             client.LName = clientInfo.LName;
-            if (client.Gender == "Male")
-            {
-                clientInfo.Gender = "Male";
-            }
-            else
-            {
-                clientInfo.Gender = "Female";
-            }
+            clientInfo.Gender = client.Gender == "Male" ? "Male" : "Female";
 
             var dateOfBirthToString = client.DateOfBirth.ToString(CultureInfo.InvariantCulture);
 
@@ -112,10 +138,7 @@ namespace PersonalTrainer.Controllers
 
             clientInfo.DateOfBirth.ToString(dateOfBirthFormat);
 
-            if (client.DateOfBirth != null)
-            {
-                clientInfo.Age = (today.Year - client.DateOfBirth.Year);
-            }
+            clientInfo.Age = (today.Year - client.DateOfBirth.Year);
             client.Height = clientInfo.Height;
             client.Weight = clientInfo.Weight;
             client.BodyMass = clientInfo.BodyMass;
@@ -131,7 +154,6 @@ namespace PersonalTrainer.Controllers
         [HttpGet]
         public ActionResult CheckDetails(Workout clientInfo)
         {
-
             return View("CheckDetails", clientInfo);
         }
 

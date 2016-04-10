@@ -46,13 +46,12 @@
                     <p>Has your doctor ever said that you have a bone or joint problems, such as arthritis that has been aggravated by exercise or might be made worse with exercise?</p>
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerOne) @Html.DropDownListFor(x => x.answerOne, new[]
+                    @Html.LabelFor(x => x.AnswerOne) @Html.DropDownListFor(x => x.AnswerOne, new[]
                                              {
                                                  new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                  new SelectListItem() {Text = "No", Value = bool.FalseString}
                                              }, "Choose an option")
                 </td>
-
                 <td>@Html.LabelFor(x => x.AddInfoParq) @Html.TextAreaFor(x => x.AddInfoOne)</td>
             </tr>
             <tr>
@@ -60,7 +59,7 @@
                     <p>Do you have high blood pressure?</p>
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerTwo) @Html.DropDownListFor(x => x.answerTwo, new[]
+                    @Html.LabelFor(x => x.AnswerTwo) @Html.DropDownListFor(x => x.AnswerTwo, new[]
                                              {
                                                  new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                  new SelectListItem() {Text = "No", Value = bool.FalseString}
@@ -74,7 +73,7 @@
                     <p>Do you have low blood pressure?</p>
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerThree) @Html.DropDownListFor(x => x.answerThree, new[]
+                    @Html.LabelFor(x => x.AnswerThree) @Html.DropDownListFor(x => x.AnswerThree, new[]
                                                {
                                                    new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                    new SelectListItem() {Text = "No", Value = bool.FalseString}
@@ -89,7 +88,7 @@
 
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerFour) @Html.DropDownListFor(x => x.answerFour, new[]
+                    @Html.LabelFor(x => x.AnswerFour) @Html.DropDownListFor(x => x.AnswerFour, new[]
                                               {
                                                   new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                   new SelectListItem() {Text = "No", Value = bool.FalseString}
@@ -104,7 +103,7 @@
 
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerFive) @Html.DropDownListFor(x => x.answerFive, new[]
+                    @Html.LabelFor(x => x.AnswerFive) @Html.DropDownListFor(x => x.AnswerFive, new[]
                                               {
                                                   new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                   new SelectListItem() {Text = "No", Value = bool.FalseString}
@@ -119,7 +118,7 @@
                     <p>Has your doctor ever said that you have a heart condition arid that you should only do physical activity recommended by a doctor?</p>
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerSix) @Html.DropDownListFor(x => x.answerSix, new[]
+                    @Html.LabelFor(x => x.AnswerSix) @Html.DropDownListFor(x => x.AnswerSix, new[]
                                              {
                                                  new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                  new SelectListItem() {Text = "No", Value = bool.FalseString}
@@ -133,7 +132,7 @@
                     <p>Have you ever felt pain in your chest when you do physical exercise? </p>
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerSeven) @Html.DropDownListFor(x => x.answerSeven, new[]
+                    @Html.LabelFor(x => x.AnswerSeven) @Html.DropDownListFor(x => x.AnswerSeven, new[]
                                                {
                                                    new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                    new SelectListItem() {Text = "No", Value = bool.FalseString}
@@ -147,7 +146,7 @@
                     <p>Is your doctor currently prescribing you drugs or medication?</p>
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerEight) @Html.DropDownListFor(x => x.answerEight, new[]
+                    @Html.LabelFor(x => x.AnswerEight) @Html.DropDownListFor(x => x.AnswerEight, new[]
                                                {
                                                    new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                    new SelectListItem() {Text = "No", Value = bool.FalseString}
@@ -162,7 +161,7 @@
                     <p>Have you ever suffered from unusual shortness of breath at rest or with mild exertion?</p>
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerNine) @Html.DropDownListFor(x => x.answerNine, new[]
+                    @Html.LabelFor(x => x.AnswerNine) @Html.DropDownListFor(x => x.AnswerNine, new[]
                                               {
                                                   new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                   new SelectListItem() {Text = "No", Value = bool.FalseString}
@@ -176,7 +175,7 @@
                     <p>Is there any history of Coronary Heart Disease in your family?</p>
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerTen) @Html.DropDownListFor(x => x.answerTen, new[]
+                    @Html.LabelFor(x => x.AnswerTen) @Html.DropDownListFor(x => x.AnswerTen, new[]
                                              {
                                                  new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                  new SelectListItem() {Text = "No", Value = bool.FalseString}
@@ -190,7 +189,7 @@
                     <p>Do you often feel faint, have spells of severe dizziness or have lost consciousness?</p>
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerEleven) @Html.DropDownListFor(x => x.answerEleven, new[]
+                    @Html.LabelFor(x => x.AnswerEleven) @Html.DropDownListFor(x => x.AnswerEleven, new[]
                                                 {
                                                     new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                     new SelectListItem() {Text = "No", Value = bool.FalseString}
@@ -204,7 +203,7 @@
                     <p>Do you currently drink more than the average amount of alcohol per week (21 units for men and 14 units for women)?</p>
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerTwelve) @Html.DropDownListFor(x => x.answerTwelve, new[]
+                    @Html.LabelFor(x => x.AnswerTwelve) @Html.DropDownListFor(x => x.AnswerTwelve, new[]
                                                 {
                                                     new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                     new SelectListItem() {Text = "No", Value = bool.FalseString}
@@ -218,7 +217,7 @@
                     <p>Do you currently smoke?</p>
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerThirteen) @Html.DropDownListFor(x => x.answerThirteen, new[]
+                    @Html.LabelFor(x => x.AnswerThirteen) @Html.DropDownListFor(x => x.AnswerThirteen, new[]
                                                   {
                                                       new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                       new SelectListItem() {Text = "No", Value = bool.FalseString}
@@ -234,7 +233,7 @@
                     </p>
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerFourteen) @Html.DropDownListFor(x => x.answerFourteen, new[]
+                    @Html.LabelFor(x => x.AnswerFourteen) @Html.DropDownListFor(x => x.AnswerFourteen, new[]
                                                   {
                                                       new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                       new SelectListItem() {Text = "No", Value = bool.FalseString}
@@ -248,7 +247,7 @@
                     <p>Are you, or is there any possibility that you might be pregnant?</p>
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerFifteen) @Html.DropDownListFor(x => x.answerFifteen, new[]
+                    @Html.LabelFor(x => x.AnswerFifteen) @Html.DropDownListFor(x => x.AnswerFifteen, new[]
                                                  {
                                                      new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                      new SelectListItem() {Text = "No", Value = bool.FalseString}
@@ -262,7 +261,7 @@
                     <p>Do you know of any other reason why you should not participate in a physical activity programme?</p>
                 </td>
                 <td>
-                    @Html.LabelFor(x => x.answerSixteen) @Html.DropDownListFor(x => x.answerSixteen, new[]
+                    @Html.LabelFor(x => x.AnswerSixteen) @Html.DropDownListFor(x => x.AnswerSixteen, new[]
                                                  {
                                                      new SelectListItem() {Text = "Yes", Value = bool.TrueString},
                                                      new SelectListItem() {Text = "No", Value = bool.FalseString}

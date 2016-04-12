@@ -117,11 +117,11 @@ namespace PersonalTrainer.Controllers
         [HttpPost]
         public ActionResult Client(Workout client, Parq parq)
         {
-           //// if (!ModelState.IsValid)
-           //// {
-           ////     ViewBag.Message = "Please complete all fields before continuing";
-           ////     return View();
-           //// }
+            //if (!ModelState.IsValid)
+            //{
+            //    ViewBag.Message = "Please complete all fields before continuing";
+            //    return View();
+            //}
             var today = DateTime.Today;
             var clientInfo = client;
             client.FName = clientInfo.FName;
@@ -154,7 +154,7 @@ namespace PersonalTrainer.Controllers
         [HttpGet]
         public ActionResult CheckDetails(Workout clientInfo)
         {
-            return View("CheckDetails", clientInfo);
+            return View(clientInfo);
         }
 
         // POST: /Workout/CheckDetails
@@ -162,12 +162,20 @@ namespace PersonalTrainer.Controllers
         public ActionResult CheckDetails(FitnessTest test)
         {
             return View("FitnessTest");
+
         }
 
         // GET: /Workout/FitnessTest
         [HttpGet]
         public ActionResult FitnessTest()
         {
+            var testModel = new FitnessTest();
+
+            if (testModel.ORM != 0)
+            {
+                testModel.TRM = testModel.ORM * 0.95f;
+            }
+
             return View();
         }
 

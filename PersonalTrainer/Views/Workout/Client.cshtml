@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <title>jQuery UI Datepicker - Default functionality</title>
-    <link href="@Url.Content("~/Scripts/jquery-ui.min.js")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui.css")" rel="stylesheet"/>
     <script src="~/Scripts/jquery-ui-1.11.4.js"></script>
     <script src="~/Scripts/jquery-1.8.2.js"></script>
 
@@ -39,12 +39,14 @@
     </div>
 
     <div class="clear-fix"></div>
-    <div class="leftfield">@Html.TextBoxFor(x => x.AddressLine2)<br/>@Html.TextBoxFor(x => x.AddressLine3)<br/>@Html.LabelFor(x => x.Postcode) @Html.TextBoxFor(x => x.Postcode)</div>
+    <div class="leftfield">@Html.TextBoxFor(x => x.AddressLine2)<br/>@Html.LabelFor(x => x.Postcode) @Html.TextBoxFor(x => x.Postcode)</div>
 
     <div class="clear-fix"></div>
 
     <div class="rightfield">
-        <input class="ui-datepicker" />@Html.TextBox("DateOfBirth","", new {@class="ui-datepicker"})
+        @Html.LabelFor(x => x.DateOfBirth)
+        @*<input class="date-picker"/>*@
+        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "date-picker" })
     </div>
     <div class="leftfield">@Html.LabelFor(x => x.Email) @Html.TextBoxFor(x => x.Email)</div>
     <div class="clear-fix"></div>
@@ -73,7 +75,7 @@
 
 <script type="text/javascript">
    $(function () {
-       $('.ui-datepicker').datepicker();
+       $('.date-picker').datepicker();
    });
 
    //$(function getAge(dateOfBirth) {

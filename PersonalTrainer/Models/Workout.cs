@@ -22,8 +22,6 @@ namespace PersonalTrainer.Models
 
         public string AddressLine2 { get; set; }
 
-        public string AddressLine3 { get; set; }
-
         [Required(ErrorMessage = "Please enter a valid postcode")]
         [Display(Name = "Post code")]
         public string Postcode { get; set; }
@@ -38,7 +36,7 @@ namespace PersonalTrainer.Models
 
         [Required(ErrorMessage = "Please enter your Date of Birth")]
         [Display(Name = "Date Of Birth:")]
-        [RegularExpression("/d{2}[/]/d{2}[/]/d{4}", ErrorMessage="Please enter a valid date of Birth")]
+        [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
         [Required(ErrorMessage = "Please enter your email address")]
@@ -47,7 +45,7 @@ namespace PersonalTrainer.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter a valid Phone number")]
-        [RegularExpression("\b{5}[ ]{6}\b", ErrorMessage="Please enter a valid phone number in the format \"XXXXX XXXXXX\"")]
+        // [RegularExpression("\b{5}[ ]{6}\b", ErrorMessage="Please enter a valid phone number in the format \"XXXXX XXXXXX\"")]
         [Display(Name = "Phone Number:")]
         public string Phone { get; set; }
 

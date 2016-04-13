@@ -4,7 +4,7 @@
 }
 
 <br />
-<div class="error">
+<div class="error; main-content" style="visibility: hidden">
     @ViewBag.Message
 </div>
 
@@ -281,6 +281,12 @@
         <p>IMPORTANT: By ticking this box you are confirming that all the information you have supplied is true and complete to the best of your knowledge</p>
         @Html.CheckBoxFor(x => x.ParqAgreement)
     </div>
-    <input type="submit" value="Client info" />
+    <input type="submit" value="Client info" id="submitBtn" />
 
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+    $('#submitBtn').show(function(e) {
+        $('.error').show('visibility', 'hidden');
+    });
+</script>

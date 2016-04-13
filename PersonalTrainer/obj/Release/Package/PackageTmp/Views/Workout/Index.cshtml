@@ -1,0 +1,26 @@
+﻿@model PersonalTrainer.Models.Workout
+@ViewBag.Title
+@{
+    ViewBag.Title = "Paul Fawcett PT";
+}
+
+@using (Html.BeginForm())
+{
+    <br />
+    <p>This is where it's all going to begin. This is where I can help you create the new and improved you. 
+        My job as a Personal Trainer is to help you improve yourself in anyway that YOU want too. I can spend all day 
+        telling you what to do, but I want you to tell me what you want to achieve.</p>
+    <br />
+    <p>I'm going to take some details from you that will be stored on a secure database. I can access all clients 
+        data and you will be able to access your data and only your data. The data will not be passed onto any third 
+        parties and I have no intention of giving your data out to anyone.</p>
+    <br />
+    <h4>Using your data</h4>
+    <p>I wish to make you aware of how I will use your data. I will use it to create you a program and I will 
+        use this to monitor your progress. You will be able to do this in the near future but this functionality 
+        has not been built yet (Sort it out, Ken!!) </p>
+    <br />
+    <p>Let's get started... Just click the button below and off we gooooo!!</p>
+    <br />
+    <div align="center">@Html.ActionLink("PAR-Q", "Parq")</div><br />
+}

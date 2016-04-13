@@ -23,7 +23,7 @@ namespace PersonalTrainer.Models
         public string AddressLine2 { get; set; }
 
         [Required(ErrorMessage = "Please enter a valid postcode")]
-        [Display(Name = "Post code")]
+        [Display(Name = "Post code:")]
         public string Postcode { get; set; }
 
         [Required(ErrorMessage = "Please enter your age")]
@@ -53,11 +53,11 @@ namespace PersonalTrainer.Models
         public string EmergencyContact { get; set; }
 
         [Required(ErrorMessage = "Please enter your height in centimeters")]
-        [Display(Name = "Height:")]
+        [Display(Name = "Height(cm):")]
         public int Height { get; set; }
 
         [Required(ErrorMessage = "Please enter your weight in kg's")]
-        [Display(Name = "Weight:")]
+        [Display(Name = "Weight(kg):")]
         public float Weight { get; set; }
 
         [Display(Name = "Clients BMI:")]

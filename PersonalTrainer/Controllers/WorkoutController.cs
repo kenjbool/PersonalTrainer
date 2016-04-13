@@ -13,6 +13,7 @@ namespace PersonalTrainer.Controllers
     {
         SqlConnection myConnection = new SqlConnection(@"user id=AppLogin; password=C0smopolitan1; server=LT035368\PT; trusted_Connection=yes; database=PersonalTrainer; connection timeout=30");
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
           try
@@ -29,6 +30,7 @@ namespace PersonalTrainer.Controllers
 
         //
         // GET: /Workout/Parq
+        
         [HttpGet]
         public ActionResult ParQ()
         {
@@ -39,6 +41,7 @@ namespace PersonalTrainer.Controllers
         //
         // POST: /Workout/Parq
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ParQ(Parq parq)
         {
             if (ModelState.IsValid)

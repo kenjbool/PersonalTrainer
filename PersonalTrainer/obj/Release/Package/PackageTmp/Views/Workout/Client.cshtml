@@ -1,0 +1,91 @@
+﻿@model PersonalTrainer.Models.Workout
+@ViewBag.Title
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI Datepicker - Default functionality</title>
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui.css")" rel="stylesheet"/>
+    <script src="~/Scripts/jquery-ui-1.11.4.js"></script>
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+
+    @{ var state = new ModelState(); }
+</head>
+<body>
+    
+    @if (state.Errors.Count > 0)
+    {
+        <div class="message-error">
+            @ViewBag.Message
+        </div>
+    }
+
+<h2>Let's start with the basics</h2>
+@using (Html.BeginForm())
+{
+    <div class="leftfield">@Html.LabelFor(x => x.FName) @Html.TextBoxFor(x => x.FName)</div>
+
+
+    <div class="rightfield">@Html.LabelFor(x => x.LName) @Html.TextBoxFor(x => x.LName)</div>
+    <div class="clear-fix"></div>
+
+    <div class="leftfield">@Html.LabelFor(x => x.AddressLine1) @Html.TextBoxFor(x => x.AddressLine1)</div>
+    <div class="rightfield">
+        @Html.LabelFor(x => x.Gender) @Html.DropDownListFor(x => x.Gender, new[]
+                                      {
+                                          new SelectListItem() {Text = "Male", Value = "Male"},
+                                          new SelectListItem() {Text = "Female", Value = "Female"}
+                                      }, "Choose an option")
+    </div>
+
+    <div class="clear-fix"></div>
+    <div class="leftfield">@Html.TextBoxFor(x => x.AddressLine2)<br/>@Html.LabelFor(x => x.Postcode) @Html.TextBoxFor(x => x.Postcode)</div>
+
+    <div class="clear-fix"></div>
+
+    <div class="rightfield">
+        @Html.LabelFor(x => x.DateOfBirth)
+        @*<input class="date-picker"/>*@
+        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "date-picker" })
+    </div>
+    <div class="leftfield">@Html.LabelFor(x => x.Email) @Html.TextBoxFor(x => x.Email)</div>
+    <div class="clear-fix"></div>
+
+    <div class="leftfield">@Html.LabelFor(x => x.Height) @Html.TextBoxFor(x => x.Height, new {Value = ""})</div>
+    <div class="rightfield">@Html.LabelFor(x => x.Weight) @Html.TextBoxFor(x => x.Weight, new {Value = ""})</div>
+    <div class="clear-fix"></div>
+
+    <div class="leftfield">@Html.LabelFor(x => x.Goal) @Html.TextBoxFor(x => x.Goal)</div>
+    <div class="rightfield">@Html.LabelFor(x => x.Age) <span id="age"></span></div>
+    <div class="clear-fix"></div>
+
+    <div class="leftfield">@Html.LabelFor(x => x.Phone) @Html.TextBoxFor(x => x.Phone)</div>
+    <div class="rightfield">@Html.LabelFor(x => x.EmergencyContact) @Html.TextBoxFor(x => x.EmergencyContact)</div>
+    <div class="clear-fix"></div>
+
+    <div class="main-content">@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfo)</div>
+    <div class="clear-fix"></div>
+
+    <div class="rightfield">
+        <input type="submit" value="Next Stage..."/>
+    </div>
+}
+</body>
+</html>
+
+<script type="text/javascript">
+   $(function () {
+       $('.date-picker').datepicker();
+   });
+
+   //$(function getAge(dateOfBirth) {
+   //    var today = new Date();
+   //    var birthDate = ("#dateOfBirth");
+   //    var age = today.getFullYear() - birthDate.getFullYear();
+   //    var m = today.getMonth() - birthDate.getMonth();
+   //    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+   //        age--;
+   //    }
+   //    return age;
+   //});
+</script>

@@ -23,6 +23,7 @@ namespace PersonalTrainer
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+            GlobalConfiguration.Configuration.Filters.Add(new System.Web.Http.AuthorizeAttribute());
         }
     }
 }

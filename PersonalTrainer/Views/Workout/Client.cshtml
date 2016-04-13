@@ -23,6 +23,9 @@
 <h2>Let's start with the basics</h2>
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
+
+
     <div class="leftfield">@Html.LabelFor(x => x.FName) @Html.TextBoxFor(x => x.FName)</div>
 
 

@@ -22,9 +22,10 @@ namespace PersonalTrainer.Models
     public class UserProfile
     {
         [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
         public string UserName { get; set; }
+
     }
 
     public class RegisterExternalLoginModel
@@ -86,6 +87,10 @@ namespace PersonalTrainer.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Trainers Name")]
+        public string TrainerName { get; set; }
     }
 
     public class ExternalLogin

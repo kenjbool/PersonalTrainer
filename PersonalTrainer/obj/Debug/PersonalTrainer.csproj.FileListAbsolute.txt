@@ -171,3 +171,6 @@ D:\Stash\PersonalTrainer\PersonalTrainer\bin\ExpressiveAnnotations.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\ExpressiveAnnotations.MvcUnobtrusive.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\ExpressiveAnnotations.xml
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\ExpressiveAnnotations.MvcUnobtrusive.xml
+D:\Stash\PersonalTrainer\PersonalTrainer\bin\Microsoft.Owin.dll
+D:\Stash\PersonalTrainer\PersonalTrainer\bin\Owin.dll
+D:\Stash\PersonalTrainer\PersonalTrainer\bin\Microsoft.Owin.xml

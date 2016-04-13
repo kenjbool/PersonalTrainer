@@ -9,11 +9,11 @@ using PersonalTrainer.Models;
 
 namespace PersonalTrainer.Controllers
 {
+    [RequireHttps]
     public class WorkoutController : Controller
     {
         SqlConnection myConnection = new SqlConnection(@"user id=AppLogin; password=C0smopolitan1; server=LT035368\PT; trusted_Connection=yes; database=PersonalTrainer; connection timeout=30");
 
-        [AllowAnonymous]
         public ActionResult Index()
         {
           try
@@ -22,7 +22,7 @@ namespace PersonalTrainer.Controllers
             }
             catch (Exception e)
             {
-               
+               throw new Exception("You have not connected to your database, please check the connection and try again", e);
             }
 
             return View();
@@ -131,11 +131,11 @@ namespace PersonalTrainer.Controllers
             client.LName = clientInfo.LName;
             clientInfo.Gender = client.Gender == "Male" ? "Male" : "Female";
 
-            var dateOfBirthToString = client.DateOfBirth.ToString(CultureInfo.InvariantCulture);
+            var dateOfBirthToString = client.DateOfBirth.ToString(CultureInfo.CurrentCulture);
 
             var day = string.Format(dateOfBirthToString).Substring(0, 2);
             var month = string.Format(dateOfBirthToString).Substring(3, 2);
-            var year = string.Format(dateOfBirthToString).Substring(5, 4);
+            var year = string.Format(dateOfBirthToString).Substring(6, 4);
 
             var dateOfBirthFormat = string.Format(day + "/" + month + "/" + year);
 
@@ -193,6 +193,10 @@ namespace PersonalTrainer.Controllers
 
         public ActionResult Create(WorkoutController workout)
         {
+            // get list of exercises from database
+            // 
+
+            
             return View(workout);
         }
 

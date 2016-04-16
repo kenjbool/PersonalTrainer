@@ -1,15 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
-using System.Runtime.Remoting.Messaging;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using PersonalTrainer.Models;
 
 namespace PersonalTrainer.Controllers
 {
-    [RequireHttps]
     public class WorkoutController : Controller
     {
         SqlConnection myConnection = new SqlConnection(@"user id=AppLogin; password=C0smopolitan1; server=LT035368\PT; trusted_Connection=yes; database=PersonalTrainer; connection timeout=30");
@@ -50,6 +48,7 @@ namespace PersonalTrainer.Controllers
                 {
                     var workout = new Workout();
 
+                    
                     if (!string.IsNullOrEmpty(parq.Name))
                     {
                         string fullName = parq.Name;
@@ -70,8 +69,13 @@ namespace PersonalTrainer.Controllers
 
                     using (myConnection)
                     {
-                        string parqCommand = "INSERT INTO ParqAnswers(AnswerOne, AnswerTwo, AnswerThree, AnswerFour, AnswerFive, AnswerSix, AnswerSeven, AnswerEight, AnswerNine, AnswerTen, AnswerEleven, AnswerTwelve, AnswerThirteen, AnswerFourteen, AnswerFifteen, AnswerSixteen, AddInfoOne, AddInfoTwo, AddInfoThree, AddInfoFour, AddInfoFive, AddInfoSix, AddInfoSeven, AddInfoEight, AddInfoNine, AddInfoTen, AddInfoEleven, AddInfoTwelve, AddInfoThirteen, AddInfoFourteen, AddInfoFifteen, AddInfoSixteen, AdditionalInfo) " +
-                                             "VALUES(@parq.AnswerOne, @parq.AnswerTwo, @parq.AnswerThree, @parq.AnswerFour, @parq.AnswerFive, @parq.AnswerSix, @parq.AnswerSeven, @parq.AnswerEight, @parq.AnswerNine, @parq.AnswerTen, @parq.AnswerEleven, @parq.AnswerTwelve, @parq.AnswerThirteen, @parq.AnswerFourteen, @parq.AnswerFifteen, @parq.AnswerSixteen, @parq.AddInfoOne, @parq.AddInfoTwo, @parq.AddInfoThree, @parq.AddInfoFour, @parq.AddInfoFive, @parq.AddInfoSix, @parq.AddInfoSeven, @parq.AddInfoEight, @parq.AddInfoNine, @parq.AddInfoTen, @parq.AddInfoEleven, @parq.AddInfoTwelve, @parq.AddInfoThirteen, @parq.AddInfoFourteen, @parq.AddInfoFifteen, @parq.AddInfoSixteen, @parq.AdditionalInfo)";
+                        string parqCommand = string.Format("INSERT INTO ParqAnswers(AnswerOne, AnswerTwo, AnswerThree, AnswerFour, AnswerFive, AnswerSix, AnswerSeven, AnswerEight, AnswerNine, AnswerTen, AnswerEleven, AnswerTwelve, AnswerThirteen, AnswerFourteen, AnswerFifteen, AnswerSixteen," +
+                                                           " AddInfoOne, AddInfoTwo, AddInfoThree, AddInfoFour, AddInfoFive, AddInfoSix, AddInfoSeven, AddInfoEight, AddInfoNine, AddInfoTen, AddInfoEleven, AddInfoTwelve, AddInfoThirteen, AddInfoFourteen, AddInfoFifteen, AddInfoSixteen)" +
+                                             "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}','{27}','{28}','{29}','{30}','{31}'", 
+                                             parq.AnswerOne, parq.AnswerTwo, parq.AnswerThree, parq.AnswerFour, parq.AnswerFive, parq.AnswerSix, parq.AnswerSeven, parq.AnswerEight, parq.AnswerNine, parq.AnswerTen, parq.AnswerEleven, parq.AnswerTwelve, parq.AnswerThirteen, parq.AnswerFourteen, parq.AnswerFifteen, parq.AnswerSixteen,
+                                             parq.AddInfoOne, parq.AddInfoTwo, parq.AddInfoThree, parq.AddInfoFour, parq.AddInfoFive, parq.AddInfoSix, parq.AddInfoSeven, parq.AddInfoEight, parq.AddInfoNine, parq.AddInfoTen, parq.AddInfoEleven, parq.AddInfoTwelve, parq.AddInfoThirteen, parq.AddInfoFourteen, parq.AddInfoFifteen, parq.AddInfoSixteen);
+
+                        
 
                         using (SqlCommand queryParqCommand = new SqlCommand(parqCommand))
                         {
@@ -88,7 +92,9 @@ namespace PersonalTrainer.Controllers
                         }
                     }
 
-                    return RedirectToAction("Client", workout);
+                    this.TempData["workout"] = workout;
+
+                    return RedirectToAction("Client");
 
                 }
             }
@@ -109,10 +115,12 @@ namespace PersonalTrainer.Controllers
         //
         // GET: /Workout/Client
         [HttpGet]
-        public ActionResult Client(Workout workout)
+        public ActionResult Client()
         {
+            var workout = TempData["workout"] as Workout;
+
             ModelState.Clear();
-            return View(workout);
+            return View();
         }
 
         //
@@ -133,9 +141,10 @@ namespace PersonalTrainer.Controllers
 
             var dateOfBirthToString = client.DateOfBirth.ToString(CultureInfo.CurrentCulture);
 
-            var day = string.Format(dateOfBirthToString).Substring(0, 2);
-            var month = string.Format(dateOfBirthToString).Substring(3, 2);
-            var year = string.Format(dateOfBirthToString).Substring(6, 4);
+            var day = client.DateOfBirth.Day.ToString();
+
+            var month = client.DateOfBirth.Month.ToString();
+            var year = client.DateOfBirth.Year.ToString();
 
             var dateOfBirthFormat = string.Format(day + "/" + month + "/" + year);
 
@@ -148,15 +157,43 @@ namespace PersonalTrainer.Controllers
             client.Goal = clientInfo.Goal;
             client.AddInfo = clientInfo.AddInfo;
 
-            return RedirectToAction("CheckDetails", clientInfo);
+            clientInfo.RegistrationDate = today.Date;
+
+            using (myConnection)
+            {
+                string clientCommand = string.Format("INSERT INTO dbo.Person(FirstName, LastName, Age, DateOfBirth, Height, Weight, Postcode, Address, Gender, EmailAddress, PhoneNumber, AddInfo, DateOfRegistration), " +
+                                                     "VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}'", clientInfo.FName, clientInfo.LName, clientInfo.Age, clientInfo.DateOfBirth, 
+                                                     clientInfo.Height, clientInfo.Weight, clientInfo.Postcode, clientInfo.AddressLine1 + ", " + client.AddressLine2, clientInfo.Gender, clientInfo.Email, clientInfo.Phone, clientInfo.AddInfo, clientInfo.RegistrationDate);
+                
+                using (SqlCommand queryClientCommand = new SqlCommand(clientCommand))
+                {
+                    if (myConnection.State == ConnectionState.Open)
+                    {
+                        queryClientCommand.Connection = myConnection;
+                    }
+                    else
+                    {
+                        myConnection.Open();
+                        queryClientCommand.Connection = myConnection;
+                    }
+                    myConnection.Close();
+                }
+            }
+
+            this.TempData["clientInfo"] = clientInfo;
+
+            return RedirectToAction("CheckDetails");
+
+
 
         }
 
         //
         // GET: /Workout/CheckDetails
         [HttpGet]
-        public ActionResult CheckDetails(Workout clientInfo)
+        public ActionResult CheckDetails()
         {
+            var clientInfo = this.TempData["clientInfo"] as Workout;
             return View(clientInfo);
         }
 
@@ -164,6 +201,7 @@ namespace PersonalTrainer.Controllers
         [HttpPost]
         public ActionResult CheckDetails(FitnessTest test)
         {
+            this.TempData["fitnessTest"] = FitnessTest();
             return View("FitnessTest");
 
         }
@@ -173,13 +211,13 @@ namespace PersonalTrainer.Controllers
         public ActionResult FitnessTest()
         {
             var testModel = new FitnessTest();
-
+            var fitnessTest = this.TempData["fitnessTest"] as FitnessTest;
             if (testModel.ORM != 0)
             {
                 testModel.TRM = testModel.ORM * 0.95f;
             }
 
-            return View();
+            return View(fitnessTest);
         }
 
         [HttpPost]
@@ -191,13 +229,13 @@ namespace PersonalTrainer.Controllers
 
         }
 
-        public ActionResult Create(WorkoutController workout)
+        public ActionResult Create()
         {
             // get list of exercises from database
             // 
 
             
-            return View(workout);
+            return View();
         }
 
         public double OrmCalc(FitnessTest test)

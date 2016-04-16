@@ -5,6 +5,15 @@ namespace PersonalTrainer.Models
 {
     public class FitnessTest
     {
+        public FitnessTest()
+        {
+            this.WorkoutNameList = new List<string>();
+            WorkoutNameList.Add("Squat");
+            WorkoutNameList.Add("Deadlift");
+            WorkoutNameList.Add("Bench Press");
+            WorkoutNameList.Add("Overhead Press");
+        }
+
         [Display(Name = "Reps:")]
         public int Reps { get; set; }
 
@@ -13,21 +22,13 @@ namespace PersonalTrainer.Models
 
         public double ORM { get; set; }
 
-        public List<string> WorkoutNameList = new List<string>()
-        {
-            "Squat",
-            "Deadlift",
-            "Bench",
-            "Overhead Press",
-        }; 
+        [Display(Name = "Workout Name:")]
+        public List<string> WorkoutNameList { get; set; }
 
-        public string WorkoutName { get; set; }
-
+        [Display(Name = "Comments:")]
         public string Comments { get; set; }
 
         [Display(Name = "Three Rep Max:")]
         public double TRM { get; set; }
-
-
     }
 }

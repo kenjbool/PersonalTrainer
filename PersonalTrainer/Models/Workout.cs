@@ -8,6 +8,11 @@ namespace PersonalTrainer.Models
 {
     public class Workout
     {
+        public Workout()
+        {
+            this.DateOfBirth = new DateTime();
+        }
+
         [Required(ErrorMessage = "Please enter a first name")]
         [Display(Name = "First Name:")]
         public string FName { get; set; }
@@ -37,6 +42,7 @@ namespace PersonalTrainer.Models
         [Required(ErrorMessage = "Please enter your Date of Birth")]
         [Display(Name = "Date Of Birth:")]
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DateOfBirth { get; set; }
 
         [Required(ErrorMessage = "Please enter your email address")]
@@ -66,6 +72,8 @@ namespace PersonalTrainer.Models
         [Required(ErrorMessage = "Please select a goal")]
         [Display(Name = "Goal:")]
         public string Goal{ get; set; }
+
+        public DateTime RegistrationDate { get; set; }
 
         [Display(Name = "Additional Info:")]
         public string AddInfo { get; set; }

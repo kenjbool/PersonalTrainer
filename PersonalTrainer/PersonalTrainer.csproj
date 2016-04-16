@@ -207,6 +207,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\DbColumnAttribute.cs" />
     <Compile Include="Models\Routine.cs" />
     <Compile Include="Models\Workout.cs" />
     <Compile Include="Models\Create.cs" />

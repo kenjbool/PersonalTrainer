@@ -19,24 +19,24 @@
 </head>
 
 <body>
-    <h2>FitnessTest</h2>
+<h2>FitnessTest</h2>
 
-    <h3>Three Rep Max Calculator</h3>
+<h3>Three Rep Max Calculator</h3>
 
-    <b>Weight</b>
-    <input type="text" id="weight">
+<b>Weight</b>
+<input type="text" id="weight">
 
-    <b>Reps</b>
-    <input type="text" id="reps" />
+<b>Reps</b>
+<input type="text" id="reps"/>
 
-    <button id="button">Calculate</button>
+<button id="button">Calculate</button>
 
-    <p id="demo"></p>
+<p id="demo"></p>
 
-    @using (Html.BeginForm())
-    {
-        
-        // Use Javascript to trigger button
+@using (Html.BeginForm())
+{
+
+        @*// Use Javascript to trigger button
 
                 <table style="width: 40%; visibility: hidden" id="hiddenTable" class="left">
         <tr>
@@ -175,34 +175,47 @@
             <td>65%</td>
             <td>15</td>
         </tr>
-    </table>
-        
-        <h2>Workout</h2>
+    </table>*@
 
-        foreach (var workoutName in Model.WorkoutNameList)
+    <h2>Workout</h2>
+
+    @*foreach (var workoutName in Model.WorkoutNameList)
+    {
+        <div class="leftfield">@workoutName</div><br/>
+
+    }*@
+
+    {
+        foreach (var workoutName in @Model.WorkoutNameList)
         {
-            <div class="leftfield">@workoutName</div><br/>
+            <div class="leftfield">@Html.Label("Workout Name:")@Html.Label(workoutName)</div>
             <div class="leftfield">@Html.LabelFor(x => x.WeightLifted) @Html.TextBoxFor(x => x.WeightLifted)</div>
-            <div class="rightfield">@Html.DisplayFor(x => x.ORM) @Html.TextBoxFor(x => x.ORM)</div>
-            <div class="leftfield">@Html.DisplayFor(x => x.Reps) @Html.TextBoxFor(x => x.Reps)</div>
-            <div class="rightfield">@Html.DisplayFor(x => x.Comments) @Html.TextAreaFor(x => x.Comments)</div>
+            <div class="rightfield">@Html.LabelFor(x => x.ORM) @Html.TextBoxFor(x => x.ORM)</div>
+            <div class="leftfield">@Html.LabelFor(x => x.Reps) @Html.TextBoxFor(x => x.Reps)</div>
+            <div class="rightfield">@Html.LabelFor(x => x.Comments) @Html.TextAreaFor(x => x.Comments)</div>
             <div class="clear-fix"></div>
         }
-
-        <input type="submit" value="Make the plan!" />
     }
+}
+    <input type="submit" value="Make the plan!"/>
 </body>
 </html>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script>
-    $("#button").click(function() {
-        var weight = parseInt($('#weight').val());
-        var reps = parseInt($('#reps').val());
-        var max = weight * ((reps * 0.33) + 1);
-        var threeMax = max * 0.93;
-        $('#demo').html("If you can lift " + weight + "kg for " + reps + " reps then you have an estimated Three rep max of " + +threeMax.toFixed(2) + "kg !");
-        $('#button').click(function() {
-            $("hiddenTable").CSS('visibility', 'hidden')});
-    });
-</script>
+@section scripts
+{
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $("#button").click(function() {
+            var weight = parseInt($('#weight').val());
+            var reps = parseInt($('#reps').val());
+            var max = weight * ((reps * 0.33) + 1);
+            var threeMax = max * 0.93;
+            $('#demo').html("If you can lift " + weight + "kg for " + reps + " reps then you have an estimated Three rep max of " + +threeMax.toFixed(2) + "kg !");
+            $('#button').click(function() {
+                $("hiddenTable").CSS('visibility', 'hidden')
+            });
+        });
+    </script>
+
+}

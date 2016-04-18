@@ -4,7 +4,7 @@
 }
 
 <br />
-<div class="error" style="visibility: hidden">
+<div class="error; main-content" style="visibility: hidden">
     @ViewBag.Message
 </div>
 
@@ -22,6 +22,8 @@
 </p>
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
+
     <div class="float-left">
         @Html.LabelFor(x => x.Name) @Html.TextBoxFor(x => x.Name)
     </div>

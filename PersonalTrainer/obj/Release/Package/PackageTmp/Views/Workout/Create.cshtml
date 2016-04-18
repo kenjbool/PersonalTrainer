@@ -1,4 +1,5 @@
-﻿@{
+﻿@model PersonalTrainer.Models.Create
+@{
     ViewBag.Title = "Create";
 }
 <hgroup class="title">
@@ -7,5 +8,19 @@
 </hgroup>
 
 <section class="body">
-    
+    Here is where we'll build the workout plan for the customer.
+
+    <div class="leftfield">
+        @Html.LabelFor(x => x.NumberOfDays) @Html.TextBoxFor(x => x.NumberOfDays)
+    </div>
+
+    <div class="rightfield">
+        @Html.LabelFor(x => x.DayOfWeek) @Html.TextBoxFor(x => x.DayOfWeek)
+    </div>
+
+
+
+
+
+
 </section>

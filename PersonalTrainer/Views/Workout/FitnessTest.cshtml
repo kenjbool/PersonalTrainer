@@ -179,15 +179,9 @@
 
     <h2>Workout</h2>
 
-    @*foreach (var workoutName in Model.WorkoutNameList)
+{
+    foreach (var workoutName in @Model.WorkoutNameList)
     {
-        <div class="leftfield">@workoutName</div><br/>
-
-    }*@
-
-    {
-        foreach (var workoutName in @Model.WorkoutNameList)
-        {
             <div class="leftfield">@Html.Label("Workout Name:")@Html.Label(workoutName)</div>
             <div class="leftfield">@Html.LabelFor(x => x.WeightLifted) @Html.TextBoxFor(x => x.WeightLifted)</div>
             <div class="rightfield">@Html.LabelFor(x => x.ORM) @Html.TextBoxFor(x => x.ORM)</div>

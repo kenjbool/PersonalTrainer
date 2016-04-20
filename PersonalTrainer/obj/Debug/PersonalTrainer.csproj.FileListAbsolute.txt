@@ -173,3 +173,4 @@ D:\Stash\PersonalTrainer\PersonalTrainer\bin\zh-Hans\System.Spatial.resources.dl
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\zh-Hant\System.Spatial.resources.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\obj\Debug\PersonalTrainer.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\obj\Debug\PersonalTrainer.pdb
+D:\Stash\PersonalTrainer\PersonalTrainer\obj\Debug\PersonalTrainer.csprojResolveAssemblyReference.cache

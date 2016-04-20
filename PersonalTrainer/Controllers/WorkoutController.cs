@@ -11,6 +11,7 @@ namespace PersonalTrainer.Controllers
     public class WorkoutController : Controller
     {
         SqlConnection myConnection = new SqlConnection(@"user id=AppLogin; password=C0smopolitan1; server=LT035368\PT; trusted_Connection=yes; database=PersonalTrainer; connection timeout=30");
+        // SqlConnection myConnection = new SqlConnection(@"user id=AppLogin; password=C0smopolitan1; server=LT035368\PT; trusted_Connection=yes; database=PersonalTrainer; connection timeout=30");
 
         public ActionResult Index()
         {
@@ -117,8 +118,6 @@ namespace PersonalTrainer.Controllers
         [HttpGet]
         public ActionResult Client()
         {
-            var workout = TempData["workout"] as Workout;
-
             ModelState.Clear();
             return View();
         }
@@ -183,9 +182,6 @@ namespace PersonalTrainer.Controllers
             this.TempData["clientInfo"] = clientInfo;
 
             return RedirectToAction("CheckDetails");
-
-
-
         }
 
         //
@@ -210,11 +206,11 @@ namespace PersonalTrainer.Controllers
         [HttpGet]
         public ActionResult FitnessTest()
         {
-            var testModel = new FitnessTest();
             var fitnessTest = this.TempData["fitnessTest"] as FitnessTest;
-            if (testModel.ORM != 0)
+
+            if (fitnessTest != null && fitnessTest.ORM != 0)
             {
-                testModel.TRM = testModel.ORM * 0.95f;
+                fitnessTest.TRM = fitnessTest.ORM * 0.95f;
             }
 
             return View(fitnessTest);
@@ -223,6 +219,7 @@ namespace PersonalTrainer.Controllers
         [HttpPost]
         public ActionResult FitnessTest(FitnessTest test)
         {
+            this.TempData["TestData"] = FitnessTest();
             test.ORM = OrmCalc(test);
 
             return View("Create");

@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using PersonalTrainer.Models;
 
 namespace PersonalTrainer.Controllers
@@ -160,9 +161,9 @@ namespace PersonalTrainer.Controllers
 
             using (myConnection)
             {
-                string clientCommand = string.Format("INSERT INTO dbo.Person(FirstName, LastName, Age, DateOfBirth, Height, Weight, Postcode, Address, Gender, EmailAddress, PhoneNumber, AddInfo, DateOfRegistration), " +
-                                                     "VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}'", clientInfo.FName, clientInfo.LName, clientInfo.Age, clientInfo.DateOfBirth, 
-                                                     clientInfo.Height, clientInfo.Weight, clientInfo.Postcode, clientInfo.AddressLine1 + ", " + client.AddressLine2, clientInfo.Gender, clientInfo.Email, clientInfo.Phone, clientInfo.AddInfo, clientInfo.RegistrationDate);
+                string clientCommand =
+                    "INSERT INTO dbo.Person(FirstName, LastName, Age, DateOfBirth, Height, Weight, Postcode, Address, Gender, EmailAddress, PhoneNumber, AddInfo, DateOfRegistration), " +
+                    $"VALUES('{clientInfo.FName}', '{clientInfo.LName}', '{clientInfo.Age}', '{clientInfo.DateOfBirth}', '{clientInfo.Height}', '{clientInfo.Weight}', '{clientInfo.Postcode}', '{clientInfo.AddressLine1 + ", " + client.AddressLine2}', '{clientInfo.Gender}', '{clientInfo.Email}', '{clientInfo.Phone}', '{clientInfo.AddInfo}', '{clientInfo.RegistrationDate}'";
                 
                 using (SqlCommand queryClientCommand = new SqlCommand(clientCommand))
                 {
@@ -207,6 +208,43 @@ namespace PersonalTrainer.Controllers
         public ActionResult FitnessTest()
         {
             var fitnessTest = this.TempData["fitnessTest"] as FitnessTest;
+
+            using (myConnection)
+            {
+                string cardioCommand = "SELECT ExerciseName FROM dbo.Exercise WHERE ExerciseId LIKE \'CA%\'";
+
+                using (SqlCommand queryCardioCommand = new SqlCommand(cardioCommand))
+                {
+
+                    DataTable cardioDataTable = new DataTable();
+                    if (myConnection.State == ConnectionState.Open)
+                    {
+                        queryCardioCommand.Connection = myConnection;
+                    }
+                    else
+                    {
+                        myConnection.Open();
+                        queryCardioCommand.Connection = myConnection;
+                    }
+
+                    try
+                    {
+                        SqlDataReader myReader = null;
+                        myReader = queryCardioCommand.ExecuteReader();
+                        while (myReader.Read())
+                        {
+                            fitnessTest.ExerciseName = myReader["ExerciseName"].ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception("You have not connected to your database, please check the connection and try again", e);
+                    }
+
+                    myConnection.Close();
+
+                }
+            }
 
             if (fitnessTest != null && fitnessTest.ORM != 0)
             {

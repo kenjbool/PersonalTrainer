@@ -179,13 +179,26 @@
 
     <h2>Workout</h2>
 
-{
-    foreach (var workoutName in @Model.WorkoutNameList)
     {
+        foreach (var workoutName in @Model.WorkoutNameList)
+        {
             <div class="leftfield">@Html.Label("Workout Name:")@Html.Label(workoutName)</div>
             <div class="leftfield">@Html.LabelFor(x => x.WeightLifted) @Html.TextBoxFor(x => x.WeightLifted)</div>
             <div class="rightfield">@Html.LabelFor(x => x.ORM) @Html.TextBoxFor(x => x.ORM)</div>
             <div class="leftfield">@Html.LabelFor(x => x.Reps) @Html.TextBoxFor(x => x.Reps)</div>
+            <div class="rightfield">@Html.LabelFor(x => x.Comments) @Html.TextAreaFor(x => x.Comments)</div>
+            <div class="clear-fix"></div>
+        }
+    }
+
+    <h3>Aerobic</h3>
+
+    {
+        foreach (var cardioName in @Model.CardioNameList)
+        {
+            <div class="leftfield">@Html.Label("Exercise Name:")@Html.Label(cardioName)</div>
+            <div class="leftfield">@Html.LabelFor(x => x.ExerciseName) @Html.TextBoxFor(x => x.ExerciseName)</div>
+            <div class="rightfield">@Html.Label("Time:")@Html.TextBoxFor(x => x.Time)</div>
             <div class="rightfield">@Html.LabelFor(x => x.Comments) @Html.TextAreaFor(x => x.Comments)</div>
             <div class="clear-fix"></div>
         }

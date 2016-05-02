@@ -76,10 +76,9 @@ namespace PersonalTrainer.Models
         [Display(Name = "Clients BMI:")]
         public string BodyMass { get; set; }
 
-        [Required(ErrorMessage = "Please select a goal")]
-        [Display(Name = "Goal:")]
         public List<string> GoalList { get; set; }
 
+        [Display(Name = "Goal:")]
         public string GoalId { get; set; }
 
         public string Focus { get; set; }

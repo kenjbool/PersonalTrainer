@@ -1,6 +1,7 @@
 ﻿@using PersonalTrainer.Models
 @model PersonalTrainer.Models.FitnessTest
-@ViewBag.Title;
+@ViewBag.Title
+
 
 <html>
 <head>
@@ -19,210 +20,88 @@
 </head>
 
 <body>
-<h2>FitnessTest</h2>
+    <div class="main-content">
+        <h2>FitnessTest</h2>
+    </div>
 
-<h3>Three Rep Max Calculator</h3>
-
-<b>Weight</b>
-<input type="text" id="weight">
-
-<b>Reps</b>
-<input type="text" id="reps"/>
-
-<button id="button">Calculate</button>
-
-<p id="demo"></p>
-
-@using (Html.BeginForm())
-{
-
-        @*// Use Javascript to trigger button
-
-                <table style="width: 40%; visibility: hidden" id="hiddenTable" class="left">
-        <tr>
-            <th>Weight</th>
-            <th>Percent</th>
-            <th>Reps</th>
-        </tr>
-        <tr>
-            <td>
-                @if (Model.WeightLifted != 0)
-                     {
-                        @Model.WeightLifted
-                     }
-            </td>
-            <td>100%</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>
-                @if (Model.WeightLifted != 0)
-                {
-                    var lifted = Model.WeightLifted*0.95f;
-                    @lifted
-                }
-            </td>
-            <td>95%</td>
-            <td>2</td>
-        </tr>
-        <tr>
-            <td>
-                @if (Model.WeightLifted != 0)
-                {
-                    var lifted = Model.WeightLifted*0.93f;
-                    @lifted
-                }
-            </td>
-            <td>93%</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>
-                @if (Model.WeightLifted != 0)
-                {
-                    var lifted = Model.WeightLifted * 0.90f;
-                    @lifted
-                }
-            </td>
-            <td>90%</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>
-                @if (Model.WeightLifted != 0)
-                {
-                    var lifted = Model.WeightLifted*0.87f;
-                    @lifted
-                }
-            </td>
-            <td>87%</td>
-            <td>5</td>
-        </tr>
-        <tr>
-            <td>
-                @if (Model.WeightLifted != 0)
-                {
-                    var lifted = Model.WeightLifted * 0.85f;
-                    @lifted
-                }
-            </td>
-            <td>85%</td>
-            <td>6</td>
-        </tr>
-        <tr>
-            <td>
-                @if (Model.WeightLifted != 0)
-                {
-                    var lifted = Model.WeightLifted * 0.83f;
-                    @lifted
-                }
-            </td>
-            <td>83%</td>
-            <td>7</td>
-        </tr>
-        <tr>
-            <td>
-                @if (Model.WeightLifted != 0)
-                {
-                    var lifted = Model.WeightLifted*0.80f;
-                    @lifted
-                }
-            </td>
-            <td>80%</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>
-                @if (Model.WeightLifted != 0)
-                {
-                    var lifted = Model.WeightLifted*0.77f;
-                    @lifted
-                }
-            </td>
-            <td>77%</td>
-            <td>9</td>
-        </tr>
-        <tr>
-            <td>
-                @if (Model.WeightLifted != 0)
-                {
-                    var lifted = Model.WeightLifted*0.75f;
-                    @lifted
-                }
-            </td>
-            <td>75%</td>
-            <td>10</td>
-        </tr>
-        <tr>
-            <td>
-                @if (Model.WeightLifted != 0)
-                {
-                    var lifted = Model.WeightLifted * 0.67f;
-                    @lifted
-                }
-            </td>
-            <td>67%</td>
-            <td>12</td>
-        </tr>
-        <tr>
-            <td>
-                @if (Model.WeightLifted != 0)
-                {
-                    var lifted = Model.WeightLifted * 0.65f;
-                    @lifted
-                }
-            </td>
-            <td>65%</td>
-            <td>15</td>
-        </tr>
-    </table>*@
-
-    <h2>Workout</h2>
-
+    @using (Html.BeginForm())
     {
-        foreach (var workoutName in @Model.WorkoutNameList)
+        <h2>Workout</h2>
+
         {
-            <div class="leftfield">@Html.Label("Workout Name:")@Html.Label(workoutName)</div>
-            <div class="leftfield">@Html.LabelFor(x => x.WeightLifted) @Html.TextBoxFor(x => x.WeightLifted)</div>
-            <div class="rightfield">@Html.LabelFor(x => x.ORM) @Html.TextBoxFor(x => x.ORM)</div>
-            <div class="leftfield">@Html.LabelFor(x => x.Reps) @Html.TextBoxFor(x => x.Reps)</div>
-            <div class="rightfield">@Html.LabelFor(x => x.Comments) @Html.TextAreaFor(x => x.Comments)</div>
-            <div class="clear-fix"></div>
+            int counter = 1;
+            foreach (var workoutName in Model.WorkoutNameList)
+            {
+
+                <div class="leftfield">@Html.Label("Workout Name:") @Html.Label(workoutName)</div><div class="leftfield">
+                    @Html.LabelFor(x => x.WeightLifted)
+                <input id=@{ string.Format("weightLifted{0}", counter);} value ="@Model.WeightLifted" data-bind=@{ string.Format("value: weightLifted{0}, valueUpdate:'afterkeydown'", counter); } />
+            </div>
+
+                    <div class="rightfield">
+                        @Html.LabelFor(x => x.ORM)
+                    <span id=@{string.Format("orm{0}", counter);} data-bind=@{ string.Format("text: orm{0}, valueUpdate:'afterkeydown'", counter); }></span>
+                    <input type="hidden" value="@Model.ORM" data-bind=@{ string.Format("value: ormValue{0}, valueUpdate:'afterkeydown'", counter); } />
+                </div>
+
+                    <div class="leftfield">
+                        @Html.LabelFor(x => x.Reps) <input id=@{string.Format("reps{0}", counter);} data-bind=@{ string.Format("value: reps{0} , valueUpdate:'afterkeydown'", counter); } />
+                </div>
+
+                    <div class="rightfield">@Html.LabelFor(x => x.Comments) @Html.TextAreaFor(x => x.Comments)</div>
+                <div class="clear-fix"></div>
+
+                counter++;
+            }
+        }
+
+        <h3>Aerobic</h3>
+
+        {
+            foreach (var cardioName in Model.CardioNameList)
+            {
+                <div class="leftfield">@Html.Label("Exercise Name:")@Html.Label(cardioName)</div>
+                    <div class="leftfield">@Html.LabelFor(x => x.ExerciseName) @Html.TextBoxFor(x => x.ExerciseName)</div>
+
+                    <div class="rightfield">@Html.Label("Time:")@Html.TextBoxFor(x => x.Time)</div>
+                    <div class="rightfield">@Html.LabelFor(x => x.Comments) @Html.TextAreaFor(x => x.Comments)</div>
+                    <div class="clear-fix"></div>
+            }
         }
     }
-
-    <h3>Aerobic</h3>
-
-    {
-        foreach (var cardioName in @Model.CardioNameList)
-        {
-            <div class="leftfield">@Html.Label("Exercise Name:")@Html.Label(cardioName)</div>
-            <div class="leftfield">@Html.LabelFor(x => x.ExerciseName) @Html.TextBoxFor(x => x.ExerciseName)</div>
-            <div class="rightfield">@Html.Label("Time:")@Html.TextBoxFor(x => x.Time)</div>
-            <div class="rightfield">@Html.LabelFor(x => x.Comments) @Html.TextAreaFor(x => x.Comments)</div>
-            <div class="clear-fix"></div>
-        }
-    }
-}
-    <input type="submit" value="Make the plan!"/>
+    <input type="submit" value="Make the plan!" />
 </body>
 </html>
 
 @section scripts
 {
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
     <script>
-        $("#button").click(function() {
-            var weight = parseInt($('#weight').val());
-            var reps = parseInt($('#reps').val());
-            var max = weight * ((reps * 0.33) + 1);
-            var threeMax = max * 0.93;
-            $('#demo').html("If you can lift " + weight + "kg for " + reps + " reps then you have an estimated Three rep max of " + +threeMax.toFixed(2) + "kg !");
-            $('#button').click(function() {
-                $("hiddenTable").CSS('visibility', 'hidden')
-            });
-        });
+        function recalculateResult(weightLifted, reps) {
+            return weightLifted + reps;
+        }
+
+        counter = 1;
+        var viewModel = function() {
+            var self = this;
+            self.ormValue = ko.observable();
+            self.weightLifted = ko.observable();
+            self.reps = ko.observable();
+            self.orm = ko.computed(function() {
+                    var returnNumber = 0;
+                    var returnNumberMax = Number(self.weightLifted() * (1 + (self.reps() / 30)));
+                    returnNumber = returnNumberMax * 0.93;
+                    if (isNaN(returnNumber)) {
+                        returnNumber = 0;
+                    }
+                    self.ormValue = returnNumber;
+                    console.debug(self.ormValue);
+                    return returnNumber;
+                },
+                self);
+        };
+
+        ko.applyBindings(new viewModel());
     </script>
 
 }

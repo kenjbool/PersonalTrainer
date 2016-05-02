@@ -18,11 +18,6 @@ namespace PersonalTrainer.Models
             WorkoutNameList.Add("Bench Press");
             WorkoutNameList.Add("Overhead Press");
             
-            this.Comments = string.Empty;
-            this.ORM = 0;
-            this.Reps = 0;
-            this.TRM = 0;
-            this.WeightLifted = 0;
         }
 
         [Display(Name = "Reps:")]
@@ -31,6 +26,7 @@ namespace PersonalTrainer.Models
         [Display(Name = "Weight(kg):")]
         public int WeightLifted { get; set; }
 
+        [Display(Name = "Three Rep Max:")]
         public double ORM { get; set; }
 
         [Display(Name = "Workout Name:")]

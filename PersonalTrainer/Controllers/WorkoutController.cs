@@ -120,7 +120,10 @@ namespace PersonalTrainer.Controllers
         public ActionResult Client()
         {
             ModelState.Clear();
-            return View();
+
+            var workoutModel = this.TempData["workout"] as Workout ?? new Workout();
+
+            return View(workoutModel);
         }
 
         //
@@ -128,6 +131,7 @@ namespace PersonalTrainer.Controllers
         [HttpPost]
         public ActionResult Client(Workout client, Parq parq)
         {
+
             //if (!ModelState.IsValid)
             //{
             //    ViewBag.Message = "Please complete all fields before continuing";
@@ -154,7 +158,7 @@ namespace PersonalTrainer.Controllers
             client.Height = clientInfo.Height;
             client.Weight = clientInfo.Weight;
             client.BodyMass = clientInfo.BodyMass;
-            client.Goal = clientInfo.Goal;
+            client.GoalId = clientInfo.GoalId;
             client.AddInfo = clientInfo.AddInfo;
 
             clientInfo.RegistrationDate = today.Date;
@@ -162,8 +166,8 @@ namespace PersonalTrainer.Controllers
             using (myConnection)
             {
                 string clientCommand =
-                    "INSERT INTO dbo.Person(FirstName, LastName, Age, DateOfBirth, Height, Weight, Postcode, Address, Gender, EmailAddress, PhoneNumber, AddInfo, DateOfRegistration), " +
-                    $"VALUES('{clientInfo.FName}', '{clientInfo.LName}', '{clientInfo.Age}', '{clientInfo.DateOfBirth}', '{clientInfo.Height}', '{clientInfo.Weight}', '{clientInfo.Postcode}', '{clientInfo.AddressLine1 + ", " + client.AddressLine2}', '{clientInfo.Gender}', '{clientInfo.Email}', '{clientInfo.Phone}', '{clientInfo.AddInfo}', '{clientInfo.RegistrationDate}'";
+                    "INSERT INTO dbo.Person(FirstName, LastName, Age, DateOfBirth, Height, Weight, Postcode, Address, Gender, Goal, EmailAddress, PhoneNumber, AddInfo, DateOfRegistration), " +
+                    $"VALUES('{clientInfo.FName}', '{clientInfo.LName}', '{clientInfo.Age}', '{clientInfo.DateOfBirth}', '{clientInfo.Height}', '{clientInfo.Weight}', '{clientInfo.Postcode}', '{clientInfo.AddressLine1 + ", " + client.AddressLine2}', '{clientInfo.Gender}', '{clientInfo.GoalId}', '{clientInfo.Email}', '{clientInfo.Phone}', '{clientInfo.AddInfo}', '{clientInfo.RegistrationDate}'";
                 
                 using (SqlCommand queryClientCommand = new SqlCommand(clientCommand))
                 {
@@ -199,24 +203,20 @@ namespace PersonalTrainer.Controllers
         public ActionResult CheckDetails(FitnessTest test)
         {
             this.TempData["fitnessTest"] = FitnessTest();
-            return View("FitnessTest");
-
+            return RedirectToAction("FitnessTest");
         }
 
         // GET: /Workout/FitnessTest
         [HttpGet]
         public ActionResult FitnessTest()
         {
-            var fitnessTest = this.TempData["fitnessTest"] as FitnessTest;
+            var fitnessTest = new FitnessTest();
+            fitnessTest.CardioNameList = new List<string>();
 
             using (myConnection)
             {
-                string cardioCommand = "SELECT ExerciseName FROM dbo.Exercise WHERE ExerciseId LIKE \'CA%\'";
-
-                using (SqlCommand queryCardioCommand = new SqlCommand(cardioCommand))
+                using (SqlCommand queryCardioCommand = new SqlCommand("SELECT ExerciseName FROM dbo.Exercise WHERE ExerciseId LIKE \'CA%\'"))
                 {
-
-                    DataTable cardioDataTable = new DataTable();
                     if (myConnection.State == ConnectionState.Open)
                     {
                         queryCardioCommand.Connection = myConnection;
@@ -232,13 +232,17 @@ namespace PersonalTrainer.Controllers
                         SqlDataReader myReader = null;
                         myReader = queryCardioCommand.ExecuteReader();
                         while (myReader.Read())
-                        {
-                            fitnessTest.ExerciseName = myReader["ExerciseName"].ToString();
+                        {   
+                            foreach (var item in myReader)
+                            {
+                               fitnessTest.CardioNameList.Add(myReader["ExerciseName"].ToString());
+                            }
+
                         }
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
-                        throw new Exception("You have not connected to your database, please check the connection and try again", e);
+                        throw;
                     }
 
                     myConnection.Close();
@@ -260,16 +264,58 @@ namespace PersonalTrainer.Controllers
             this.TempData["TestData"] = FitnessTest();
             test.ORM = OrmCalc(test);
 
-            return View("Create");
+            return View("MoreClientData");
 
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
+            var clientInfo = this.TempData["clientInfo"] as Workout;
+            var testData = this.TempData["TestData"] as FitnessTest;
+
+
+            //map ExerciseToFocusTable
+            using (SqlCommand getExerciseByFocusIdCommand = new SqlCommand(string.Format("SELECT FocusName FROM dbo.Focus WHERE FocusName LIKE '{0}'", clientInfo.Focus)))
+
             // get list of exercises from database
             // 
+            using (SqlCommand queryCardioCommand = new SqlCommand(string.Format("SELECT * FROM dbo.Exercise WHERE ExerciseId LIKE '{0}'", getExerciseByFocusIdCommand)))
+            {
+                if (myConnection.State == ConnectionState.Open)
+                {
+                    queryCardioCommand.Connection = myConnection;
+                }
+                else
+                {
+                    myConnection.Open();
 
-            
+                    queryCardioCommand.Connection = myConnection;
+                }
+
+                try
+                {
+                    SqlDataReader myReader = null;
+                    myReader = queryCardioCommand.ExecuteReader();
+                    while (myReader.Read())
+                    {
+                        foreach (var item in myReader)
+                        {
+                            testData.CardioNameList.Add(myReader["ExerciseName"].ToString());
+                        }
+
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+                myConnection.Close();
+
+            }
+
+
             return View();
         }
 

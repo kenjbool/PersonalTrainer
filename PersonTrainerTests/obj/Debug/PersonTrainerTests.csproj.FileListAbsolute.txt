@@ -1,0 +1,6 @@
+D:\Stash\PersonalTrainer\PersonTrainerTests\bin\Debug\PersonTrainerTests.dll
+D:\Stash\PersonalTrainer\PersonTrainerTests\bin\Debug\PersonTrainerTests.pdb
+D:\Stash\PersonalTrainer\PersonTrainerTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\Stash\PersonalTrainer\PersonTrainerTests\obj\Debug\PersonTrainerTests.csprojResolveAssemblyReference.cache
+D:\Stash\PersonalTrainer\PersonTrainerTests\obj\Debug\PersonTrainerTests.dll
+D:\Stash\PersonalTrainer\PersonTrainerTests\obj\Debug\PersonTrainerTests.pdb

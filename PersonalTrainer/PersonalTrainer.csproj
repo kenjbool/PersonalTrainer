@@ -209,6 +209,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DbColumnAttribute.cs" />
+    <Compile Include="Models\MoreClientData.cs" />
     <Compile Include="Models\Routine.cs" />
     <Compile Include="Models\Workout.cs" />
     <Compile Include="Models\Create.cs" />
@@ -329,7 +330,7 @@
     <Content Include="Views\Workout\Index.cshtml" />
     <Content Include="Views\Workout\Create.cshtml" />
     <Content Include="Views\Workout\Client.cshtml" />
-    <Content Include="Views\Workout\MoreClient.cshtml" />
+    <Content Include="Views\Workout\MoreClientData.cshtml" />
     <Content Include="Views\Workout\GetClient.cshtml" />
     <Content Include="Views\Workout\CheckDetails.cshtml" />
     <Content Include="Views\Workout\ParQ.cshtml" />
@@ -337,9 +338,7 @@
     <Content Include="Views\Workout\FitnessTest.cshtml" />
     <Content Include="Views\Workout\404.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAL\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

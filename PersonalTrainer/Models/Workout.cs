@@ -11,6 +11,13 @@ namespace PersonalTrainer.Models
         public Workout()
         {
             this.DateOfBirth = new DateTime();
+
+            this.GoalList = new List<string>();
+            GoalList.Add("Lose Weight");
+            GoalList.Add("Tone Up");
+            GoalList.Add("Build Muscle");
+            GoalList.Add("Goal Specific");
+            GoalList.Add("Improve overall fitness");
         }
 
         [Required(ErrorMessage = "Please enter a first name")]
@@ -71,7 +78,11 @@ namespace PersonalTrainer.Models
 
         [Required(ErrorMessage = "Please select a goal")]
         [Display(Name = "Goal:")]
-        public string Goal{ get; set; }
+        public List<string> GoalList { get; set; }
+
+        public string GoalId { get; set; }
+
+        public string Focus { get; set; }
 
         public DateTime RegistrationDate { get; set; }
 

@@ -26,6 +26,8 @@ namespace PersonalTrainer
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             GlobalConfiguration.Configuration.Filters.Add(new System.Web.Http.AuthorizeAttribute());
+            GlobalFilters.Filters.Add(new HandleErrorAttribute());
+            
         }
     }
 }

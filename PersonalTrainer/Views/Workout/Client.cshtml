@@ -12,13 +12,13 @@
     @{ var state = new ModelState(); }
 </head>
 <body>
-    
-    @if (state.Errors.Count > 0)
-    {
-        <div class="message-error">
-            @ViewBag.Message
-        </div>
-    }
+
+@if (state.Errors.Count > 0)
+{
+    <div class="message-error">
+        @ViewBag.Message
+    </div>
+}
 
 <h2>Let's start with the basics</h2>
 @using (Html.BeginForm())
@@ -47,9 +47,7 @@
     <div class="clear-fix"></div>
 
     <div class="rightfield">
-        @Html.LabelFor(x => x.DateOfBirth)
-        @*<input class="date-picker"/>*@
-        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "date-picker" })
+        @Html.LabelFor(x => x.DateOfBirth) @Html.EditorFor(x => x.DateOfBirth, new {@class = "datepicker"})
     </div>
     <div class="leftfield">@Html.LabelFor(x => x.Email) @Html.TextBoxFor(x => x.Email)</div>
     <div class="clear-fix"></div>
@@ -58,8 +56,7 @@
     <div class="rightfield">@Html.LabelFor(x => x.Weight) @Html.TextBoxFor(x => x.Weight, new {Value = ""})</div>
     <div class="clear-fix"></div>
 
-    <div class="leftfield">@Html.LabelFor(x => x.Goal) @Html.TextBoxFor(x => x.Goal)</div>
-    <div class="rightfield">@Html.LabelFor(x => x.Age) <span id="age"></span></div>
+    <div class="leftfield">@Html.LabelFor(x => x.GoalList) @Html.DropDownListFor(x => x.GoalId, new SelectList(Model.GoalList, Model.GoalId))</div>
     <div class="clear-fix"></div>
 
     <div class="leftfield">@Html.LabelFor(x => x.Phone) @Html.TextBoxFor(x => x.Phone)</div>
@@ -76,9 +73,30 @@
 </body>
 </html>
 
-<script type="text/javascript">
+@section Scripts {
+
+            @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/jquery.ui.css")
+
+    <script type="text/javascript">
+
+     $(document).ready(function () {
+         $('.datepicker').datepicker({
+                    dateFormat: "dd/M/yy",
+             changeMonth: true,
+             changeYear: true,
+             yearRange: "-60:+0"
+         });
+
+            });
+    </script>
+
+}
+
+
+@*<script type="text/javascript">
    $(function () {
-       $('.date-picker').datepicker();
+       $('.ui-datepicker').datepicker();
    });
 
    //$(function getAge(dateOfBirth) {
@@ -91,4 +109,4 @@
    //    }
    //    return age;
    //});
-</script>
+</script>*@

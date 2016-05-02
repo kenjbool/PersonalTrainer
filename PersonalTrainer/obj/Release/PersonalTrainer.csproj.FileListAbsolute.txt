@@ -85,3 +85,6 @@ D:\Stash\PersonalTrainer\PersonalTrainer\bin\zh-Hans\System.Spatial.resources.dl
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\zh-Hant\System.Spatial.resources.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\obj\Release\PersonalTrainer.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\obj\Release\PersonalTrainer.pdb
+D:\Stash\PersonalTrainer\PersonalTrainer\bin\Microsoft.Owin.dll
+D:\Stash\PersonalTrainer\PersonalTrainer\bin\Owin.dll
+D:\Stash\PersonalTrainer\PersonalTrainer\bin\Microsoft.Owin.xml

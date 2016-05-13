@@ -12,13 +12,13 @@ namespace PersonalTrainer.Models
 
 
         // already collected in workout.cs
-        public decimal BodyWeight { get; set; }
+        public double BodyWeight { get; set; }
 
-        public decimal BodyFatPercentage { get; set; }
+        public double BodyFatPercentage { get; set; }
 
 
         // already collected in workout.cs
-        public decimal Height { get; set; }
+        public double Height { get; set; }
 
         public int Waist { get; set; }
 
@@ -30,11 +30,17 @@ namespace PersonalTrainer.Models
 
         public int Thigh { get; set; }
 
-        public string BloodPressure { get; set; }
+        public int BloodPressureSystolic { get; set; }
+
+        public int BloodPressureDiastolic { get; set; }
 
         public decimal RestingHeartRate { get; set; }
 
-        public string HeartRateZones { get; set; }
+        public decimal HeartRateZone1 { get; set; }
+
+        public decimal HeartRateZone2 { get; set; }
+
+        public decimal HeartRateZone3 { get; set; }
 
     }
 }

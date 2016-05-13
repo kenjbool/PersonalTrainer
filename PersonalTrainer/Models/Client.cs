@@ -67,6 +67,10 @@ namespace PersonalTrainer.Models
         [Display(Name = "Emergency Contact:")]
         public string EmergencyContact { get; set; }
 
+        [Required(ErrorMessage = "Please enter an emergency contact number")]
+        [Display(Name = "Emergency Contact Number:")]
+        public string EmergencyContactNumber { get; set; }
+
         [Required(ErrorMessage = "Please enter your height in centimeters")]
         [Display(Name = "Height(cm):")]
         public double Height { get; set; }

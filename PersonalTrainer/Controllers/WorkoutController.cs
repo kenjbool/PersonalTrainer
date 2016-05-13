@@ -114,11 +114,11 @@ namespace PersonalTrainer.Controllers
         public ActionResult Client(Client client, Parq parq)
         {
 
-            //if (!ModelState.IsValid)
-            //{
-            //    ViewBag.Message = "Please complete all fields before continuing";
-            //    return View();
-            //}
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Message = "Please complete all fields before continuing";
+                return View();
+            }
             var today = DateTime.Today;
             var clientInfo = client;
             client.FName = clientInfo.FName;
@@ -145,29 +145,30 @@ namespace PersonalTrainer.Controllers
 
             clientInfo.RegistrationDate = today.Date;
 
-            ////using (myConnection)
-            ////{
-            ////    string clientCommand =
-            ////        "INSERT INTO dbo.Person(FirstName, LastName, Age, DateOfBirth, Height, Weight, Postcode, Address, Gender, Goal, EmailAddress, PhoneNumber, AddInfo, DateOfRegistration), " +
-            ////        $"VALUES('{clientInfo.FName}', '{clientInfo.LName}', '{clientInfo.Age}', '{clientInfo.DateOfBirth}', '{clientInfo.Height}', '{clientInfo.Weight}', '{clientInfo.Postcode}', '{clientInfo.AddressLine1 + ", " + client.AddressLine2}', '{clientInfo.Gender}', '{clientInfo.GoalId}', '{clientInfo.Email}', '{clientInfo.Phone}', '{clientInfo.AddInfo}', '{clientInfo.RegistrationDate}'";
-                
-            ////    using (SqlCommand queryClientCommand = new SqlCommand(clientCommand))
-            ////    {
-            ////        if (myConnection.State == ConnectionState.Open)
-            ////        {
-            ////            queryClientCommand.Connection = myConnection;
-            ////        }
-            ////        else
-            ////        {
-            ////            myConnection.Open();
-            ////            queryClientCommand.Connection = myConnection;
-            ////        }
-            ////        myConnection.Close();
-            ////    }
-            ////}
-
             this.TempData["clientInfo"] = clientInfo;
             db.Clients.Add(clientInfo);
+            db.SaveChanges();
+
+            return RedirectToAction("MoreClient");
+        }
+
+
+        public ActionResult MoreClient(MoreClientData moreClient)
+        {
+            var clientdata = this.TempData["clientInfo"] as Client;
+
+            clientdata.Height = moreClient.Height;
+            clientdata.Weight = moreClient.BodyWeight;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult MoreClient()
+        {
+            var moreClientModel = this.TempData["Client"] as MoreClientData;
+
+            db.MoreClientDatas.Add(moreClientModel);
             db.SaveChanges();
 
             return RedirectToAction("CheckDetails");

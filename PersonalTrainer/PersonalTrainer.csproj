@@ -220,6 +220,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\DayWorkout.cs" />
     <Compile Include="Models\DbColumnAttribute.cs" />
     <Compile Include="Models\Exercise.cs" />
     <Compile Include="Models\MoreClientData.cs" />
@@ -351,6 +352,7 @@
     <Content Include="Views\Food\MacroCounter.cshtml" />
     <Content Include="Views\Workout\FitnessTest.cshtml" />
     <Content Include="Views\Workout\404.cshtml" />
+    <Content Include="Views\Workout\MoreClient.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

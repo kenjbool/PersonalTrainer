@@ -1,6 +1,7 @@
 ﻿using PersonalTrainer.Models;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Web.UI;
 
 namespace PersonalTrainer.DAL
 {
@@ -15,6 +16,9 @@ namespace PersonalTrainer.DAL
         public DbSet<FitnessTest> FitnessTests { get; set; }
         public DbSet<Routine> Routines { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<DayWorkout> DayWorkouts { get; set; }
+
+        public DbSet<MoreClientData> MoreClientDatas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using Newtonsoft.Json.Serialization;
 
 namespace PersonalTrainer.Models
 {
@@ -67,11 +65,11 @@ namespace PersonalTrainer.Models
 
         [Required(ErrorMessage = "Please enter your height in centimeters")]
         [Display(Name = "Height(cm):")]
-        public int Height { get; set; }
+        public double Height { get; set; }
 
         [Required(ErrorMessage = "Please enter your weight in kg's")]
         [Display(Name = "Weight(kg):")]
-        public float Weight { get; set; }
+        public double Weight { get; set; }
 
         [Display(Name = "Clients BMI:")]
         public string BodyMass { get; set; }
@@ -81,28 +79,13 @@ namespace PersonalTrainer.Models
         [Display(Name = "Goal:")]
         public string GoalId { get; set; }
 
+        public string GoalSpecificName { get; set; }
+
         public string Focus { get; set; }
 
         public DateTime RegistrationDate { get; set; }
 
         [Display(Name = "Additional Info:")]
         public string AddInfo { get; set; }
-
-        public string AddInfoOne { get; set; }
-        public string AddInfoTwo { get; set; }
-        public string AddInfoThree { get; set; }
-        public string AddInfoFour { get; set; }
-        public string AddInfoFive { get; set; }
-        public string AddInfoSix { get; set; }
-        public string AddInfoSeven { get; set; }
-        public string AddInfoEight { get; set; }
-        public string AddInfoNine { get; set; }
-        public string AddInfoTen { get; set; }
-        public string AddInfoEleven { get; set; }
-        public string AddInfoTwelve { get; set; }
-        public string AddInfoThirteen { get; set; }
-        public string AddInfoFourteen { get; set; }
-        public string AddInfoFifteen { get; set; }
-        public string AddInfoSixteen { get; set; }
     }
 }

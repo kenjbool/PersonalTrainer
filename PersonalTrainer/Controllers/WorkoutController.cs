@@ -3,34 +3,49 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Linq;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
+using PersonalTrainer.DAL;
 using PersonalTrainer.Models;
+using PagedList;
 
 namespace PersonalTrainer.Controllers
 {
     public class WorkoutController : Controller
     {
-        SqlConnection myConnection = new SqlConnection(@"user id=AppLogin; password=C0smopolitan1; server=LT035368\PT; trusted_Connection=yes; database=PersonalTrainer; connection timeout=30");
-        // SqlConnection myConnection = new SqlConnection(@"user id=AppLogin; password=C0smopolitan1; server=LT035368\PT; trusted_Connection=yes; database=PersonalTrainer; connection timeout=30");
-
-        public ActionResult Index()
+        private TrainingPlannerContext db = new TrainingPlannerContext();
+      
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-          try
-            {
-                myConnection.Open();
-            }
-            catch (Exception e)
-            {
-               throw new Exception("You have not connected to your database, please check the connection and try again", e);
-            }
+            ////ViewBag.CurrentSort = sortOrder;
+            ////ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "LName" : "";
+            ////ViewBag.DateSortParm = sortOrder == "Date" ? "RegistrationDate" : "Date";
 
-            return View();
+            ////if (searchString != null)
+            ////{
+            ////    page = 1;
+            ////}
+            ////else
+            ////{
+            ////    searchString = currentFilter;
+            ////}
+            ////ViewBag.CurrentFilter = searchString;
+
+            ////var clients = from c in db.Workouts
+            ////              select c;
+            ////if (!string.IsNullOrEmpty(searchString))
+            ////{
+            ////    clients = clients.Where(c => c.LName.Contains(searchString)
+            ////                                 || c.FName.Contains(searchString));
+            ////}
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(/*clients.ToPagedList(pageNumber, pageSize)*/);
         }
 
         //
         // GET: /Workout/Parq
-        
         [HttpGet]
         public ActionResult ParQ()
         {
@@ -60,39 +75,30 @@ namespace PersonalTrainer.Controllers
                         workout.LName = afterSplit[1];
                     }
 
-                    if (parq.AnswerOne == true)
-                    {
-                        parq.AddInfoOne = workout.AddInfoOne;
-                    }
-                    else
-                    {
-                        workout.AddInfoOne = "lalalalalalalala";
-                    }
-
-                    using (myConnection)
-                    {
-                        string parqCommand = string.Format("INSERT INTO ParqAnswers(AnswerOne, AnswerTwo, AnswerThree, AnswerFour, AnswerFive, AnswerSix, AnswerSeven, AnswerEight, AnswerNine, AnswerTen, AnswerEleven, AnswerTwelve, AnswerThirteen, AnswerFourteen, AnswerFifteen, AnswerSixteen," +
-                                                           " AddInfoOne, AddInfoTwo, AddInfoThree, AddInfoFour, AddInfoFive, AddInfoSix, AddInfoSeven, AddInfoEight, AddInfoNine, AddInfoTen, AddInfoEleven, AddInfoTwelve, AddInfoThirteen, AddInfoFourteen, AddInfoFifteen, AddInfoSixteen)" +
-                                             "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}','{27}','{28}','{29}','{30}','{31}'", 
-                                             parq.AnswerOne, parq.AnswerTwo, parq.AnswerThree, parq.AnswerFour, parq.AnswerFive, parq.AnswerSix, parq.AnswerSeven, parq.AnswerEight, parq.AnswerNine, parq.AnswerTen, parq.AnswerEleven, parq.AnswerTwelve, parq.AnswerThirteen, parq.AnswerFourteen, parq.AnswerFifteen, parq.AnswerSixteen,
-                                             parq.AddInfoOne, parq.AddInfoTwo, parq.AddInfoThree, parq.AddInfoFour, parq.AddInfoFive, parq.AddInfoSix, parq.AddInfoSeven, parq.AddInfoEight, parq.AddInfoNine, parq.AddInfoTen, parq.AddInfoEleven, parq.AddInfoTwelve, parq.AddInfoThirteen, parq.AddInfoFourteen, parq.AddInfoFifteen, parq.AddInfoSixteen);
+                    ////using (myConnection)
+                    ////{
+                    ////    string parqCommand = string.Format("INSERT INTO ParqAnswers(AnswerOne, AnswerTwo, AnswerThree, AnswerFour, AnswerFive, AnswerSix, AnswerSeven, AnswerEight, AnswerNine, AnswerTen, AnswerEleven, AnswerTwelve, AnswerThirteen, AnswerFourteen, AnswerFifteen, AnswerSixteen," +
+                    ////                                       " AddInfoOne, AddInfoTwo, AddInfoThree, AddInfoFour, AddInfoFive, AddInfoSix, AddInfoSeven, AddInfoEight, AddInfoNine, AddInfoTen, AddInfoEleven, AddInfoTwelve, AddInfoThirteen, AddInfoFourteen, AddInfoFifteen, AddInfoSixteen)" +
+                    ////                         "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}','{27}','{28}','{29}','{30}','{31}'", 
+                    ////                         parq.AnswerOne, parq.AnswerTwo, parq.AnswerThree, parq.AnswerFour, parq.AnswerFive, parq.AnswerSix, parq.AnswerSeven, parq.AnswerEight, parq.AnswerNine, parq.AnswerTen, parq.AnswerEleven, parq.AnswerTwelve, parq.AnswerThirteen, parq.AnswerFourteen, parq.AnswerFifteen, parq.AnswerSixteen,
+                    ////                         parq.AddInfoOne, parq.AddInfoTwo, parq.AddInfoThree, parq.AddInfoFour, parq.AddInfoFive, parq.AddInfoSix, parq.AddInfoSeven, parq.AddInfoEight, parq.AddInfoNine, parq.AddInfoTen, parq.AddInfoEleven, parq.AddInfoTwelve, parq.AddInfoThirteen, parq.AddInfoFourteen, parq.AddInfoFifteen, parq.AddInfoSixteen);
 
                         
 
-                        using (SqlCommand queryParqCommand = new SqlCommand(parqCommand))
-                        {
-                            if (myConnection.State == ConnectionState.Open)
-                            {
-                                queryParqCommand.Connection = myConnection;
-                            }
-                            else
-                            {
-                                myConnection.Open();
-                                queryParqCommand.Connection = myConnection;
-                            }
-                            myConnection.Close();
-                        }
-                    }
+                    ////    using (SqlCommand queryParqCommand = new SqlCommand(parqCommand))
+                    ////    {
+                    ////        if (myConnection.State == ConnectionState.Open)
+                    ////        {
+                    ////            queryParqCommand.Connection = myConnection;
+                    ////        }
+                    ////        else
+                    ////        {
+                    ////            myConnection.Open();
+                    ////            queryParqCommand.Connection = myConnection;
+                    ////        }
+                    ////        myConnection.Close();
+                    ////    }
+                    ////}
 
                     this.TempData["workout"] = workout;
 
@@ -163,26 +169,26 @@ namespace PersonalTrainer.Controllers
 
             clientInfo.RegistrationDate = today.Date;
 
-            using (myConnection)
-            {
-                string clientCommand =
-                    "INSERT INTO dbo.Person(FirstName, LastName, Age, DateOfBirth, Height, Weight, Postcode, Address, Gender, Goal, EmailAddress, PhoneNumber, AddInfo, DateOfRegistration), " +
-                    $"VALUES('{clientInfo.FName}', '{clientInfo.LName}', '{clientInfo.Age}', '{clientInfo.DateOfBirth}', '{clientInfo.Height}', '{clientInfo.Weight}', '{clientInfo.Postcode}', '{clientInfo.AddressLine1 + ", " + client.AddressLine2}', '{clientInfo.Gender}', '{clientInfo.GoalId}', '{clientInfo.Email}', '{clientInfo.Phone}', '{clientInfo.AddInfo}', '{clientInfo.RegistrationDate}'";
+            ////using (myConnection)
+            ////{
+            ////    string clientCommand =
+            ////        "INSERT INTO dbo.Person(FirstName, LastName, Age, DateOfBirth, Height, Weight, Postcode, Address, Gender, Goal, EmailAddress, PhoneNumber, AddInfo, DateOfRegistration), " +
+            ////        $"VALUES('{clientInfo.FName}', '{clientInfo.LName}', '{clientInfo.Age}', '{clientInfo.DateOfBirth}', '{clientInfo.Height}', '{clientInfo.Weight}', '{clientInfo.Postcode}', '{clientInfo.AddressLine1 + ", " + client.AddressLine2}', '{clientInfo.Gender}', '{clientInfo.GoalId}', '{clientInfo.Email}', '{clientInfo.Phone}', '{clientInfo.AddInfo}', '{clientInfo.RegistrationDate}'";
                 
-                using (SqlCommand queryClientCommand = new SqlCommand(clientCommand))
-                {
-                    if (myConnection.State == ConnectionState.Open)
-                    {
-                        queryClientCommand.Connection = myConnection;
-                    }
-                    else
-                    {
-                        myConnection.Open();
-                        queryClientCommand.Connection = myConnection;
-                    }
-                    myConnection.Close();
-                }
-            }
+            ////    using (SqlCommand queryClientCommand = new SqlCommand(clientCommand))
+            ////    {
+            ////        if (myConnection.State == ConnectionState.Open)
+            ////        {
+            ////            queryClientCommand.Connection = myConnection;
+            ////        }
+            ////        else
+            ////        {
+            ////            myConnection.Open();
+            ////            queryClientCommand.Connection = myConnection;
+            ////        }
+            ////        myConnection.Close();
+            ////    }
+            ////}
 
             this.TempData["clientInfo"] = clientInfo;
 
@@ -213,42 +219,42 @@ namespace PersonalTrainer.Controllers
             var fitnessTest = new FitnessTest();
             fitnessTest.CardioNameList = new List<string>();
 
-            using (myConnection)
-            {
-                using (SqlCommand queryCardioCommand = new SqlCommand("SELECT ExerciseName FROM dbo.Exercise WHERE ExerciseId LIKE \'CA%\'"))
-                {
-                    if (myConnection.State == ConnectionState.Open)
-                    {
-                        queryCardioCommand.Connection = myConnection;
-                    }
-                    else
-                    {
-                        myConnection.Open();
-                        queryCardioCommand.Connection = myConnection;
-                    }
+            ////using (myConnection)
+            ////{
+            ////    using (SqlCommand queryCardioCommand = new SqlCommand("SELECT ExerciseName FROM dbo.Exercise WHERE ExerciseId LIKE \'CA%\'"))
+            ////    {
+            ////        if (myConnection.State == ConnectionState.Open)
+            ////        {
+            ////            queryCardioCommand.Connection = myConnection;
+            ////        }
+            ////        else
+            ////        {
+            ////            myConnection.Open();
+            ////            queryCardioCommand.Connection = myConnection;
+            ////        }
 
-                    try
-                    {
-                        SqlDataReader myReader = null;
-                        myReader = queryCardioCommand.ExecuteReader();
-                        while (myReader.Read())
-                        {   
-                            foreach (var item in myReader)
-                            {
-                               fitnessTest.CardioNameList.Add(myReader["ExerciseName"].ToString());
-                            }
+            ////        try
+            ////        {
+            ////            SqlDataReader myReader = null;
+            ////            myReader = queryCardioCommand.ExecuteReader();
+            ////            while (myReader.Read())
+            ////            {   
+            ////                foreach (var item in myReader)
+            ////                {
+            ////                   fitnessTest.CardioNameList.Add(myReader["ExerciseName"].ToString());
+            ////                }
 
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        throw;
-                    }
+            ////            }
+            ////        }
+            ////        catch (Exception)
+            ////        {
+            ////            throw;
+            ////        }
 
-                    myConnection.Close();
+            ////        myConnection.Close();
 
-                }
-            }
+            ////    }
+            ////}
 
             if (fitnessTest != null && fitnessTest.ORM != 0)
             {
@@ -264,7 +270,7 @@ namespace PersonalTrainer.Controllers
             this.TempData["TestData"] = FitnessTest();
             test.ORM = OrmCalc(test);
 
-            return View("MoreClientData");
+            return RedirectToAction("Create");
 
         }
 
@@ -275,48 +281,53 @@ namespace PersonalTrainer.Controllers
             var testData = this.TempData["TestData"] as FitnessTest;
 
 
-            //map ExerciseToFocusTable
-            using (SqlCommand getExerciseByFocusIdCommand = new SqlCommand(string.Format("SELECT FocusName FROM dbo.Focus WHERE FocusName LIKE '{0}'", clientInfo.Focus)))
+            //////map ExerciseToFocusTable
+            ////using (SqlCommand getExerciseByFocusIdCommand = new SqlCommand(string.Format("SELECT FocusName FROM dbo.Focus WHERE FocusName LIKE '{0}'", clientInfo.Focus)))
 
-            // get list of exercises from database
-            // 
-            using (SqlCommand queryCardioCommand = new SqlCommand(string.Format("SELECT * FROM dbo.Exercise WHERE ExerciseId LIKE '{0}'", getExerciseByFocusIdCommand)))
-            {
-                if (myConnection.State == ConnectionState.Open)
-                {
-                    queryCardioCommand.Connection = myConnection;
-                }
-                else
-                {
-                    myConnection.Open();
+            ////// get list of exercises from database
+            ////// 
+            ////using (SqlCommand queryCardioCommand = new SqlCommand(string.Format("SELECT * FROM dbo.Exercise WHERE ExerciseId LIKE '{0}'", getExerciseByFocusIdCommand)))
+            ////{
+            ////    if (myConnection.State == ConnectionState.Open)
+            ////    {
+            ////        queryCardioCommand.Connection = myConnection;
+            ////    }
+            ////    else
+            ////    {
+            ////        myConnection.Open();
 
-                    queryCardioCommand.Connection = myConnection;
-                }
+            ////        queryCardioCommand.Connection = myConnection;
+            ////    }
 
-                try
-                {
-                    SqlDataReader myReader = null;
-                    myReader = queryCardioCommand.ExecuteReader();
-                    while (myReader.Read())
-                    {
-                        foreach (var item in myReader)
-                        {
-                            testData.CardioNameList.Add(myReader["ExerciseName"].ToString());
-                        }
+            ////    try
+            ////    {
+            ////        SqlDataReader myReader = null;
+            ////        myReader = queryCardioCommand.ExecuteReader();
+            ////        while (myReader.Read())
+            ////        {
+            ////            foreach (var item in myReader)
+            ////            {
+            ////                testData.CardioNameList.Add(myReader["ExerciseName"].ToString());
+            ////            }
 
-                    }
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
+            ////        }
+            ////    }
+            ////    catch (Exception)
+            ////    {
+            ////        throw;
+            ////    }
 
-                myConnection.Close();
+            ////    myConnection.Close();
 
-            }
-
-
+            ////}
+            
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(FitnessTest test, Workout workout)
+        {
+            return RedirectToAction("Begin", "Active");
         }
 
         public double OrmCalc(FitnessTest test)

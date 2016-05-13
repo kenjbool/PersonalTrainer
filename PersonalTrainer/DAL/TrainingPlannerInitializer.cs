@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
 using PersonalTrainer.Models;
 
 namespace PersonalTrainer.DAL
@@ -13,13 +11,11 @@ namespace PersonalTrainer.DAL
         {
             var workouts = new List<Workout>
             {
-                new Workout {FName = "Ken", LName = "Bool", DateOfBirth = DateTime.Parse("13/02/1982"), Weight =75.2M, Height =170.5M, Email = "kenjbool@gmail.com", Gender = "Male", Address = "26, lenthall Close", Postcode = "NR7 0UU", Phone = "01234567890", Age =34, BodyMass = "17.5", EmergencyContact = "01234567890", Goal = "Tone up, slim down"},
-                new Workout {FName = "Jon", LName = "son", DateOfBirth = DateTime.Parse("13/02/1981"), Weight =75.2M, Height =170.5M, Email = "kenjbool@gmail.com", Gender = "Male", Address = "26, lenthall Close", Postcode = "NR3 2DU", Phone = "01234567890", Age =35, BodyMass = "17.5", EmergencyContact = "01234567890", Goal = "Tone up, slim down"},
-                new Workout {FName = "Bob", LName = "Bob", DateOfBirth = DateTime.Parse("13/02/1975"), Weight =75.2M, Height =170.5M, Email = "kenjbool@gmail.com", Gender = "Male", Address = "26, lenthall Close", Postcode = "NR1 1AA", Phone = "01234567890", Age =36, BodyMass = "17.5", EmergencyContact = "01234567890", Goal = "Tone up, slim down"},
-                new Workout {FName = "Fred", LName = "Rick", DateOfBirth = DateTime.Parse("13/02/1978"), Weight =75.2M, Height =170.5M, Email = "kenjbool@gmail.com", Gender = "Male", Address = "26, lenthall Close", Postcode = "NR2 2AA", Phone = "01234567890", Age =37, BodyMass = "17.5", EmergencyContact = "01234567890", Goal = "Tone up, slim down"} 
-
+                new Workout {FName = "Ken", LName = "Bool", DateOfBirth = DateTime.Parse("13/02/1982"), Weight = 75.20, Height = 170.50, Email = "kenjbool@gmail.com", Gender = "Male", AddressLine1 = "26, lenthall Close", AddressLine2 = "Norwich", Postcode = "NR7 0UU", Phone = "01234567890", Age =34, BodyMass = "17.5", EmergencyContact = "01234567890", GoalId = "Tone up, slim down"},
+                new Workout {FName = "Jon", LName = "son", DateOfBirth = DateTime.Parse("13/02/1981"), Weight = 75.20, Height =170.50, Email = "kenjbool@gmail.com", Gender = "Male", AddressLine1 = "26, lenthall Close", AddressLine2 = "Norwich", Postcode = "NR3 2DU", Phone = "01234567890", Age =35, BodyMass = "17.5", EmergencyContact = "01234567890", GoalId = "Tone up, slim down"},
+                new Workout {FName = "Bob", LName = "Bob", DateOfBirth = DateTime.Parse("13/02/1975"), Weight =75.20, Height =170.50, Email = "kenjbool@gmail.com", Gender = "Male", AddressLine1 = "26, lenthall Close", AddressLine2 = "Norwich", Postcode = "NR1 1AA", Phone = "01234567890", Age =36, BodyMass = "17.5", EmergencyContact = "01234567890", GoalId = "Tone up, slim down"},
+                new Workout {FName = "Fred", LName = "Rick", DateOfBirth = DateTime.Parse("13/02/1978"), Weight =75.20, Height =170.50, Email = "kenjbool@gmail.com", Gender = "Male", AddressLine1 = "26, lenthall Close", AddressLine2 = "Norwich", Postcode = "NR2 2AA", Phone = "01234567890", Age =37, BodyMass = "17.5", EmergencyContact = "01234567890", GoalId = "Tone up, slim down"} 
             };
-
             workouts.ForEach(w => context.Workouts.Add(w));
             context.SaveChanges();
 
@@ -32,7 +28,6 @@ namespace PersonalTrainer.DAL
                 new FitnessTest { ORM = 82.5, Reps = 20, WeightLifted = 50},
                 new FitnessTest { ORM = 82.5, Reps = 20, WeightLifted = 50}
             };
-
             fitnesstests.ForEach(f => context.FitnessTests.Add(f));
             context.SaveChanges();
 
@@ -46,7 +41,6 @@ namespace PersonalTrainer.DAL
                 new Routine {Day="Monday", ExerciseName = "Kettlebell swing", WorkoutType = "Core"},
                 new Routine {Day="Monday", ExerciseName = "Pull ups (Close Arm)", WorkoutType = "Back"}
             };
-
             routines.ForEach(r => context.Routines.Add(r));
             context.SaveChanges();
         }

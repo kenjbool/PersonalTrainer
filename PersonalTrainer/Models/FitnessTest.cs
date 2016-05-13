@@ -20,6 +20,9 @@ namespace PersonalTrainer.Models
             
         }
 
+        [Key]
+        public int ClientId { get; set; }
+
         [Display(Name = "Reps:")]
         public int Reps { get; set; }
 

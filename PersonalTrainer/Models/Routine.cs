@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,10 +8,11 @@ namespace PersonalTrainer.Models
 {
     public class Routine
     {
-        public string Day { get; set; }
+        public int ClientId { get; set; }
 
-        public string WorkoutType { get; set; }
+        [Key]
+        public int RoutineId { get; set; }
 
-        public string ExerciseName { get; set; }
+        public ICollection<Exercise> Exercises { get; set; }
     }
 }

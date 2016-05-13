@@ -63,7 +63,7 @@ namespace PersonalTrainer.Controllers
             {
                 if (!string.IsNullOrEmpty(parq.Name) && !string.IsNullOrEmpty(parq.Email))
                 {
-                    var workout = new Workout();
+                    var workout = new Client();
 
                     
                     if (!string.IsNullOrEmpty(parq.Name))
@@ -75,33 +75,9 @@ namespace PersonalTrainer.Controllers
                         workout.LName = afterSplit[1];
                     }
 
-                    ////using (myConnection)
-                    ////{
-                    ////    string parqCommand = string.Format("INSERT INTO ParqAnswers(AnswerOne, AnswerTwo, AnswerThree, AnswerFour, AnswerFive, AnswerSix, AnswerSeven, AnswerEight, AnswerNine, AnswerTen, AnswerEleven, AnswerTwelve, AnswerThirteen, AnswerFourteen, AnswerFifteen, AnswerSixteen," +
-                    ////                                       " AddInfoOne, AddInfoTwo, AddInfoThree, AddInfoFour, AddInfoFive, AddInfoSix, AddInfoSeven, AddInfoEight, AddInfoNine, AddInfoTen, AddInfoEleven, AddInfoTwelve, AddInfoThirteen, AddInfoFourteen, AddInfoFifteen, AddInfoSixteen)" +
-                    ////                         "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}','{27}','{28}','{29}','{30}','{31}'", 
-                    ////                         parq.AnswerOne, parq.AnswerTwo, parq.AnswerThree, parq.AnswerFour, parq.AnswerFive, parq.AnswerSix, parq.AnswerSeven, parq.AnswerEight, parq.AnswerNine, parq.AnswerTen, parq.AnswerEleven, parq.AnswerTwelve, parq.AnswerThirteen, parq.AnswerFourteen, parq.AnswerFifteen, parq.AnswerSixteen,
-                    ////                         parq.AddInfoOne, parq.AddInfoTwo, parq.AddInfoThree, parq.AddInfoFour, parq.AddInfoFive, parq.AddInfoSix, parq.AddInfoSeven, parq.AddInfoEight, parq.AddInfoNine, parq.AddInfoTen, parq.AddInfoEleven, parq.AddInfoTwelve, parq.AddInfoThirteen, parq.AddInfoFourteen, parq.AddInfoFifteen, parq.AddInfoSixteen);
-
-                        
-
-                    ////    using (SqlCommand queryParqCommand = new SqlCommand(parqCommand))
-                    ////    {
-                    ////        if (myConnection.State == ConnectionState.Open)
-                    ////        {
-                    ////            queryParqCommand.Connection = myConnection;
-                    ////        }
-                    ////        else
-                    ////        {
-                    ////            myConnection.Open();
-                    ////            queryParqCommand.Connection = myConnection;
-                    ////        }
-                    ////        myConnection.Close();
-                    ////    }
-                    ////}
-
                     this.TempData["workout"] = workout;
-
+                    db.Parqs.Add(parq);
+                    db.SaveChanges();
                     return RedirectToAction("Client");
 
                 }
@@ -127,7 +103,7 @@ namespace PersonalTrainer.Controllers
         {
             ModelState.Clear();
 
-            var workoutModel = this.TempData["workout"] as Workout ?? new Workout();
+            var workoutModel = this.TempData["workout"] as Client ?? new Client();
 
             return View(workoutModel);
         }
@@ -135,7 +111,7 @@ namespace PersonalTrainer.Controllers
         //
         // POST: /Workout/Client
         [HttpPost]
-        public ActionResult Client(Workout client, Parq parq)
+        public ActionResult Client(Client client, Parq parq)
         {
 
             //if (!ModelState.IsValid)
@@ -191,6 +167,8 @@ namespace PersonalTrainer.Controllers
             ////}
 
             this.TempData["clientInfo"] = clientInfo;
+            db.Clients.Add(clientInfo);
+            db.SaveChanges();
 
             return RedirectToAction("CheckDetails");
         }
@@ -200,7 +178,7 @@ namespace PersonalTrainer.Controllers
         [HttpGet]
         public ActionResult CheckDetails()
         {
-            var clientInfo = this.TempData["clientInfo"] as Workout;
+            var clientInfo = this.TempData["clientInfo"] as Client;
             return View(clientInfo);
         }
 
@@ -277,7 +255,7 @@ namespace PersonalTrainer.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var clientInfo = this.TempData["clientInfo"] as Workout;
+            var clientInfo = this.TempData["clientInfo"] as Client;
             var testData = this.TempData["TestData"] as FitnessTest;
 
 
@@ -325,7 +303,7 @@ namespace PersonalTrainer.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(FitnessTest test, Workout workout)
+        public ActionResult Create(FitnessTest test, Client client)
         {
             return RedirectToAction("Begin", "Active");
         }

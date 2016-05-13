@@ -10,9 +10,11 @@ namespace PersonalTrainer.DAL
         {
         }
 
-        public DbSet<Workout> Workouts { get; set; }
+        public DbSet<Parq> Parqs { get; set; }
+        public DbSet<Client> Clients { get; set; }
         public DbSet<FitnessTest> FitnessTests { get; set; }
         public DbSet<Routine> Routines { get; set; }
+        public DbSet<Exercise> Exercises { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

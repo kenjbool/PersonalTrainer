@@ -218,11 +218,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DbColumnAttribute.cs" />
+    <Compile Include="Models\Exercise.cs" />
     <Compile Include="Models\MoreClientData.cs" />
     <Compile Include="Models\Routine.cs" />
-    <Compile Include="Models\Workout.cs" />
+    <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Create.cs" />
     <Compile Include="Models\FitnessTest.cs" />
     <Compile Include="Models\list.cs" />
@@ -231,9 +233,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\PersonalTrainer.mdf" />
-    <Content Include="App_Data\PersonalTrainer_log.ldf">
-      <DependentUpon>PersonalTrainer.mdf</DependentUpon>
+    <Content Include="App_Data\TrainingPlannerContext.mdf" />
+    <Content Include="App_Data\TrainingPlannerContext_log.ldf">
+      <DependentUpon>TrainingPlannerContext.mdf</DependentUpon>
     </Content>
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />

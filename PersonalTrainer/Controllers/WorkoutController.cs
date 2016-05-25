@@ -76,8 +76,15 @@ namespace PersonalTrainer.Controllers
                     }
 
                     this.TempData["workout"] = workout;
-                    db.Parqs.Add(parq);
-                    db.SaveChanges();
+                    if (db.Parqs != null)
+                    {
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        db.Parqs.Add(parq);
+                        db.SaveChanges();
+                    }
                     return RedirectToAction("Client");
 
                 }

@@ -4,7 +4,6 @@ namespace PersonalTrainer.Controllers
 {
     public class HomeController : Controller
     {
-        [RequireHttps]
         public ActionResult Index()
         {
             ViewBag.Message = "Here to help you up your game";

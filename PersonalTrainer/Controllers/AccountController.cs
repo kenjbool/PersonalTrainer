@@ -14,7 +14,6 @@ using PersonalTrainer.Models;
 namespace PersonalTrainer.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //

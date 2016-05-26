@@ -88,3 +88,8 @@ D:\Stash\PersonalTrainer\PersonalTrainer\obj\Release\PersonalTrainer.pdb
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\Microsoft.Owin.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\Owin.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\Microsoft.Owin.xml
+D:\Stash\PersonalTrainer\PersonalTrainer\bin\PagedList.dll
+D:\Stash\PersonalTrainer\PersonalTrainer\bin\PagedList.Mvc.dll
+D:\Stash\PersonalTrainer\PersonalTrainer\bin\PagedList.xml
+D:\Stash\PersonalTrainer\PersonalTrainer\bin\PagedList.Mvc.xml
+D:\Stash\PersonalTrainer\PersonalTrainer\obj\Release\PersonalTrainer.csprojResolveAssemblyReference.cache

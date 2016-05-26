@@ -118,7 +118,7 @@ namespace PersonalTrainer.Controllers
         //
         // POST: /Workout/Client
         [HttpPost]
-        public ActionResult Client(Client client, Parq parq)
+        public ActionResult Client(Client client)
         {
 
             if (!ModelState.IsValid)
@@ -134,14 +134,7 @@ namespace PersonalTrainer.Controllers
 
             var dateOfBirthToString = client.DateOfBirth.ToString(CultureInfo.CurrentCulture);
 
-            var day = client.DateOfBirth.Day.ToString();
-
-            var month = client.DateOfBirth.Month.ToString();
-            var year = client.DateOfBirth.Year.ToString();
-
-            var dateOfBirthFormat = string.Format(day + "/" + month + "/" + year);
-
-            clientInfo.DateOfBirth.ToString(dateOfBirthFormat);
+            clientInfo.DateOfBirth.ToString(dateOfBirthToString);
 
             clientInfo.Age = (today.Year - client.DateOfBirth.Year);
             client.Height = clientInfo.Height;
@@ -149,12 +142,20 @@ namespace PersonalTrainer.Controllers
             client.BodyMass = clientInfo.BodyMass;
             client.GoalId = clientInfo.GoalId;
             client.AddInfo = clientInfo.AddInfo;
-
+            client.EmergencyContact = clientInfo.EmergencyContact;
+            client.EmergencyContactNumber = clientInfo.EmergencyContactNumber;
             clientInfo.RegistrationDate = today.Date;
 
             this.TempData["clientInfo"] = clientInfo;
-            db.Clients.Add(clientInfo);
-            db.SaveChanges();
+            if (db.Clients != null)
+            {
+                db.SaveChanges();
+            }
+            else
+            {
+                db.Clients.Add(clientInfo);
+                db.SaveChanges();
+            }
 
             return RedirectToAction("MoreClient");
         }

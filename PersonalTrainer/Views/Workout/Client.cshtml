@@ -43,44 +43,53 @@
 
     <div class="clear-fix"></div>
     <div class="leftfield">@Html.TextBoxFor(x => x.AddressLine2)<br/>@Html.LabelFor(x => x.Postcode) @Html.TextBoxFor(x => x.Postcode)</div>
+    <div class="rightfield">@Html.LabelFor(x => x.Phone) @Html.TextBoxFor(x => x.Phone)</div>
+        <div class="clear-fix"></div>
 
-    <div class="clear-fix"></div>
+        <div class="rightfield">
+            <div class="control-group">
+                <label for="date-picker-2" class="control-label">Date of Birth</label>
+                <div class="controls">
+                    <div class="input-group">
+                        <input id="date-picker-2" type="text" class="date-picker form-control" />
+                        <label for="date-picker-2" class="input-group-addon btn too">
+                            <span class="glyphicon glyphicon-calendar"></span>
 
-    <div class="rightfield">
-        <div class="control-group">
-            <label for="date-picker-2" class="control-label">Date of Birth</label>
-            <div class="controls">
-                <div class="input-group">
-                    <input id="date-picker-2" type="text" class="date-picker form-control" />
-                    <label for="date-picker-2" class="input-group-addon btn too">
-                        <span class="glyphicon glyphicon-calendar"></span>
-
-                    </label>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="leftfield">@Html.LabelFor(x => x.Email) @Html.TextBoxFor(x => x.Email)</div>
-    <div class="clear-fix"></div>
+        <div class="leftfield">@Html.LabelFor(x => x.Email) @Html.TextBoxFor(x => x.Email)</div>
+        <div class="clear-fix"></div>
 
-    <div class="leftfield">@Html.LabelFor(x => x.Height) @Html.TextBoxFor(x => x.Height, new {Value = ""})</div>
-    <div class="rightfield">@Html.LabelFor(x => x.Weight) @Html.TextBoxFor(x => x.Weight, new {Value = ""})</div>
-    <div class="clear-fix"></div>
+        <div class="leftfield">@Html.LabelFor(x => x.Height) @Html.TextBoxFor(x => x.Height, new { Value = "" })</div>
+        <div class="rightfield">@Html.LabelFor(x => x.Weight) @Html.TextBoxFor(x => x.Weight, new { Value = "" })</div>
+        <div class="clear-fix"></div>
 
-    <div class="leftfield">@Html.LabelFor(x => x.GoalList) @Html.DropDownListFor(x => x.GoalId, new SelectList(Model.GoalList, Model.GoalId))</div>
-    <div class="clear-fix"></div>
+        <div class="leftfield">
+            @Html.LabelFor(x => x.GoalId) @Html.DropDownListFor(x => x.GoalId, new[]
+                                                           {
+                                                               new SelectListItem() {Text = "Lose Weight", Value = "Lose Weight"},
+                                                               new SelectListItem() {Text = "Tone Up", Value = "Tone Up"},
+                                                               new SelectListItem() {Text="Build Muscle", Value = "Build Muscle"},
+                                                               new SelectListItem() {Text="Improve Overall Fitness", Value = "Improve Overall Fitness"},
+                                                               new SelectListItem() {Text = "Goal Specific", Value = "Goal Specific"},
+                                                           }, "Please Select...")
+        </div>
+        <div class="clear-fix"></div>
 
-    <div class="leftfield">@Html.LabelFor(x => x.Phone) @Html.TextBoxFor(x => x.Phone)</div>
-    <div class="rightfield">@Html.LabelFor(x => x.EmergencyContact) @Html.TextBoxFor(x => x.EmergencyContact)</div>
-    <div class="clear-fix"></div>
+        <div class="leftfield">@Html.LabelFor(x => x.EmergencyContact) @Html.TextBoxFor(x => x.EmergencyContact)</div>
+        <div class="rightfield">@Html.LabelFor(x => x.EmergencyContactNumber) @Html.TextBoxFor(x => x.EmergencyContactNumber)</div>
+        <div class="clear-fix"></div>
 
-    <div class="main-content">@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfo)</div>
-    <div class="clear-fix"></div>
+        <div class="main-content">@Html.LabelFor(x => x.AddInfo) @Html.TextAreaFor(x => x.AddInfo)</div>
+        <div class="clear-fix"></div>
 
-    <div class="rightfield">
-        <input type="submit" value="Next Stage..."/>
-    </div>
-}
+        <div class="rightfield">
+            <input type="submit" value="Next Stage..." />
+        </div>
+        }
 </body>
 </html>
 

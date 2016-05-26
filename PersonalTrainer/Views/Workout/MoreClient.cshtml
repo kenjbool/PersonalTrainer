@@ -6,19 +6,41 @@
 
 <h2>MoreClient</h2>
 
-@Html.LabelFor(x => x.BodyComposition) @Html.TextBoxFor(x => x.BodyComposition)
-@Html.LabelFor(x => x.BodyWeight) @Html.TextBoxFor(x => x.BodyWeight)
-@Html.LabelFor(x => x.Height) @Html.TextBoxFor(x => x.Height)
-@Html.LabelFor(x => x.BodyFatPercentage) @Html.TextBoxFor(x => x.BodyFatPercentage)
+<div class="main-content">
+    <table>
+        <tr>
+            <td>@Html.LabelFor(x => x.Height) @Html.TextBoxFor(x => x.Height)</td>
+            <td></td>
+            <td>@Html.LabelFor(x => x.BodyWeight) @Html.TextBoxFor(x => x.BodyWeight)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.BodyComposition) @Html.TextBoxFor(x => x.BodyComposition)</td>
+            <td></td>
+            <td>@Html.LabelFor(x => x.BodyFatPercentage) @Html.TextBoxFor(x => x.BodyFatPercentage)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.Waist) @Html.TextBoxFor(x => x.Waist)</td>
+            <td>@Html.LabelFor(x => x.Hips) @Html.TextBoxFor(x => x.Hips)</td>
+            <td>@Html.LabelFor(x => x.Chest) @Html.TextBoxFor(x => x.Chest)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.Arm) @Html.TextBoxFor(x => x.Arm)</td>
+            <td></td>
+            <td>@Html.LabelFor(x => x.Thigh) @Html.TextBoxFor(x => x.Thigh)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.BloodPressureSystolic) @Html.TextBoxFor(x => x.BloodPressureSystolic)<br>
+                @Html.LabelFor(x => x.BloodPressureDiastolic) @Html.TextBoxFor(x => x.BloodPressureDiastolic)
+            </td>
+            <td></td>
+            <td>@Html.LabelFor(x => x.RestingHeartRate) @Html.TextBoxFor(x => x.RestingHeartRate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.HeartRateZone1) @Html.TextBoxFor(x => x.HeartRateZone1)</td>
+            <td>@Html.LabelFor(x => x.HeartRateZone2) @Html.TextBoxFor(x => x.HeartRateZone2)</td>
+            <td>@Html.LabelFor(x => x.HeartRateZone3) @Html.TextBoxFor(x => x.HeartRateZone3)</td>
+        </tr>
 
-
-@Html.LabelFor(x => x.Waist) @Html.TextBoxFor(x => x.Waist)
-@Html.LabelFor(x => x.Hips) @Html.TextBoxFor(x => x.Hips)
-@Html.LabelFor(x => x.Chest) @Html.TextBoxFor(x => x.Chest)
-@Html.LabelFor(x => x.Arm) @Html.TextBoxFor(x => x.Arm)
-@Html.LabelFor(x => x.Thigh) @Html.TextBoxFor(x => x.Thigh)
-
-@Html.LabelFor(x => x.BloodPressureSystolic) @Html.TextBoxFor(x => x.BloodPressureSystolic)
-@Html.LabelFor(x => x.BloodPressureDiastolic) @Html.TextBoxFor(x => x.BloodPressureDiastolic)
-@Html.LabelFor(x => x.RestingHeartRate) @Html.TextBoxFor(x => x.RestingHeartRate)
+    </table>
+</div>
 

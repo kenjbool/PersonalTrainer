@@ -15,33 +15,38 @@ namespace PersonalTrainer.Controllers
     {
         private TrainingPlannerContext db = new TrainingPlannerContext();
       
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Index()
         {
-            ////ViewBag.CurrentSort = sortOrder;
-            ////ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "LName" : "";
-            ////ViewBag.DateSortParm = sortOrder == "Date" ? "RegistrationDate" : "Date";
+            return View();
+        }
 
-            ////if (searchString != null)
-            ////{
-            ////    page = 1;
-            ////}
-            ////else
-            ////{
-            ////    searchString = currentFilter;
-            ////}
-            ////ViewBag.CurrentFilter = searchString;
+        public ActionResult ClientLookup(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "LName" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "RegistrationDate" : "Date";
 
-            ////var clients = from c in db.Workouts
-            ////              select c;
-            ////if (!string.IsNullOrEmpty(searchString))
-            ////{
-            ////    clients = clients.Where(c => c.LName.Contains(searchString)
-            ////                                 || c.FName.Contains(searchString));
-            ////}
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            var clients = from c in db.Clients
+                          select c;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                clients = clients.Where(c => c.LName.Contains(searchString)
+                                             || c.FName.Contains(searchString));
+            }
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-            return View(/*clients.ToPagedList(pageNumber, pageSize)*/);
+            return View(clients.ToPagedList(pageNumber, pageSize));
         }
 
         //
@@ -160,13 +165,15 @@ namespace PersonalTrainer.Controllers
             return RedirectToAction("MoreClient");
         }
 
-
+        [HttpGet]
         public ActionResult MoreClient(MoreClientData moreClient)
         {
+            ModelState.Clear();
+
             var clientdata = this.TempData["clientInfo"] as Client;
 
-            clientdata.Height = moreClient.Height;
-            clientdata.Weight = moreClient.BodyWeight;
+            moreClient.Height = clientdata.Height;
+            moreClient.BodyWeight = clientdata.Weight;
 
             return View();
         }
@@ -174,10 +181,29 @@ namespace PersonalTrainer.Controllers
         [HttpPost]
         public ActionResult MoreClient()
         {
+            //if (!ModelState.IsValid)
+            //{
+            //    ViewBag.Message = "Please make sure all fields are completed";
+            //    return View();
+            //}
+            
             var moreClientModel = this.TempData["Client"] as MoreClientData;
 
-            db.MoreClientDatas.Add(moreClientModel);
+            var client = new MoreClientData();
+
+            client.ClientId = moreClientModel.ClientId;
+            
             db.SaveChanges();
+
+            if (db.MoreClientDatas != null)
+            {
+                db.SaveChanges();
+            }
+            else
+            {
+                db.MoreClientDatas.Add(moreClientModel);
+                db.SaveChanges();
+            }
 
             return RedirectToAction("CheckDetails");
         }
@@ -187,6 +213,8 @@ namespace PersonalTrainer.Controllers
         [HttpGet]
         public ActionResult CheckDetails()
         {
+            ModelState.Clear();
+
             var clientInfo = this.TempData["clientInfo"] as Client;
             return View(clientInfo);
         }

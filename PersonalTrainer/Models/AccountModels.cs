@@ -24,7 +24,7 @@ namespace PersonalTrainer.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
-        public string UserName { get; set; }
+        public string FullName { get; set; }
 
     }
 
@@ -32,7 +32,7 @@ namespace PersonalTrainer.Models
     {
         [Required]
         [Display(Name = "User name")]
-        public string UserName { get; set; }
+        public string FullName { get; set; }
 
         public string ExternalLoginData { get; set; }
     }
@@ -60,7 +60,7 @@ namespace PersonalTrainer.Models
     {
         [Required]
         [Display(Name = "User name")]
-        public string UserName { get; set; }
+        public string FullName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -74,8 +74,8 @@ namespace PersonalTrainer.Models
     public class RegisterModel
     {
         [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
+        [Display(Name = "Clients Name")]
+        public string FullName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

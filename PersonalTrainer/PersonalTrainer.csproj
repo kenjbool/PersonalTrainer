@@ -455,6 +455,7 @@
     <Content Include="Views\Workout\FitnessTest.cshtml" />
     <Content Include="Views\Workout\404.cshtml" />
     <Content Include="Views\Workout\MoreClient.cshtml" />
+    <Content Include="Views\Workout\ClientLookup.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

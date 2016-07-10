@@ -7,7 +7,6 @@ C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\DotNetOpenAuth.OAuth.Consumer.
 C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\DotNetOpenAuth.OAuth.dll
 C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\DotNetOpenAuth.OpenId.dll
 C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
-C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\EntityFramework.dll
 C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\Microsoft.Data.Edm.dll
 C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\Microsoft.Data.OData.dll
 C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\Microsoft.Web.Infrastructure.dll
@@ -29,7 +28,6 @@ C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\System.Web.WebPages.Razor.dll
 C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\WebGrease.dll
 C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\WebMatrix.Data.dll
 C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\WebMatrix.WebData.dll
-C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\EntityFramework.xml
 C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\Newtonsoft.Json.xml
 C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\System.Net.Http.Formatting.xml
 C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\System.Web.Helpers.xml
@@ -178,3 +176,15 @@ D:\Stash\PersonalTrainer\PersonalTrainer\bin\PagedList.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\PagedList.Mvc.dll
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\PagedList.xml
 D:\Stash\PersonalTrainer\PersonalTrainer\bin\PagedList.Mvc.xml
+C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\PersonalTrainer.dll.config
+C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\ExpressiveAnnotations.dll
+C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\ExpressiveAnnotations.MvcUnobtrusive.dll
+C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\Microsoft.Owin.dll
+C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\Owin.dll
+C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\PagedList.dll
+C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\PagedList.Mvc.dll
+C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\ExpressiveAnnotations.xml
+C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\ExpressiveAnnotations.MvcUnobtrusive.xml
+C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\Microsoft.Owin.xml
+C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\PagedList.xml
+C:\SourceCode\PersonalTrainer\PersonalTrainer\bin\PagedList.Mvc.xml

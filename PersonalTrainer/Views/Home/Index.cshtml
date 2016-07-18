@@ -2,44 +2,39 @@
 @{
     ViewBag.Title = "Home Page";
 }
-@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
-            </hgroup>
-            <p>Welcome to my page. This is the page where I, Paul Fawcett, get to tell you all about all the wonderful things I can do for you.</p>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h4 class="text-center">
+            Welcome to my page. This is the page where I, Paul Fawcett, get to tell you all about all the wonderful things I can do for you.
+        </h4>
+            <h3 class="text-center">We suggest the following:</h3>
+        <div class="row">
+            <div class="col-md-4">
+                Exerci accusamus mediocritatem et est, te has quidam qualisque, vis at purto consul recteque. Aeque quidam definiebas eu sit, dolore democritum eos ad.
+                Ne qui putant utroque consequat, sale nulla consulatu cum at. Ea eum dolor primis facilis. Sit inermis praesent posidonium te, exerci tamquam vix an, nec dicam iudico ad.
+            </div>
+            <div class="col-md-4">
+                Ut eum solum aeque graece, eu duis maluisset usu. Dico alia eleifend sit at, nam debet debitis officiis eu, esse volumus corpora qui no.
+                Pro cu eius disputationi, an has adhuc omittantur. Nam movet facete persius ut.
+            </div>
+            <div class="col-md-4">
+                Commodo persecuti delicatissimi ad mel, fugit explicari id vis. His ei phaedrum tincidunt. Ferri aperiam ea vix, ignota delicatissimi te vix, solum dolor consequat ad eos.
+                Et apeirian adversarium sea, quis prima volumus usu et, vim amet meliore invidunt at. Cum no iriure civibus accusamus. Nec odio tota vivendum at.
+            </div>
         </div>
-    </section>
-}
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Stuff here</h5>
-        <p>
-            Exerci accusamus mediocritatem et est, te has quidam qualisque, vis at purto consul recteque. Aeque quidam definiebas eu sit, dolore democritum eos ad.
-            Ne qui putant utroque consequat, sale nulla consulatu cum at. Ea eum dolor primis facilis. Sit inermis praesent posidonium te, exerci tamquam vix an, nec dicam iudico ad.
-        </p>
-    </li>
 
-    <li class="two">
-        <h5>More stuff here</h5>
-        <p>
-            Ut eum solum aeque graece, eu duis maluisset usu. Dico alia eleifend sit at, nam debet debitis officiis eu, esse volumus corpora qui no.
-            Pro cu eius disputationi, an has adhuc omittantur. Nam movet facete persius ut.
-        </p>
-    </li>
+        <div class="text-center">
+            <p>Okay, let's create a workout</p>
 
-    <li class="three">
-        <h5>even more stuff here</h5>
-        <p>
-            Commodo persecuti delicatissimi ad mel, fugit explicari id vis. His ei phaedrum tincidunt. Ferri aperiam ea vix, ignota delicatissimi te vix, solum dolor consequat ad eos.
-            Et apeirian adversarium sea, quis prima volumus usu et, vim amet meliore invidunt at. Cum no iriure civibus accusamus. Nec odio tota vivendum at.
-        </p>
-    </li>
-</ol>
+            @Html.ActionLink("Begin", "../Workout/Index")
+        </div>
+    </div>
 
-<p>Okay, let's create a workout</p>
-
-@Html.ActionLink("Begin", "../Workout/Index")
+</body>

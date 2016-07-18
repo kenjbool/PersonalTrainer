@@ -2,31 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <meta name="viewport" content="width=device-width" />
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" href="//Content/themes/base/jquery-ui.css">
+    <title>Paul Fawcett - S & C</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <header>
-        <div class="content-wrapper">
-            <div class="right">
-                <section id="login">
-                    @Html.Partial("_LoginPartial")
-                </section>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="~/Views/Home/Index.cshtml">Paul Fawcett - S & C</a>
             </div>
-            <p class="site-title">@Html.ActionLink("Paul Fawcett - Strength and Conditioning", "Index", "Home")</p>
-
-            <nav>
-                <ul id="menu">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Workout", "Index", "Workout")</li>
+                    <li>@Html.ActionLink("Nutrition", "MacroCounter", "Food")</li>
                 </ul>
-            </nav>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="~/Views/Account/Register.cshtml"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="~/Views/Account/Login.cshtml"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header>
+        <div class="jumbotron text-center">
+            <h1>Paul Fawcett - Strength and Conditioning</h1>
         </div>
     </header>
     <div id="body">
@@ -36,14 +47,11 @@
         </section>
     </div>
     <footer>
-        <div class="content-wrapper">
-            <div class="float-left">
+        <div class="container-fluid panel-footer">
+            <div class="panel-body">
                 <p>&copy; @DateTime.Now.Year - Boolean Software Designs</p>
             </div>
         </div>
     </footer>
-
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -4,3 +4,9 @@ D:\Stash\PersonalTrainer\PersonTrainerTests\bin\Debug\Microsoft.VisualStudio.Qua
 D:\Stash\PersonalTrainer\PersonTrainerTests\obj\Debug\PersonTrainerTests.csprojResolveAssemblyReference.cache
 D:\Stash\PersonalTrainer\PersonTrainerTests\obj\Debug\PersonTrainerTests.dll
 D:\Stash\PersonalTrainer\PersonTrainerTests\obj\Debug\PersonTrainerTests.pdb
+C:\SourceCode\PersonalTrainer\PersonTrainerTests\bin\Debug\PersonTrainerTests.dll
+C:\SourceCode\PersonalTrainer\PersonTrainerTests\bin\Debug\PersonTrainerTests.pdb
+C:\SourceCode\PersonalTrainer\PersonTrainerTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\SourceCode\PersonalTrainer\PersonTrainerTests\obj\Debug\PersonTrainerTests.csprojResolveAssemblyReference.cache
+C:\SourceCode\PersonalTrainer\PersonTrainerTests\obj\Debug\PersonTrainerTests.dll
+C:\SourceCode\PersonalTrainer\PersonTrainerTests\obj\Debug\PersonTrainerTests.pdb

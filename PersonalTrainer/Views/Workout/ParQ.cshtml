@@ -4,11 +4,13 @@
 }
 
 <head>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-    <br />
     <div class="error" style="visibility: hidden">
         @ViewBag.Message
     </div>
@@ -33,238 +35,267 @@
             <div class="form-group">
                 <label for="User">@Html.LabelFor(x => x.Name)</label><input type="text" class="form-control" id="@Html.TextBoxFor(x => x.Name)" />
             </div>
-
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td class="col-sm-4">Has your doctor ever said that you have a bone or joint problems, such as arthritis that has been aggravated by exercise or might be made worse with exercise? </td>
-                        <td class="col-sm-4">
-                            <form role="form">
-                                <div class="form-group">
-                                    <label for="@Html.LabelFor(x => x.AnswerOne)"></label>
-                                    <select class="form-control">
-                                        <option>Yes</option>
-                                        <option>No</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </td>
-                        <td class="col-sm-4">
-                            <form role="form">
-                                <div class="form-group">
-                                    <label for="@Html.LabelFor(x => x.AddInfoOne)"></label>
-                                    <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfoOne)"></textarea>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-sm-4">Has your doctor ever said that you have a bone or joint problems, such as arthritis that has been aggravated by exercise or might be made worse with exercise? </td>
-                        <td class="col-sm-4">
-                            <form role="form">
-                                <div class="form-group">
-                                    <label for="@Html.LabelFor(x => x.AnswerOne)"></label>
-                                    <select class="form-control">
-                                        <option>Yes</option>
-                                        <option>No</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </td>
-                        <td class="col-sm-4">
-                            <form role="form">
-                                <div class="form-group">
-                                    <label for="@Html.LabelFor(x => x.AddInfoOne)"></label>
-                                    <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfoOne)"></textarea>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-
-
-
-
-
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row1">Next...</button>
         </div>
+        <div class="container">
+            <div class="row" id="row1" class="collapse">
+                @* ROW 1 *@
+                <div class="col-sm-4">Has your doctor ever said that you have a bone or joint problems, such as arthritis that has been aggravated by exercise or might be made worse with exercise? </div>
+                <div class="col-sm-4">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="@Html.LabelFor(x => x.AnswerOne)"></label>
+                            <select class="form-control">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-4">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="@Html.LabelFor(x => x.AddInfoOne)"></label>
+                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfoOne)"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+        <div class="row" id="row2" class="collapse">
+            @* ROW 2 *@
+            <div class="col-sm-4">Do you have high blood pressure?</div>
+            <td class="col-sm-4">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AnswerTwo)"></label>
+                        <select class="form-control">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </form>
+            </td>
+            <td class="col-sm-4">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfoTwo)"></label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfoTwo)"></textarea>
+                    </div>
+                </form>
+            </td>
+        </div>
+        </div>
+            @* ROW 3 *@
+            <div class="col-sm-4">Do you have low blood pressure?</div>
+            <td class="col-sm-4">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AnswerThree)"></label>
+                        <select class="form-control">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </form>
+            </td>
+            <td class="col-sm-4">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfoThree)"></label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfoThree)"></textarea>
+                    </div>
+                </form>
+            </td>
+                        <tr>
+                            @* ROW 4 *@
+                            <td class="col-sm-4">Do you have Diabetes Mellitus or any other metabolic disease?</td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AnswerFour)"></label>
+                                        <select class="form-control">
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AddInfoFour)"></label>
+                                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfoFour)"></textarea>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            @* ROW 5 *@
+                            <td class="col-sm-4">Has your doctor ever said you have raised cholesterol (serum level above 6.2mmol/L)?</td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AnswerFive)"></label>
+                                        <select class="form-control">
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AddInfoFive)"></label>
+                                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfoFive)"></textarea>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            @* ROW 6 *@
+                            <td class="col-sm-4">Has your doctor ever said that you have a heart condition arid that you should only do physical activity recommended by a doctor?</td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AnswerSix)"></label>
+                                        <select class="form-control">
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AddInfoSix)"></label>
+                                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfoSix)"></textarea>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            @* ROW 7 *@
+                            <td class="col-sm-4">Have you ever felt pain in your chest when you do physical exercise?</td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AnswerSeven)"></label>
+                                        <select class="form-control">
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AddInfoSeven)"></label>
+                                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfoSeven)"></textarea>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            @* ROW 8 *@
+                            <td class="col-sm-4">Is your doctor currently prescribing you drugs or medication?</td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AnswerEight)"></label>
+                                        <select class="form-control">
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AddInfoEight)"></label>
+                                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfoEight)"></textarea>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            @* ROW 9 *@
+                            <td class="col-sm-4">Have you ever suffered from unusual shortness of breath at rest or with mild exertion?</td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AnswerNine)"></label>
+                                        <select class="form-control">
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AddInfoNine)"></label>
+                                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfoNine)"></textarea>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            @* ROW 10 *@
+                            <td class="col-sm-4">Is there any history of Coronary Heart Disease in your family?</td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AnswerTen)"></label>
+                                        <select class="form-control">
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AddInfoTen)"></label>
+                                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfoTen)"></textarea>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            @* ROW 11 *@
+                            <td class="col-sm-4">Do you often feel faint, have spells of severe dizziness or have lost consciousness?</td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AnswerEleven)"></label>
+                                        <select class="form-control">
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </td>
+                            <td class="col-sm-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="@Html.LabelFor(x => x.AddInfoEleven)"></label>
+                                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfoEleven)"></textarea>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+    
 
 
-
-        <html>
-        <head>
-            <style>
-                table, th, td {
-                    border: none;
-                }
-            </style>
-        </head>
-        <body>
-            <style>
-                textarea.Parq {
-                    width: 250px;
-                }
-            </style>
-            <table style="width: 100%">
-                <tr>
-                    <td>
-                        <p></p>
-                    </td>
-                    <td>
-                        @Html.LabelFor(x => x.AnswerOne) @Html.DropDownListFor(x => x.AnswerOne, new[]
- {
-                                                 new SelectListItem() {Text = "Yes", Value = bool.TrueString},
-                                                 new SelectListItem() {Text = "No", Value = bool.FalseString}
-                                             }, "Choose an option")
-                    </td>
-                    <td>@Html.LabelFor(x => x.AddInfoParq) @Html.TextAreaFor(x => x.AddInfoOne)</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Do you have high blood pressure?</p>
-                    </td>
-                    <td>
-                        @Html.LabelFor(x => x.AnswerTwo) @Html.DropDownListFor(x => x.AnswerTwo, new[]
- {
-                                                 new SelectListItem() {Text = "Yes", Value = bool.TrueString},
-                                                 new SelectListItem() {Text = "No", Value = bool.FalseString}
-                                             }, "Choose an option")
-                    </td>
-
-                    <td>@Html.LabelFor(x => x.AddInfoParq) @Html.TextAreaFor(x => x.AddInfoTwo)</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Do you have low blood pressure?</p>
-                    </td>
-                    <td>
-                        @Html.LabelFor(x => x.AnswerThree) @Html.DropDownListFor(x => x.AnswerThree, new[]
- {
-                                                   new SelectListItem() {Text = "Yes", Value = bool.TrueString},
-                                                   new SelectListItem() {Text = "No", Value = bool.FalseString}
-                                               }, "Choose an option")
-                    </td>
-
-                    <td>@Html.LabelFor(x => x.AddInfoParq) @Html.TextAreaFor(x => x.AddInfoThree)</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Do you have Diabetes Mellitus or any other metabolic disease?</p>
-
-                    </td>
-                    <td>
-                        @Html.LabelFor(x => x.AnswerFour) @Html.DropDownListFor(x => x.AnswerFour, new[]
- {
-                                                  new SelectListItem() {Text = "Yes", Value = bool.TrueString},
-                                                  new SelectListItem() {Text = "No", Value = bool.FalseString}
-                                              }, "Choose an option")
-                    </td>
-
-                    <td>@Html.LabelFor(x => x.AddInfoParq) @Html.TextAreaFor(x => x.AddInfoFour)</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Has your doctor ever said you have raised cholesterol (serum level above 6.2mmol/L)?</p>
-
-                    </td>
-                    <td>
-                        @Html.LabelFor(x => x.AnswerFive) @Html.DropDownListFor(x => x.AnswerFive, new[]
- {
-                                                  new SelectListItem() {Text = "Yes", Value = bool.TrueString},
-                                                  new SelectListItem() {Text = "No", Value = bool.FalseString}
-                                              }, "Choose an option")
-                    </td>
-
-                    <td>@Html.LabelFor(x => x.AddInfoParq) @Html.TextAreaFor(x => x.AddInfoFive)</td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <p>Has your doctor ever said that you have a heart condition arid that you should only do physical activity recommended by a doctor?</p>
-                    </td>
-                    <td>
-                        @Html.LabelFor(x => x.AnswerSix) @Html.DropDownListFor(x => x.AnswerSix, new[]
- {
-                                                 new SelectListItem() {Text = "Yes", Value = bool.TrueString},
-                                                 new SelectListItem() {Text = "No", Value = bool.FalseString}
-                                             }, "Choose an option")
-                    </td>
-
-                    <td>@Html.LabelFor(x => x.AddInfoParq) @Html.TextAreaFor(x => x.AddInfoSix)</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Have you ever felt pain in your chest when you do physical exercise? </p>
-                    </td>
-                    <td>
-                        @Html.LabelFor(x => x.AnswerSeven) @Html.DropDownListFor(x => x.AnswerSeven, new[]
- {
-                                                   new SelectListItem() {Text = "Yes", Value = bool.TrueString},
-                                                   new SelectListItem() {Text = "No", Value = bool.FalseString}
-                                               }, "Choose an option")
-                    </td>
-
-                    <td>@Html.LabelFor(x => x.AddInfoParq) @Html.TextAreaFor(x => x.AddInfoSeven)</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Is your doctor currently prescribing you drugs or medication?</p>
-                    </td>
-                    <td>
-                        @Html.LabelFor(x => x.AnswerEight) @Html.DropDownListFor(x => x.AnswerEight, new[]
- {
-                                                   new SelectListItem() {Text = "Yes", Value = bool.TrueString},
-                                                   new SelectListItem() {Text = "No", Value = bool.FalseString}
-                                               }, "Choose an option")
-                    </td>
-
-                    <td>@Html.LabelFor(x => x.AddInfoParq) @Html.TextAreaFor(x => x.AddInfoEight)</td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <p>Have you ever suffered from unusual shortness of breath at rest or with mild exertion?</p>
-                    </td>
-                    <td>
-                        @Html.LabelFor(x => x.AnswerNine) @Html.DropDownListFor(x => x.AnswerNine, new[]
- {
-                                                  new SelectListItem() {Text = "Yes", Value = bool.TrueString},
-                                                  new SelectListItem() {Text = "No", Value = bool.FalseString}
-                                              }, "Choose an option")
-                    </td>
-
-                    <td>@Html.LabelFor(x => x.AddInfoParq) @Html.TextAreaFor(x => x.AddInfoNine)</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Is there any history of Coronary Heart Disease in your family?</p>
-                    </td>
-                    <td>
-                        @Html.LabelFor(x => x.AnswerTen) @Html.DropDownListFor(x => x.AnswerTen, new[]
- {
-                                                 new SelectListItem() {Text = "Yes", Value = bool.TrueString},
-                                                 new SelectListItem() {Text = "No", Value = bool.FalseString}
-                                             }, "Choose an option")
-                    </td>
-
-                    <td>@Html.LabelFor(x => x.AddInfoParq) @Html.TextAreaFor(x => x.AddInfoTen)</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Do you often feel faint, have spells of severe dizziness or have lost consciousness?</p>
-                    </td>
-                    <td>
-                        @Html.LabelFor(x => x.AnswerEleven) @Html.DropDownListFor(x => x.AnswerEleven, new[]
- {
-                                                    new SelectListItem() {Text = "Yes", Value = bool.TrueString},
-                                                    new SelectListItem() {Text = "No", Value = bool.FalseString}
-                                                }, "Choose an option")
-                    </td>
-
-                    <td>@Html.LabelFor(x => x.AddInfoParq) @Html.TextAreaFor(x => x.AddInfoEleven)</td>
-                </tr>
-                <tr>
+                @*<tr>
                     <td>
                         <p>Do you currently drink more than the average amount of alcohol per week (21 units for men and 14 units for women)?</p>
                     </td>
@@ -337,9 +368,8 @@
                         @Html.LabelFor(x => x.AddInfoParq) @Html.TextAreaFor(x => x.AddInfoSixteen)
                     </td>
                 </tr>
-            </table>
-        </body>
-    </html>
+            </body>*@
+    // </html>
     <div class="float-left">
         @Html.LabelFor(x => x.Email) @Html.TextBoxFor(x => x.Email)
     </div>

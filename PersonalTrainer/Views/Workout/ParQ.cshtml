@@ -31,10 +31,11 @@
             @Html.AntiForgeryToken()
 
             <div class="form-group">
-                <label for="User">@Html.LabelFor(x => x.Name)</label><input type="text" class="form-control" id="@Html.TextBoxFor(x => x.Name)" />
-            </div>
+                <label for="Name">@Html.LabelFor(x => x.Name)</label><input type="text" class="form-control" id= @Model.Name />
+</div>
 
-            <table class="table">
+
+<table class="table">
                 <tbody>
                     <tr>
                         <td class="col-sm-4">Has your doctor ever said that you have a bone or joint problems, such as arthritis that has been aggravated by exercise or might be made worse with exercise? </td>

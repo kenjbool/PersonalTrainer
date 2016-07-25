@@ -2,48 +2,56 @@
 
 @{
     ViewBag.Title = "Log in";
+    var modelState = new ModelState();
 }
+<head>
+    <h2 class="text-center">@ViewBag.Title</h2>
+</head>
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
+<div class="container">
+    <row class="col-sm-6">
+        @if(modelState.Errors != null)
+        {<div class="container" id="validation-alert">
+            <div class="alert alert-danger">
+                <strong>Warning!</strong> Please check validation on fields.
+            </div>
+        </div>
+        }
+        @using (Html.BeginForm(new {ReturnUrl = ViewBag.ReturnUrl}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <form role="form">
+                <div class="form-group">
+                    <label for="@Html.LabelFor(m => m.FullName)">@Html.LabelFor(m => m.FullName)</label>
+                    <input type="text" class="form-control" id="@Html.TextBoxFor(m => m.FullName)"/>
+                    @Html.ValidationMessageFor(m => m.FullName)
+                </div>
+                <div class="form-group">
+                    <label for="@Html.LabelFor(m => m.Password)">@Html.LabelFor(m => m.Password)</label>
+                    <input type="text" class="form-control" id="@Html.TextBoxFor(m => m.Password)"/>
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox">Remember me</label>
+                </div>
 
-<section id="loginForm">
-<h2>Use a local account to log in.</h2>
-@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+                <button type="submit" class="btn btn-default">Log In</button>
+            </form>
+        }
+        <br/>
 
-    <fieldset>
-        <legend>Log in Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.FullName)
-                @Html.TextBoxFor(m => m.FullName)
-                @Html.ValidationMessageFor(m => m.FullName)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-                @Html.ValidationMessageFor(m => m.Password)
-            </li>
-            <li>
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
-            </li>
-        </ol>
-        <input type="submit" value="Log in" />
-    </fieldset>
-    <p>
-        @Html.ActionLink("Register", "Register") if you don't have an account.
-    </p>
-}
-</section>
+        <p>if you don't have an account.</p>
+        <a href="@Url.Action("Register", "Account")" class="btn btn-default">
+            Register
+        </a>
 
-<section class="social" id="socialLoginForm">
+    </row>
+</div>
+<row class="col-sm-6">
     <h2>Use another service to log in.</h2>
     @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>
+</row>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

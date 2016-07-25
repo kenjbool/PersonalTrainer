@@ -1,39 +1,33 @@
 ﻿@model PersonalTrainer.Models.RegisterModel
-@{
-    ViewBag.Title = "Register";
-}
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>Create a new account.</h2>
-</hgroup>
+<head>
+    <h2 class="text-center">@ViewBag.Title</h2>
+</head>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
-    <fieldset>
-        <legend>Registration Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.FullName)
-                @Html.TextBoxFor(m => m.FullName)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.ConfirmPassword)
-                @Html.PasswordFor(m => m.ConfirmPassword)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.TrainerName)
-                @Html.TextBoxFor(m => m.TrainerName)
-            </li>
-        </ol>
-        <input type="submit" value="Register" />
-    </fieldset>
+    <form role="form">
+        <div class="form-group">
+            <label for="@Html.LabelFor(m => m.FullName)">@Html.LabelFor(m => m.FullName)</label>
+            <input type="text" class="form-control" id="@Html.TextBoxFor(m => m.FullName)"/>
+        </div>
+
+        <div class="form-group">
+            <label for="@Html.LabelFor(m => m.Password)">@Html.LabelFor(m => m.Password)</label>
+            <input type="text" class="form-control" id="@Html.TextBoxFor(m => m.Password)"/>
+        </div>
+        <div class="form-group">
+            <label for="@Html.LabelFor(m => m.ConfirmPassword)">@Html.LabelFor(m => m.ConfirmPassword)</label>
+            <input type="text" class="form-control" id="@Html.TextBoxFor(m => m.ConfirmPassword)"/>
+        </div>
+        <div class="form-group">
+            <label for="@Html.LabelFor(m => m.TrainerName)">@Html.LabelFor(m => m.TrainerName)</label>
+            <input type="text" class="form-control" id="@Html.TextBoxFor(m => m.TrainerName)"/>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
 }
 
 @section Scripts {

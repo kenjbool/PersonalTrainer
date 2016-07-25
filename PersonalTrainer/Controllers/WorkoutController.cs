@@ -64,10 +64,10 @@ namespace PersonalTrainer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ParQ(Parq parq)
         {
-            if (ModelState.IsValid)
-            {
-                if (!string.IsNullOrEmpty(parq.Name) && !string.IsNullOrEmpty(parq.Email))
-                {
+          //  if (ModelState.IsValid)
+          //  {
+          //      if (!string.IsNullOrEmpty(parq.Name) && !string.IsNullOrEmpty(parq.Email))
+          //      {
                     var workout = new Client();
 
                     
@@ -93,20 +93,20 @@ namespace PersonalTrainer.Controllers
                     return RedirectToAction("Client");
 
                 }
-            }
-            if (string.IsNullOrEmpty(parq.Email) || string.IsNullOrEmpty(parq.Name))
-            {
-                ViewBag.Message =
-                    "Please make sure you have entered your full name and a correct and current email address. " +
-                    "This is so we can send you a documented copy of the form for you to keep";
-            }
-            if (parq.ParqAgreement != true)
-            {
-                ViewBag.MessageAgreement =
-                    "Please tick the checkbox at the bottom of the page in order to continue";
-            }
-            return View();
-        }
+            // }
+            ////if (string.IsNullOrEmpty(parq.Email) || string.IsNullOrEmpty(parq.Name))
+            ////{
+            ////    ViewBag.Message =
+            ////        "Please make sure you have entered your full name and a correct and current email address. " +
+            ////        "This is so we can send you a documented copy of the form for you to keep";
+            ////}
+            ////if (parq.ParqAgreement != true)
+            ////{
+            ////    ViewBag.MessageAgreement =
+            ////        "Please tick the checkbox at the bottom of the page in order to continue";
+            ////}
+            // return View();
+        // }
 
         //
         // GET: /Workout/Client

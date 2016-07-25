@@ -38,8 +38,8 @@
             @Html.AntiForgeryToken()
 
             <div class="form-group">
-                <label for="User">@Html.LabelFor(x => x.Name)</label><input type="text" class="form-control" id="@Html.TextBoxFor(x => x.Name)" />
-            </div>
+                <label for="Name">@Html.LabelFor(x => x.Name)</label><input type="text" class="form-control" id= @Model.Name />
+</div>
             <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row1">Next...</button>
         </div>
         @* SPACER *@

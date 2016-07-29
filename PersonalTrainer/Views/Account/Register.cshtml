@@ -1,40 +1,37 @@
 ﻿@model PersonalTrainer.Models.RegisterModel
-@{
-    ViewBag.Title = "Register";
-}
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>Create a new account.</h2>
-</hgroup>
+<head>
+    <h2 class="text-center">@ViewBag.Title</h2>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <div class="container">
+            <form role="form">
+                <div class="form-group">
+                    <label for="FullName">Full Name</label>
+                        @Html.TextBoxFor(x => x.FullName, new { @class="form-control"})
+                </div>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
-
-    <fieldset>
-        <legend>Registration Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.FullName)
-                @Html.TextBoxFor(m => m.FullName)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.ConfirmPassword)
-                @Html.PasswordFor(m => m.ConfirmPassword)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.TrainerName)
-                @Html.TextBoxFor(m => m.TrainerName)
-            </li>
-        </ol>
-        <input type="submit" value="Register" />
-    </fieldset>
-}
+                <div class="form-group">
+                    <label for="@Html.LabelFor(m => m.Password)">@Html.LabelFor(m => m.Password)</label>
+                    @Html.TextBoxFor(x => x.Password, new { @class = "form-control", type="password" })
+                </div>
+                <div class="form-group">
+                    <label for="@Html.LabelFor(m => m.ConfirmPassword)">@Html.LabelFor(m => m.ConfirmPassword)</label>
+                    @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control", type = "password" })
+                </div>
+                <div class="form-group">
+                    <label for="@Html.LabelFor(m => m.TrainerName)">@Html.LabelFor(m => m.TrainerName)</label>
+                    @Html.TextBoxFor(x => x.TrainerName, new { @class = "form-control"})
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+    }
+</body>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

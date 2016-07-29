@@ -12,67 +12,67 @@ namespace PersonalTrainer.Models
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerOne { get; set; }
+        public bool Answer1 { get; set; }
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerTwo { get; set; }
+        public bool Answer2 { get; set; }
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerThree { get; set; }
+        public bool Answer3 { get; set; }
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerFour { get; set; }
+        public bool Answer4 { get; set; }
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerFive { get; set; }
+        public bool Answer5 { get; set; }
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerSix { get; set; }
+        public bool Answer6 { get; set; }
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerSeven { get; set; }
+        public bool Answer7 { get; set; }
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerEight { get; set; }
+        public bool Answer8 { get; set; }
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerNine { get; set; }
+        public bool Answer9 { get; set; }
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerTen { get; set; }
+        public bool Answer10 { get; set; }
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerEleven { get; set; }
+        public bool Answer11 { get; set; }
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerTwelve { get; set; }
+        public bool Answer12 { get; set; }
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerThirteen { get; set; }
+        public bool Answer13 { get; set; }
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerFourteen { get; set; }
+        public bool Answer14 { get; set; }
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerFifteen { get; set; }
+        public bool Answer15 { get; set; }
 
         [Required(ErrorMessage = "Please Select Yes or No")]
         [Display(Name = "Yes/No")]
-        public bool AnswerSixteen { get; set; }
+        public bool Answer16 { get; set; }
 
         [Required(ErrorMessage = "Please enter your current email address")]
         [Display(Name = "Email Address")]
@@ -84,52 +84,52 @@ namespace PersonalTrainer.Models
         [Required(ErrorMessage = "Please tick this box before you can continue")]
         public bool ParqAgreement { get; set; }
 
-        [RequiredIf("AnswerOne == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoOne { get; set; }
+        [RequiredIf("Answer1 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo1 { get; set; }
 
-        [RequiredIf("AnswerTwo == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoTwo { get; set; }
+        [RequiredIf("Answer2 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo2 { get; set; }
 
-        [RequiredIf("AnswerThree == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoThree { get; set; }
+        [RequiredIf("Answer3 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo3 { get; set; }
 
-        [RequiredIf("AnswerFour == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoFour { get; set; }
+        [RequiredIf("Answer4 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo4 { get; set; }
 
-        [RequiredIf("AnswerFive == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoFive { get; set; }
+        [RequiredIf("Answer5 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo5 { get; set; }
 
-        [RequiredIf("AnswerSix == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoSix { get; set; }
+        [RequiredIf("Answer6 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo6 { get; set; }
 
-        [RequiredIf("AnswerSeven == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoSeven { get; set; }
+        [RequiredIf("Answer7 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo7 { get; set; }
 
-        [RequiredIf("AnswerEight == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoEight { get; set; }
+        [RequiredIf("Answer8 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo8 { get; set; }
 
-        [RequiredIf("AnswerNine == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoNine { get; set; }
+        [RequiredIf("Answer9 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo9 { get; set; }
 
-        [RequiredIf("AnswerTen == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoTen { get; set; }
+        [RequiredIf("Answer10 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo10 { get; set; }
 
-        [RequiredIf("AnswerEleven == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoEleven { get; set; }
+        [RequiredIf("Answer11 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo11 { get; set; }
 
-        [RequiredIf("AnswerTwelve == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoTwelve { get; set; }
+        [RequiredIf("Answer12 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo12 { get; set; }
 
-        [RequiredIf("AnswerThirteen == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoThirteen { get; set; }
+        [RequiredIf("Answer13 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo13 { get; set; }
 
-        [RequiredIf("AnswerFourteen == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoFourteen { get; set; }
+        [RequiredIf("Answer14 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo14 { get; set; }
 
-        [RequiredIf("AnswerFifteen == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoFifteen { get; set; }
+        [RequiredIf("Answer15 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo15 { get; set; }
 
-        [RequiredIf("AnswerSixteen == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
-        public string AddInfoSixteen { get; set; }
+        [RequiredIf("Answer16 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
+        public string AddInfo16 { get; set; }
     }
 }

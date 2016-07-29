@@ -60,7 +60,7 @@
                         <li>@Html.ActionLink("Nutrition", "MacroCounter", "Food")</li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="~/Views/Account/login.cshtml"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                        <li><a href="~/Views/Account/login.cshtml"><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -71,14 +71,13 @@
             <h1>Paul Fawcett - Strength and Conditioning</h1>
         </div>
     </header>
-    <div id="body">
-        @RenderSection("featured", required: false)
-        @RenderSection("Scripts", required: false)
+    @RenderSection("featured", required: false)
+    @RenderSection("Scripts", required: false)
 
-        <section class="content-wrapper main-content clear-fix">
-            @RenderBody()
+    <section class="content-wrapper main-content clear-fix">
+        @RenderBody()
     </section>
-    </div>
+</body>
     <footer>
         <div class="container-fluid panel-footer">
             <div class="panel-body">
@@ -86,5 +85,5 @@
             </div>
         </div>
     </footer>
-</body>
+
 </html>

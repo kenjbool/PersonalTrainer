@@ -1,76 +1,79 @@
-﻿@using PersonalTrainer.Models
-@model PersonalTrainer.Models.FitnessTest
+﻿@model PersonalTrainer.Models.FitnessTest
 @ViewBag.Title
-
-
 <html>
 <head>
     <title>Paul Fawcett PT</title>
-
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 5px;
-        }
-    </style>
 </head>
 
 <body>
-    <div class="main-content">
-        <h2>FitnessTest</h2>
-    </div>
-
-    @using (Html.BeginForm())
-    {
-        <h2>Workout</h2>
-
+    <div class="container">
+        @using (Html.BeginForm())
         {
-            int counter = 1;
-            foreach (var workoutName in Model.WorkoutNameList)
-            {
+            <form role="form">
+                @foreach (var workout in Model.WorkoutNameList)
+                {
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">@Html.DisplayTextFor(x => x.WorkoutNameList[0])</a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse in">
+                                <div class="form-group col-md-3">
+                                    <label for="workoutName">Workout Name:</label>
+                                    @Html.TextBoxFor(x => x.WorkoutNameList[0], new { @value = "workoutName", @class = "form-control", @id = "workoutName", @placeholder = "Workout..." })
+                                </div>
 
-                <div class="leftfield">@Html.Label("Workout Name:") @Html.Label(workoutName)</div><div class="leftfield">
-                    @Html.LabelFor(x => x.WeightLifted)
-                <input id="weightLifted{" value ="@Model.WeightLifted" data-bind="value: weightLifted, valueUpdate:'afterkeydown'" />
-            </div>
+                                <div class="form-group col-md-3">
+                                    <label for="weightLifted">Weight Lifted:</label>
+                                    @Html.TextBoxFor(x => x.WeightLifted, new { @value = "weightLifted", @class = "form-control", @id = "weightLifted", @type = "number" })
+                                </div>
 
-                <div class="rightfield">
-                    @Html.LabelFor(x => x.ORM)
-                <span id="orm" data-bind="text: orm, valueUpdate:'afterkeydown'"></span>
-                <input type="hidden" value="@Model.ORM" data-bind="value: ormValue, valueUpdate:'afterkeydown'" />
-            </div>
+                                <div class="form-group col-md-3">
+                                    <label for="reps">Reps:</label>
+                                    @Html.TextBoxFor(x => x.Reps, new { @value = "reps", @class = "form-control", @id = "reps", @type = "number" })
+                                </div>
 
-                <div class="leftfield">
-                    @Html.LabelFor(x => x.Reps) <input id="reps" data-bind="value: reps, valueUpdate:'afterkeydown'" />
-                </div>
-            
-                <div class="rightfield">@Html.LabelFor(x => x.Comments) @Html.TextAreaFor(x => x.Comments)</div>
-                <div class="clear-fix"></div>
+                                <div class="form-group col-md-3">
+                                    <button type="button" class="btn btn-default" id="trmCalc">CalculateTrm</button>
+                                </div>
+                            </div>
+                        </div>
+                        @workout++;
+                    </div>
+                }
 
-                counter++;
-            }
+                @foreach (var cardioName in Model.CardioNameList)
+                {
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">@Html.DisplayTextFor(x => x.CardioNameList[0])</a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse in">
+                                <div class="form-group col-md-6">
+                                    <label for="exerciseName">Exercise Name:</label>
+                                    @Html.TextBoxFor(x => x.CardioNameList[0], new { @value = "exerciseName", @class = "form-control", @id = "exerciseName", @placeholder = "Exercise..." })
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="weightLifted">Weight Lifted:</label>
+                                    @Html.TextAreaFor(x => x.Comments, new { @value = "comments", @class = "form-control", @id = "comments" })
+                                </div>
+                            </div>
+                        </div>
+                        @cardioName++;
+                    </div>
+                }
+            </form>
+
+            <input type="submit" value="Make the plan!" />
         }
-
-        <h3>Aerobic</h3>
-
-        {
-            foreach (var cardioName in Model.CardioNameList)
-            {
-                <div class="leftfield">@Html.Label("Exercise Name:")@Html.Label(cardioName)</div>
-                    <div class="leftfield">@Html.LabelFor(x => x.ExerciseName) @Html.TextBoxFor(x => x.ExerciseName)</div>
-
-                    <div class="rightfield">@Html.Label("Time:")@Html.TextBoxFor(x => x.Time)</div>
-                    <div class="rightfield">@Html.LabelFor(x => x.Comments) @Html.TextAreaFor(x => x.Comments)</div>
-                    <div class="clear-fix"></div>
-            }
-        }
-    }
-    <input type="submit" value="Make the plan!" />
-</body>
+        </div>
+    </body>
 </html>
 
 @section scripts
@@ -81,25 +84,42 @@
             return weightLifted + reps;
         }
 
-        var viewModel = function() {
+        var viewModel = function () {
             var self = this;
             self.ormValue1 = ko.observable();
             self.weightLifted = ko.observable();
             self.reps = ko.observable();
-            self.orm = ko.computed(function() {
-                    var returnNumber = 0;
-                    var returnNumberMax = Number(self.weightLifted() * (1 + (self.reps() / 30)));
-                    returnNumber = returnNumberMax * 0.93;
-                    if (isNaN(returnNumber)) {
-                        returnNumber = 0;
-                    }
-                    self.ormValue = returnNumber;
-                    console.debug(self.ormValue);
-                    return returnNumber;
-                },
+            self.orm = ko.computed(function () {
+                var returnNumber = 0;
+                var returnNumberMax = Number(self.weightLifted() * (1 + (self.reps() / 30)));
+                returnNumber = returnNumberMax * 0.93;
+                if (isNaN(returnNumber)) {
+                    returnNumber = 0;
+                }
+                self.ormValue = returnNumber;
+                console.debug(self.ormValue);
+                return returnNumber;
+            },
                 self);
         };
 
         ko.applyBindings(new viewModel());
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".button").click(function () {
+                var returnNumber = 0;
+                var returnNumberMax = Number(self.weightLifted() * (1 + (self.reps() / 30)));
+                returnNumber = returnNumberMax * 0.93;
+                if (isNaN(returnNumber)) {
+                    returnNumber = 0;
+                }
+                self.orm = returnNumber;
+                console.debug(self.orm);
+                return returnNumber;
+            },
+            self);
+        })
     </script>
 }

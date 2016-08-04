@@ -12,16 +12,23 @@ namespace PersonalTrainer.Models
     {
         public FitnessTest()
         {
-            this.WorkoutNameList = new List<string>();
-            WorkoutNameList.Add("Squat");
-            WorkoutNameList.Add("Deadlift");
-            WorkoutNameList.Add("Bench Press");
-            WorkoutNameList.Add("Overhead Press");
-            
+            string[] workoutList = new string[]
+            {
+            "Squat",
+            "Deadlift",
+            "Bench Press",
+            "Overhead Press"
+            };
+
+            string[] cardioList = new string[]
+            {
+                "Burpees",
+
+            };
         }
 
         [Key]
-        public int ClientId { get; set; }
+        public string ClientId { get; set; }
 
         [Display(Name = "Reps:")]
         public int Reps { get; set; }

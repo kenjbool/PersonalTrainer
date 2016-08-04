@@ -4,11 +4,16 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    @{
+        var state = new ModelState();
+        int pass = 0;
+    }
 </head>
-@{ var state = new ModelState(); }
 <body>
+    
+    
 
-    @if (state.Errors.Count > 0)
+    @if (state.Errors.Count > 0 && pass > 0)
     {
         <div class="alert alert-danger" id="@state.Errors">
             <strong>Warning!</strong> Please make sure all fields are completed.
@@ -22,32 +27,33 @@
         <div class="container">
             <form role="form">
                 <div class="form-group col-md-6">
-                    <label for="@Html.LabelFor(x => x.FName)">First Name:</label>
-                    <input type="text" class="form-control" id="@Model.FName"  placeholder="First Name..."/>
-                    
-                    <label for="@Html.LabelFor(x => x.LName)">Last Name:</label>
-                    <input type="text" class="form-control" id="@Model.LName" placeholder="Last Name..." />
+                    <label for="FName">First Name:</label>
+                    @Html.TextBoxFor(x => x.FName, new { @class = "form-control", @id = "FName", @placeholder = "First name..." })
+
+                    <label for="LName">Last Name:</label>
+                    @Html.TextBoxFor(x => x.LName, new { @class = "form-control", @id = "LName", @placeholder = "Last name..." })
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="@Html.LabelFor(x => x.AddressLine1)">Address:</label>
-                    <input type="text" class="form-control" id="@Model.AddressLine1" placeholder="Address..." />
-                    <label for="@Html.LabelFor(x => x.AddressLine2)">Address:</label>
-                    <input type="text" class="form-control" id="@Model.AddressLine2" placeholder="Address..." />
+                    <label for="AddressLine1">Address:</label>
+                    @Html.TextBoxFor(x => x.AddressLine1, new { @class = "form-control", @id = "AddressLine1", @placeholder = "Address Line 1..." })
+                    <label for="AddressLine2">Address:</label>
+                    @Html.TextBoxFor(x => x.AddressLine2, new { @class = "form-control", @id = "AddressLine2", @placeholder = "Address Line 2..." })
+
                 </div>
                 <div class="form-group col-md-6">
                     <label for="@Html.LabelFor(x => x.Gender)">Gender</label>
-                    <select class="form-control">
+                    <select @Html.ValueFor(x => x.Gender) class="form-control">
                         <option>Please Select...</option>
-                        <option>Male</option>
-                        <option>Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                     </select>
-                    </div>
+                </div>
                 <div class="form-group col-md-6">
-                    <label for="@Html.LabelFor(x => x.Postcode)">Postcode:</label>
-                    <input type="text" class="form-control" id="@Model.Postcode" placeholder="Postcode" />
+                    <label for="Postcode">Postcode:</label>
+                    @Html.TextBoxFor(x => x.Postcode, new { @class = "form-control", id = "Postcode", @placeholder = "Postcode..." })
 
-                    <label for="@Html.LabelFor(x => x.Phone)">Contact Number</label>
-                    <input type="number" class="form-control" id="@Model.Phone" placeholder="Contact Number..." />   
+                    <label for="Phone">Contact Number:</label>
+                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", @type = "number", @id = "Phone", @placeholder = "Phone number..." })
                 </div>
                 <div class="control-group col-md-6">
                     <label for="date-picker-2" class="control-label">Date of Birth</label>
@@ -60,46 +66,43 @@
                             </label>
                         </div>
                     </div>
-                    <label for="@Html.LabelFor(x => x.Email)">Email Address:</label>
-                    <input type="text" class="form-control" id="@Model.Email" placeholder="Email Address..." />
+                    <label for="Email">Email Address:</label>
+                    @Html.TextBoxFor(x => x.Email, new { @type = "email", @class = "form-control", @placeholder = "Email address..." })
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="@Html.LabelFor(x => x.Height)">Height(cm):</label>
-                    <input type="number" class="form-control" id="@Model.Height" placeholder="Height..." />
+                    <label for="Height">Height(cm):</label>
+                    @Html.TextBoxFor(x => x.Height, new { @class = "form-control", @type = "number", @placeholder = "Height..." })
 
-                    <label for="@Html.LabelFor(x => x.Weight)">Weight(kg)</label>
-                    <input type="number" class="form-control" id="@Model.Weight" placeholder="Weight..." />
+                    <label for="Weight">Weight(kg):</label>
+                    @Html.TextBoxFor(x => x.Weight, new { @class = "form-control", @type = "number", @placeholder = "Weight..." })
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="@Html.LabelFor(x => x.GoalId)">Height(cm):</label>
-                   <select multiple class="form-control" id="@Model.GoalId">
-                       <option>Lose Weight</option>
-                       <option>Tone Up</option>
-                       <option>Build Muscle</option>
-                       <option>Improve overall fitness</option>
-                       <option>Goal specific</option>
-                   </select>
+                    <label for="GoalId">Goal:</label>
+                    <select multiple class="form-control" id="GoalId">
+                        <option value="loseWeight">Lose Weight</option>
+                        <option value="toneUp">Tone Up</option>
+                        <option value="buildMuscle">Build Muscle</option>
+                        <option value="improveOverall">Improve overall fitness</option>
+                        <option value="other">Goal specific/Other</option>
+                    </select>
+                    </div>
 
-                    <label for="@Html.LabelFor(x => x.Weight)">Weight(kg)</label>
-                    <input type="number" class="form-control" id="@Model.Weight" placeholder="Weight..." />
-                </div>
+                    <div class="form-group col-md-6">
+                        <label for="EmergencyContact">Emergency Contact:</label> @Html.TextBoxFor(x => x.EmergencyContact, new { @class = "form-control", @type = "text", @placeholder = "Contact name..." })
+                        <label for="EmergencyContactNumber">Contact Number:</label> @Html.TextBoxFor(x => x.EmergencyContactNumber, new { @type = "number", @class = "form-control", @id = "EmergencyContactNumber", @placeholder = "Contact Number..." })
+                    </div>
 
+                    <div class="form-group col-md-6">
+                        <label for="@Html.LabelFor(x => x.AddInfo)">Add Info:</label>
+                        @Html.TextAreaFor(x => x.AddInfo, new { @class="form-control", @rows="5", @id="AddInfo" })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        @pass++;
+                        <button type="submit" class="btn btn-default">Next Stage...</button>
+                    </div>
             </form>
-
-            <div class="form-group col-md-6">
-                <label for="@Html.LabelFor(x => x.EmergencyContact)">Emergency Contact:</label>
-                <input type="number" class="form-control" id="@Model.EmergencyContactNumber" placeholder="Emergency Contact Number..." />
             </div>
-
-            <div class="form-group col-md-6">
-                <label for="@Html.LabelFor(x => x.AddInfo)">Add Info:</label>
-                <textarea class="form-control" rows="5" id="@Model.AddInfo"></textarea>
-            </div>
-
-            <div class="form-group col-md-6">
-                <button type="submit" class="btn btn-default">Next Stage...</button>
-            </div>
-        </div>
     }
 </body>
 </html>

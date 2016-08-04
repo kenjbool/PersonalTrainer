@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
@@ -14,9 +13,10 @@ namespace PersonalTrainer.Controllers
     public class WorkoutController : Controller
     {
         private TrainingPlannerContext db = new TrainingPlannerContext();
-      
+
         public ActionResult Index()
         {
+            var clientId = TempData["clientId"];
             return View();
         }
 
@@ -55,6 +55,7 @@ namespace PersonalTrainer.Controllers
         public ActionResult ParQ()
         {
             ModelState.Clear();
+
             return View();
         }
 
@@ -64,13 +65,23 @@ namespace PersonalTrainer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ParQ(Parq parq)
         {
-          //  if (ModelState.IsValid)
-          //  {
-          //      if (!string.IsNullOrEmpty(parq.Name) && !string.IsNullOrEmpty(parq.Email))
-          //      {
-                    var workout = new Client();
-
+            int pass = 0;
+            if (ModelState.IsValid)
+            {
+                if (!string.IsNullOrEmpty(parq.Name) && !string.IsNullOrEmpty(parq.Email))
+                {
                     
+                    var workout = new Client();
+                    
+                    if(!string.IsNullOrEmpty(TempData["clientId"] as string))
+                    {
+                        workout.ClientId = TempData["clientId"] as string;
+                    }
+                    else
+                    {
+                        workout.ClientId = DateTime.Today.ToString("Mddhhmmss");
+                    }
+
                     if (!string.IsNullOrEmpty(parq.Name))
                     {
                         string fullName = parq.Name;
@@ -93,20 +104,22 @@ namespace PersonalTrainer.Controllers
                     return RedirectToAction("Client");
 
                 }
-            // }
-            ////if (string.IsNullOrEmpty(parq.Email) || string.IsNullOrEmpty(parq.Name))
-            ////{
-            ////    ViewBag.Message =
-            ////        "Please make sure you have entered your full name and a correct and current email address. " +
-            ////        "This is so we can send you a documented copy of the form for you to keep";
-            ////}
-            ////if (parq.ParqAgreement != true)
-            ////{
-            ////    ViewBag.MessageAgreement =
-            ////        "Please tick the checkbox at the bottom of the page in order to continue";
-            ////}
-            // return View();
-        // }
+            }
+            if (string.IsNullOrEmpty(parq.Email) || string.IsNullOrEmpty(parq.Name))
+            {
+                pass++;
+                ViewBag.Message =
+                    "Please make sure you have entered your full name and a correct and current email address. " +
+                    "This is so we can send you a documented copy of the form for you to keep";
+            }
+            if (parq.ParqAgreement != true)
+            {
+                ViewBag.MessageAgreement =
+                    "Please tick the checkbox at the bottom of the page in order to continue";
+            }
+
+            return View();
+        }
 
         //
         // GET: /Workout/Client
@@ -143,7 +156,14 @@ namespace PersonalTrainer.Controllers
 
             clientInfo.Age = (today.Year - client.DateOfBirth.Year);
             client.Height = clientInfo.Height;
-            client.Weight = clientInfo.Weight;
+            if(client.Weight != null || client.Weight != 0)
+            { 
+                client.Weight = clientInfo.Weight;
+            }
+            else
+            {
+                client.Weight = 70.2;
+            }
             client.BodyMass = clientInfo.BodyMass;
             client.GoalId = clientInfo.GoalId;
             client.AddInfo = clientInfo.AddInfo;
@@ -181,18 +201,18 @@ namespace PersonalTrainer.Controllers
         [HttpPost]
         public ActionResult MoreClient()
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    ViewBag.Message = "Please make sure all fields are completed";
-            //    return View();
-            //}
-            
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Message = "Please make sure all fields are completed";
+                return View();
+            }
+
             var moreClientModel = this.TempData["Client"] as MoreClientData;
 
             var client = new MoreClientData();
 
             client.ClientId = moreClientModel.ClientId;
-            
+
             db.SaveChanges();
 
             if (db.MoreClientDatas != null)
@@ -231,8 +251,22 @@ namespace PersonalTrainer.Controllers
         [HttpGet]
         public ActionResult FitnessTest()
         {
+            var clientInfo = this.TempData["clientInfo"] as Client;
+
+
             var fitnessTest = new FitnessTest();
             fitnessTest.CardioNameList = new List<string>();
+            fitnessTest.ClientId = clientInfo.ClientId;
+
+            if (db.FitnessTests != null)
+            {
+                db.SaveChanges();
+            }
+            else
+            {
+                db.FitnessTests.Add(fitnessTest);
+                db.SaveChanges();
+            }
 
             ////using (myConnection)
             ////{
@@ -335,7 +369,7 @@ namespace PersonalTrainer.Controllers
             ////    myConnection.Close();
 
             ////}
-            
+
             return View();
         }
 

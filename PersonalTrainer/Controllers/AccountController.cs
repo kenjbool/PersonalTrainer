@@ -77,6 +77,13 @@ namespace PersonalTrainer.Controllers
                 // Attempt to register the user
                 try
                 {
+                    var clientId = DateTime.Today.ToString("ddhhmmss");
+                    if (clientId.StartsWith("0"))
+                    {
+                       clientId.TrimStart('0');
+                    }
+
+                    TempData["clientId"] = clientId;
                     WebSecurity.CreateUserAndAccount(model.FullName, model.Password);
                     WebSecurity.Login(model.FullName, model.Password);
                     return RedirectToAction("Index", "Home");

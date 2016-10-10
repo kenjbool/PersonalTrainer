@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using ExpressiveAnnotations.Attributes;
-
-namespace PersonalTrainer.Models
+﻿namespace PersonalTrainer.Models
 {
+    using System.ComponentModel.DataAnnotations;
+    using ExpressiveAnnotations.Attributes;
+
     public class Parq
     {
         [Key]

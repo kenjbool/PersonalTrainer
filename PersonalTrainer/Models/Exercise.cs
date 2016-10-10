@@ -21,7 +21,7 @@ namespace PersonalTrainer.Models
             DaysList.Add("Sunday");
         }
 
-        public int ClientId { get; set; }
+        public string ClientId { get; set; }
 
 
         public int RoutineId { get; set; }

@@ -7,6 +7,7 @@
     {
         [Key]
         [Required(ErrorMessage = "Please enter your Name")]
+        [RegularExpression("^[\\p{L} .'-]+$")]
         [Display(Name = "Name")]
         public string Name { get; set; }
 

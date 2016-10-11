@@ -9,14 +9,6 @@ namespace PersonalTrainer.Models
     {
         public Client()
         {
-            this.DateOfBirth = new DateTime();
-
-            this.GoalList = new List<string>();
-            GoalList.Add("Lose Weight");
-            GoalList.Add("Tone Up");
-            GoalList.Add("Build Muscle");
-            GoalList.Add("Goal Specific");
-            GoalList.Add("Improve overall fitness");
         }
 
         [Key]

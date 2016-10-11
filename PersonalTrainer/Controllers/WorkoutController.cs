@@ -130,19 +130,52 @@ namespace PersonalTrainer.Controllers
 
             var workoutModel = this.TempData["workout"] as Client ?? new Client();
 
+            var GoalList = SelectGoal();
+
+            var GenderList = SelectGender();
+
             return View(workoutModel);
+        }
+
+        public ActionResult SelectGoal()
+        {
+            List<SelectListItem> GoalList = new List<SelectListItem>();
+            GoalList.Add(new SelectListItem { Text = "Tone Up", Value = "0" });
+            GoalList.Add(new SelectListItem { Text = "Lose Weight", Value = "1" });
+            GoalList.Add(new SelectListItem { Text = "Get Buff", Value = "2" });
+            GoalList.Add(new SelectListItem { Text = "Be sexy AF!", Value = "3" });
+            GoalList.Add(new SelectListItem { Text = "Goal Specific", Value = "4" });
+            ViewBag.GoalList = GoalList;
+
+            return View(GoalList);
+        }
+
+        public ActionResult SelectGender()
+        {
+            List<SelectListItem> Gender = new List<SelectListItem>();
+            Gender.Add(new SelectListItem { Text = "Male", Value = "Male" });
+            Gender.Add(new SelectListItem { Text = "Female", Value = "Female" });
+            ViewBag.Gender = Gender;
+
+            return View(Gender);
         }
 
         //
         // POST: /Workout/Client
         [HttpPost]
         public ActionResult Client(Client client)
-        {
-
+       {
+            int pass = 0;
             if (!ModelState.IsValid)
             {
+                pass++;
+                ViewBag.Pass = pass;
                 ViewBag.Message = "Please complete all fields before continuing";
                 return View();
+            }
+            if (pass == 0)
+            {
+                ModelState.Clear();
             }
             var today = DateTime.Today;
             var clientInfo = client;
@@ -156,14 +189,7 @@ namespace PersonalTrainer.Controllers
 
             clientInfo.Age = (today.Year - client.DateOfBirth.Year);
             client.Height = clientInfo.Height;
-            if(client.Weight != null || client.Weight != 0)
-            { 
-                client.Weight = clientInfo.Weight;
-            }
-            else
-            {
-                client.Weight = 70.2;
-            }
+            client.Weight = clientInfo.Weight;
             client.BodyMass = clientInfo.BodyMass;
             client.GoalId = clientInfo.GoalId;
             client.AddInfo = clientInfo.AddInfo;

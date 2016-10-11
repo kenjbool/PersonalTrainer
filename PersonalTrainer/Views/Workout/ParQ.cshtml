@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "PAR-Q Questionnaire";
     var modelstate = new ModelState();
+    int pass = 0;
 }
 
 <head>
@@ -11,7 +12,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-@if (modelstate.Errors != null)
+@if (modelstate.Errors.Count > 0 && pass > 0)
 {
     <div class="container" id="validation-alert">
         <div class="alert alert-danger">
@@ -471,7 +472,7 @@
                         <input type="checkbox" value="true" style="width: 30px; height:30px; padding-right: 1.2em" /><label>"IMPORTANT: By ticking this box you are confirming that all the information you have supplied is true and complete to the best of your knowledge</label>
                     </div>
                 </div>
-
+                @{ pass++; }
                 <button type="submit" class="btn btn-default">Submit</button>
             </div>
         </div>

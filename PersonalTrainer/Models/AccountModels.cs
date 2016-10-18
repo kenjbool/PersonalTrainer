@@ -93,6 +93,16 @@ namespace PersonalTrainer.Models
         public string TrainerName { get; set; }
     }
 
+    public class MyProfile
+    {
+        public string Name { get; set; }
+        public DateTime RegistrationDate { get; set; }
+        public DateTime LastLogin { get; set; }
+
+        public DateTime DateOfBirth { get; set; }
+        public Client Details { get; set; }
+    }
+
     public class ExternalLogin
     {
         public string Provider { get; set; }

@@ -1,7 +1,7 @@
 ﻿@model PersonalTrainer.Models.Parq
 @{
     ViewBag.Title = "PAR-Q Questionnaire";
-    var modelstate = new ModelState();
+    var state = new ModelState();
     int pass = 0;
 }
 
@@ -12,17 +12,23 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-@if (modelstate.Errors.Count > 0 && pass > 0)
+@if (state.Errors.Count > 0 && pass > 0)
 {
     <div class="container" id="validation-alert">
         <div class="alert alert-danger">
             <strong>Warning!</strong> Please check validation on fields.
+            @{
+                foreach (var errorMessage in state.Errors[0].ErrorMessage)
+                {
+                    <h4 class="alert alert-danger">@errorMessage.ToString()</h4>
+                }
+            }
         </div>
     </div>
 }
 
 <h2 class="text-center">Physical Activity Readiness Questionnaire (PAR-Q)</h2>
-<div class="panel panel-default text-center">
+<div class="container panel panel-default text-center">
     <div class="panel-body">
         Many health benefits are associated with regular exercise, and the completion of PAR-Q is a sensible first step to take if
         you are planning to increase the amount of physical activity in your life.
@@ -39,7 +45,9 @@
         <div class="container">
             @Html.AntiForgeryToken()
             <div class="form-group">
-                <label for="Name">@Html.LabelFor(x => x.Name)</label> @Html.TextBoxFor(x => x.Name, new { @class = "form-control", type = "text", id = "Name" })
+                <label for="Name">@Html.LabelFor(x => x.Name)</label>
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control", type = "text", id = "Name" })
+                <div class="alert alert-warning hidden" id="validate1" >@Html.ValidationMessageFor(x => x.Name)</div>
             </div>
             <div class="container" style="padding-bottom: 2em">
                 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row1">Next...</button>
@@ -51,20 +59,20 @@
                 @* ROW 1 *@
                 <div class="col-sm-4">Has your doctor ever said that you have a bone or joint problems, such as arthritis that has been aggravated by exercise or might be made worse with exercise? </div>
                 <div class="col-sm-4">
-                        <div class="form-group has-success has has-feedback">
-                            <label class="col-md-4 control" for="Answer1" id="Answer1">Yes/No</label>
-                            <select class="form-control" id="addInfo">
-                                <option>Please select...</option>
-                                <option value="true">Yes</option>
-                                <option value="false">No</option>
-                            </select>
-                        </div>
+                    <div class="form-group has-success has has-feedback">
+                        <label class="col-md-4 control" for="Answer1" id="Answer1">Yes/No</label>
+                        <select class="form-control" id="addInfo">
+                            <option>Please select...</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="addInfo1">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="addInfo"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="addInfo1">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="addInfo"></textarea>
+                    </div>
                 </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row2">Next...</button>
@@ -78,20 +86,20 @@
             <div class="row collapse" id="row2">
                 <div class="col-sm-4">Do you have high blood pressure?</div>
                 <div class="col-sm-4">
-                        <div class="form-group has-success has-feedback">
-                            <label class="col-md-4 control" for="answer2" id="answer2">Yes/No</label>
-                            <select class="form-control" id="addInfo">
-                                <option>Please select...</option>
-                                <option value="true">Yes</option>
-                                <option value="false">No</option>
-                            </select>
-                        </div>
+                    <div class="form-group has-success has-feedback">
+                        <label class="col-md-4 control" for="answer2" id="answer2">Yes/No</label>
+                        <select class="form-control" id="addInfo">
+                            <option>Please select...</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="@Html.LabelFor(x => x.AddInfo2)">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo2)"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfo2)">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo2)"></textarea>
+                    </div>
                 </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row3">Next...</button>
@@ -104,20 +112,20 @@
             <div class="row collapse" id="row3">
                 <div class="col-sm-4">Do you have low blood pressure?</div>
                 <div class="col-sm-4">
-                        <div class="form-group has-success has-feedback">
-                            <label class="col-md-4 control" for="answer3" id="answer3">Yes/No</label>
-                            <select class="form-control" id="addInfo">
-                                <option>Please select...</option>
-                                <option value="true">Yes</option>
-                                <option value="false">No</option>
-                            </select>
-                        </div>
+                    <div class="form-group has-success has-feedback">
+                        <label class="col-md-4 control" for="answer3" id="answer3">Yes/No</label>
+                        <select class="form-control" id="addInfo">
+                            <option>Please select...</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="@Html.LabelFor(x => x.AddInfo3)">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo3)"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfo3)">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo3)"></textarea>
+                    </div>
                 </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row4">Next...</button>
@@ -140,10 +148,10 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="@Html.LabelFor(x => x.AddInfo4)">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo4)"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfo4)">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo4)"></textarea>
+                    </div>
                 </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row5">Next...</button>
@@ -166,10 +174,10 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="@Html.LabelFor(x => x.AddInfo5)">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo5)"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfo5)">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo5)"></textarea>
+                    </div>
                 </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row6">Next...</button>
@@ -192,10 +200,10 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="@Html.LabelFor(x => x.AddInfo6)">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo6)"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfo6)">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo6)"></textarea>
+                    </div>
                 </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row7">Next...</button>
@@ -218,10 +226,10 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="@Html.LabelFor(x => x.AddInfo7)">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo7)"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfo7)">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo7)"></textarea>
+                    </div>
                 </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row8">Next...</button>
@@ -244,10 +252,10 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="@Html.LabelFor(x => x.AddInfo8)">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo8)"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfo8)">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo8)"></textarea>
+                    </div>
                 </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target=#row9>Next...</button>
@@ -270,10 +278,10 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="@Html.LabelFor(x => x.AddInfo9)">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo9)"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfo9)">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo9)"></textarea>
+                    </div>
                 </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row10">Next...</button>
@@ -296,10 +304,10 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="@Html.LabelFor(x => x.AddInfo10)">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo10)"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfo10)">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo10)"></textarea>
+                    </div>
                 </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row11">Next...</button>
@@ -322,10 +330,10 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="@Html.LabelFor(x => x.AddInfo11)">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo11)"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfo11)">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo11)"></textarea>
+                    </div>
                 </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row12">Next...</button>
@@ -348,10 +356,10 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="@Html.LabelFor(x => x.AddInfo12)">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo12)"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfo12)">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo12)"></textarea>
+                    </div>
                 </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row13">Next...</button>
@@ -374,10 +382,10 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="@Html.LabelFor(x => x.AddInfo13)">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo13)"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfo13)">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo13)"></textarea>
+                    </div>
                 </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row14">Next...</button>
@@ -402,10 +410,10 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="@Html.LabelFor(x => x.AddInfo14)">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo14)"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfo14)">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo14)"></textarea>
+                    </div>
                 </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row15">Next...</button>
@@ -428,10 +436,10 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="@Html.LabelFor(x => x.AddInfo15)">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo15)"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfo15)">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo15)"></textarea>
+                    </div>
                 </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#row16">Next...</button>
@@ -454,11 +462,11 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="@Html.LabelFor(x => x.AddInfo16)">Please give more info...</label>
-                            <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo16)"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="@Html.LabelFor(x => x.AddInfo16)">Please give more info...</label>
+                        <textarea class="form-control" rows="3" id="@Html.TextAreaFor(x => x.AddInfo16)"></textarea>
                     </div>
+                </div>
                 <div class="container" style="padding-bottom: 2em">
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#checkBox">Next...</button>
                 </div>
@@ -468,16 +476,18 @@
             <div class="row collapse" id="checkBox">
                 <div class="well">
                     @Html.LabelFor(x => x.Email) @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @type = "email", @placeholder = "Email" })
-                    <div class="checkbox">
-                        <input type="checkbox" value="true" style="width: 30px; height:30px; padding-right: 1.2em" /><label>"IMPORTANT: By ticking this box you are confirming that all the information you have supplied is true and complete to the best of your knowledge</label>
+                    <div class="container">
+                        <div class="checkbox">
+                            <input type="checkbox" value="true" style="width: 30px; height: 30px; right: 1080px; left: 30px"/><label style="margin-bottom: 20px; margin-left: 30px; margin-top: 8px">"IMPORTANT: By ticking this box you are confirming that all the information you have supplied is true and complete to the best of your knowledge</label>
+                        </div>
                     </div>
+                    @{ pass++; }
+                    <button type="submit" class="btn btn-default">Submit</button>
                 </div>
-                @{ pass++; }
-                <button type="submit" class="btn btn-default">Submit</button>
             </div>
         </div>
     </form>
-    }
+                    }
 </body>
 
 <script type="text/javascript">

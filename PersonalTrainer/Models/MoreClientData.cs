@@ -14,18 +14,14 @@ namespace PersonalTrainer.Models
         [Display(Name = "Body Composition")]
         public string BodyComposition { get; set; }
 
-
-        // already collected in workout.cs
         [Display(Name ="Body Weight")]
-        public double BodyWeight { get; set; }
+        public decimal BodyWeight { get; set; }
 
         [Display(Name = "Body Fat %")]
         public double BodyFatPercentage { get; set; }
 
-
-        // already collected in workout.cs
         [Display(Name = "Height")]
-        public double Height { get; set; }
+        public decimal Height { get; set; }
 
         [Display(Name = "Waist")]
         public int Waist { get; set; }

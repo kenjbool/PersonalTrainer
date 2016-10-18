@@ -1,11 +1,15 @@
-﻿@model PersonalTrainer.Models.Client
-@ViewBag.Title
+﻿@using PersonalTrainer.Models
+@model Client
+@{
+    ViewBag.Title = "Client";
+}
 
 <html lang="en">
 <head>
     <meta charset="utf-8">
     @{
         var state = new ModelState();
+        ViewBag.Pass = 0;
     }
 </head>
 <body>
@@ -13,110 +17,121 @@
     {
         <div class="alert alert-danger" id="@state.Errors">
             <strong>Warning!</strong> Please make sure all fields are completed.
+            @{
+                    foreach (var errorMessage in state.Errors[0].ErrorMessage)
+                    {
+                        <h4 class="alert alert-danger">@errorMessage.ToString()</h4>
+  
+                    }
+                }
         </div>
     }
     <div class="h3 text-center">Let's start with the basics</div>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-
-        <div class="container">
-            <form role="form">
+        <form role="form">
+            <div class="container well">
                 <div class="form-group col-md-6">
                     <label for="FName">First Name:</label>
                     @Html.TextBoxFor(x => x.FName, new { @class = "form-control", @id = "FName", @placeholder = "First name" })
+                    @Html.ValidationMessageFor(x => x.FName)
 
                     <label for="LName">Last Name:</label>
                     @Html.TextBoxFor(x => x.LName, new { @class = "form-control", @id = "LName", @placeholder = "Last name" })
+                    @Html.ValidationMessageFor(x => x.LName)
                 </div>
+
+                <div class="form-group col-md-6">
+                    <label for="@Html.LabelFor(x => x.Gender)">Gender</label>
+                    @Html.DropDownList("Gender", new SelectList(Enum.GetValues(typeof(Gender))), "Select Gender", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Gender)
+
+
+                    <label for="DateOfBirth">Date of Birth:</label>
+                    @Html.TextBoxFor(x => x.DateOfBirth, new {@type="date", @class = "form-control", @id = "DateOfBirth", @placeholder = "DateOfBirth" })
+                    @Html.ValidationMessageFor(x => x.DateOfBirth)
+                </div>
+            </div>
+
+            <div class="container well">
                 <div class="form-group col-md-6">
                     <label for="AddressLine1">Address:</label>
                     @Html.TextBoxFor(x => x.AddressLine1, new { @class = "form-control", @id = "AddressLine1", @placeholder = "Address Line 1" })
+                    @Html.ValidationMessageFor(x => x.AddressLine1)
+
                     <label for="AddressLine2">Address:</label>
                     @Html.TextBoxFor(x => x.AddressLine2, new { @class = "form-control", @id = "AddressLine2", @placeholder = "Address Line 2" })
-                </div>
-                <div class="form-group col-md-6">
+
                     <label for="Postcode">Postcode:</label>
                     @Html.TextBoxFor(x => x.Postcode, new { @class = "form-control", @id = "Postcode", @placeholder = "Postcode" })
-                    <label for="Phone">Contact Number:</label>
-                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", @id = "Phone", @placeholder = "Phone number" })
+                    @Html.ValidationMessageFor(x => x.Postcode)
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="@Html.LabelFor(x => x.Gender)">Gender</label>
-                    @Html.TextBoxFor(x => x.Gender, new { @class = "form-control", @id = "Gender", @placeholder = "Gender" })
-                </div>
-                <div class="control-group col-md-6">
-                    <label for="date-of-birth" class="control-label">Date of Birth</label>
-                    <div class="controls">
-                        <div class="input-group">
-                            <input id="date-of-birth" type="text" class="date-picker form-control" />
-                            <label for="date-of-birth" class="input-group-addon btn too">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </label>
-                        </div>
-                    </div>
+                    <label for="Phone">Contact Number:</label>
+                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", @id = "Phone", @placeholder = "Phone number" })
+                    @Html.ValidationMessageFor(x => x.Phone)
 
                     <label for="Email">Email Address:</label>
                     @Html.TextBoxFor(x => x.Email, new { @type = "email", @class = "form-control", @placeholder = "Email address" })
+                    @Html.ValidationMessageFor(x => x.Email)
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="Height">Height(cm):</label>
-                    @Html.TextBoxFor(x => x.Height, new { @class = "form-control", @placeholder = "Height" })
+            </div>
 
-                    <label for="Weight">Weight(kg):</label>
-                    @Html.TextBoxFor(x => x.Weight, new { @class = "form-control", @placeholder = "Weight" })
-                </div>
+            <div class="container well">
                 <div class="form-group col-md-6">
                     <label for="GoalId">Goal:</label>
-                    @Html.TextBoxFor(x => x.GoalList, new { @class = "form-control", @id = "GoalList", @placeholder = "Goal" })
-                    </div>
-
+                    @Html.DropDownListFor(x => x.GoalList, new SelectList(Enum.GetValues(typeof(Goal))), "Select Goal", new {@class = "form-control"})
+                </div>
+                <div class="container">
                     <div class="form-group col-md-6">
                         <label for="EmergencyContact">Emergency Contact Name:</label> @Html.TextBoxFor(x => x.EmergencyContact, new { @class = "form-control", @type = "text", @placeholder = "Contact name" })
+                        @Html.ValidationMessageFor(x => x.EmergencyContact)
                         <label for="EmergencyContactNumber">Contact Number:</label> @Html.TextBoxFor(x => x.EmergencyContactNumber, new { @class = "form-control", @id = "EmergencyContactNumber", @placeholder = "Contact Number" })
+                        @Html.ValidationMessageFor(x => x.EmergencyContactNumber)
                     </div>
-
-                    <div class="form-group col-md-6">
-                        <label for="@Html.LabelFor(x => x.AddInfo)">Add Info:</label>
-                        @Html.TextAreaFor(x => x.AddInfo, new { @class = "form-control", @rows = "5", @id = "AddInfo" })
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <button type="submit" class="btn btn-default">Next Stage...</button>
-                    </div>
-            </form>
+                </div>
             </div>
+            <div class="container well">
+                <div class="form-group col-md-12">
+                    <label for="@Html.LabelFor(x => x.AddInfo)">Add Info:</label>
+                    @Html.TextAreaFor(x => x.AddInfo, new {@class = "form-control", @rows = "5", @id = "AddInfo"})
+                </div>
+                <div class="form-group col-md-12">
+                    <button type="submit" class="btn btn-default">Next Stage...</button>
+                </div>
+            </div>
+        </form>
     }
 </body>
 </html>
 
-@section Scripts {
+<script type="text/javascript">
 
-<script type="text/javascript"> 
+        $('#date-of-birth input').datepicker({
+            autoclose: true
+        });
 
-    $('#date-of-birth input').datepicker({
-    autoclose: true
-});
+        $('#date-of-birth input').on('show', function (e) {
+            console.debug('show', e.date, $(this).data('stickyDate'));
 
-    $('#date-of-birth input').on('show', function (e) {
-    console.debug('show', e.date, $(this).data('stickyDate'));
+            if (e.date) {
+                $(this).data('stickyDate', e.date);
+            }
+            else {
+                $(this).data('stickyDate', null);
+            }
+        });
 
-    if ( e.date ) {
-         $(this).data('stickyDate', e.date);
-    }
-    else {
-         $(this).data('stickyDate', null);
-    }
-});
+        $('#date-of-birth input')
+            .on('hide',
+                function(e) {
+                    console.debug('hide', e.date, $(this).data('stickyDate'));
+                    var stickyDate = $(this).data('stickyDate');
 
-    $('#date-of-birth input').on('hide', function (e) {
-    console.debug('hide', e.date, $(this).data('stickyDate'));
-    var stickyDate = $(this).data('stickyDate');
-
-    if ( !e.date && stickyDate ) {
-        console.debug('restore stickyDate', stickyDate);
-        $(this).datepicker('setDate', stickyDate);
-    }})
-</script>
-
-}
+                    if (!e.date && stickyDate) {
+                        console.debug('restore stickyDate', stickyDate);
+                        $(this).datepicker('setDate', stickyDate);
+                    }
+                });
+    </script>

@@ -1,51 +1,89 @@
 ﻿@model PersonalTrainer.Models.MoreClientData
 
 @{
-    ViewBag.Title = "MoreClient";
+    ViewBag.Title = "More Client Information";
 }
 
-<h2>MoreClient</h2>
-
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    @{
+        var state = new ModelState();
+    }
+</head>
+<body>
+@if (state.Errors.Count > 0 && ViewBag.Pass > 0)
+{
+    <div class="alert alert-danger" id="@state.Errors">
+        <strong>Warning</strong> Please make sure all fields are completed.
+    </div>
+}
+<div class="h3 text-center">@ViewBag.Title</div>
 @using (Html.BeginForm())
 {
+    <form role="form">
+        <div class="container well">
+            <div class="form-group col-md-6">
+                <label for="Height">Height</label>
+                @Html.TextBoxFor(x => x.Height, new {@class = "form-control", id = "Height", @placeholder = "Height"})
 
-    <div class="main-content">
-        <table>
-            <tr>
-                <td>@Html.LabelFor(x => x.Height) @Html.TextBoxFor(x => x.Height)</td>
-                <td></td>
-                <td>@Html.LabelFor(x => x.BodyWeight) @Html.TextBoxFor(x => x.BodyWeight)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(x => x.BodyComposition) @Html.TextBoxFor(x => x.BodyComposition)</td>
-                <td></td>
-                <td>@Html.LabelFor(x => x.BodyFatPercentage) @Html.TextBoxFor(x => x.BodyFatPercentage)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(x => x.Waist) @Html.TextBoxFor(x => x.Waist)</td>
-                <td>@Html.LabelFor(x => x.Hips) @Html.TextBoxFor(x => x.Hips)</td>
-                <td>@Html.LabelFor(x => x.Chest) @Html.TextBoxFor(x => x.Chest)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(x => x.Arm) @Html.TextBoxFor(x => x.Arm)</td>
-                <td></td>
-                <td>@Html.LabelFor(x => x.Thigh) @Html.TextBoxFor(x => x.Thigh)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(x => x.BloodPressureSystolic) @Html.TextBoxFor(x => x.BloodPressureSystolic)<br>
-                    @Html.LabelFor(x => x.BloodPressureDiastolic) @Html.TextBoxFor(x => x.BloodPressureDiastolic)
-                </td>
-                <td></td>
-                <td>@Html.LabelFor(x => x.RestingHeartRate) @Html.TextBoxFor(x => x.RestingHeartRate)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(x => x.HeartRateZone1) @Html.TextBoxFor(x => x.HeartRateZone1)</td>
-                <td>@Html.LabelFor(x => x.HeartRateZone2) @Html.TextBoxFor(x => x.HeartRateZone2)</td>
-                <td>@Html.LabelFor(x => x.HeartRateZone3) @Html.TextBoxFor(x => x.HeartRateZone3)</td>
-            </tr>
+                <label for="Weight">Weight</label>
+                @Html.TextBoxFor(x => x.BodyWeight, new {@class = "form-control", id = "Weight", @placeholder = "Weight"})
+            </div>
+            <div class="form-group col-md-6">
+                <label for="BodyComposition">Body Composition</label>
+                @Html.TextBoxFor(x => x.BodyComposition, new {@class = "form-control", @id = "BodyComposition"})
 
-        </table>
-    </div>
-    <input type="submit" value="CheckDetails" id="submitBtn" />
+                <label for="BodyFatPercentage">Body Fat %</label>
+                @Html.TextBoxFor(x => x.BodyFatPercentage, new {@class = "form-control", @id = "BodyFatPercentage"})
+            </div>
+        </div>
+        <div class="container well">
+            <div class="form-group col-md-6">
+                <label for="Waist">Waist</label>
+                @Html.TextBoxFor(x => x.Waist, new {@class = "form-control", @id = "Waist"})
+                <label for="Hips">Hips</label>
+                @Html.TextBoxFor(x => x.Hips, new {@class = "form-control", @id = "Hips"})
+                <label for="Chest">Chest</label>
+                @Html.TextBoxFor(x => x.Chest, new {@class = "form-control", @id = "Chest"})
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Arm">Arm</label>
+                @Html.TextBoxFor(x => x.Arm, new {@class = "form-control", @id = "Arm"})
+
+                <label for="Thigh">Thigh</label>
+                @Html.TextBoxFor(x => x.Thigh, new {@class = "form-control", @id = "Thigh"})
+            </div>
+        </div>
+        <div class="container well">
+            <div class="form-group col-md-5">
+                <label for="BloodPressureSystolic">BP - Systolic</label>
+                @Html.TextBoxFor(x => x.BloodPressureSystolic, new {@class = "form-control", @id = "BloodPressureSystolic"})
+
+                <label for="BloodPressureDiastolic">BP - Diastolic</label>
+                @Html.TextBoxFor(x => x.BloodPressureDiastolic, new {@class = "form-control", @id = "BloodPressureDiastolic"})
+
+                <label for="RestingHeartRate">Resting Heart Rate</label>
+                @Html.TextBoxFor(x => x.RestingHeartRate, new {@class = "form-control", id = "RestingHeartRate"})
+            </div>
+            <div class="form-group col-md-2">
+
+            </div>
+            <div class="form-group col-md-5">
+                <label for="HeartRateZone1">Heart Rate Zone 1</label>
+                @Html.TextBoxFor(x => x.HeartRateZone1, new {@class = "form-control", @id = "HeartRateZone1"})
+                <label for="HeartRateZone2">Heart Rate Zone 2</label>
+                @Html.TextBoxFor(x => x.HeartRateZone2, new {@class = "form-control", @id = "HeartRateZone2"})
+                <label for="HeartRateZone3">Heart Rate Zone 3</label>
+                @Html.TextBoxFor(x => x.HeartRateZone3, new {@class = "form-control", @id = "HeartRateZone3"})
+            </div>
+        </div>
+
+        <div class="container">
+            <button type="submit" class="btn btn-default">Check Details</button>
+        </div>
+    </form>
 }
+</body>
+</html>
 

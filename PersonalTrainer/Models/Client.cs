@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using ExpressiveAnnotations.Attributes;
 
@@ -65,14 +66,14 @@ namespace PersonalTrainer.Models
 
         [Required(ErrorMessage = "Please enter your height in centimeters")]
         [Display(Name = "Height(cm):")]
-        public double Height { get; set; }
+        public decimal Height { get; set; }
 
         [Required(ErrorMessage = "Please enter your weight in kg's")]
         [Display(Name = "Weight(kg):")]
-        public double Weight { get; set; }
+        public decimal Weight { get; set; }
 
         [Display(Name = "Clients BMI:")]
-        public string BodyMass { get; set; }
+        public decimal BodyMass { get; set; }
 
         public List<string> GoalList { get; set; }
 
@@ -91,5 +92,20 @@ namespace PersonalTrainer.Models
 
         [Display(Name = "Additional Info:")]
         public string AddInfo { get; set; }
+    }
+
+    public enum Gender
+    {
+        Male,
+        Female
+    }
+
+    public enum Goal
+    {
+        ToneUp,
+        LoseWeight,
+        BuildMuscle,
+        LookGoodNaked,
+        GoalSpecific
     }
 }

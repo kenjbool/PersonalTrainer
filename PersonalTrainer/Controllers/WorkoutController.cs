@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
@@ -55,8 +56,12 @@ namespace PersonalTrainer.Controllers
         public ActionResult ParQ()
         {
             ModelState.Clear();
+            var login = new LoginModel();
+            var parq = new Parq();
 
-            return View();
+            login.FullName = parq.Name;
+
+            return View(parq);
         }
 
         //
@@ -75,7 +80,7 @@ namespace PersonalTrainer.Controllers
                     
                     if(!string.IsNullOrEmpty(TempData["clientId"] as string))
                     {
-                        workout.ClientId = TempData["clientId"] as string;
+                        workout.ClientId = (string) TempData["clientId"];
                     }
                     else
                     {
@@ -84,9 +89,9 @@ namespace PersonalTrainer.Controllers
 
                     if (!string.IsNullOrEmpty(parq.Name))
                     {
-                        string fullName = parq.Name;
-                        char splitChar = ' ';
-                        string[] afterSplit = fullName.Split(splitChar);
+                        var fullName = parq.Name;
+                        const char splitChar = ' ';
+                        var afterSplit = fullName.Split(splitChar);
                         workout.FName = afterSplit[0];
                         workout.LName = afterSplit[1];
                     }
@@ -98,7 +103,7 @@ namespace PersonalTrainer.Controllers
                     }
                     else
                     {
-                        db.Parqs.Add(parq);
+                        db.Parqs?.Add(parq);
                         db.SaveChanges();
                     }
                     return RedirectToAction("Client");
@@ -114,6 +119,7 @@ namespace PersonalTrainer.Controllers
             }
             if (parq.ParqAgreement != true)
             {
+                pass++;
                 ViewBag.MessageAgreement =
                     "Please tick the checkbox at the bottom of the page in order to continue";
             }
@@ -130,34 +136,7 @@ namespace PersonalTrainer.Controllers
 
             var workoutModel = this.TempData["workout"] as Client ?? new Client();
 
-            var GoalList = SelectGoal();
-
-            var GenderList = SelectGender();
-
             return View(workoutModel);
-        }
-
-        public ActionResult SelectGoal()
-        {
-            List<SelectListItem> GoalList = new List<SelectListItem>();
-            GoalList.Add(new SelectListItem { Text = "Tone Up", Value = "0" });
-            GoalList.Add(new SelectListItem { Text = "Lose Weight", Value = "1" });
-            GoalList.Add(new SelectListItem { Text = "Get Buff", Value = "2" });
-            GoalList.Add(new SelectListItem { Text = "Be sexy AF!", Value = "3" });
-            GoalList.Add(new SelectListItem { Text = "Goal Specific", Value = "4" });
-            ViewBag.GoalList = GoalList;
-
-            return View(GoalList);
-        }
-
-        public ActionResult SelectGender()
-        {
-            List<SelectListItem> Gender = new List<SelectListItem>();
-            Gender.Add(new SelectListItem { Text = "Male", Value = "Male" });
-            Gender.Add(new SelectListItem { Text = "Female", Value = "Female" });
-            ViewBag.Gender = Gender;
-
-            return View(Gender);
         }
 
         //
@@ -209,17 +188,14 @@ namespace PersonalTrainer.Controllers
             }
 
             return RedirectToAction("MoreClient");
-        }
+       }
 
         [HttpGet]
-        public ActionResult MoreClient(MoreClientData moreClient)
+        public ActionResult MoreClient(Client client)
         {
             ModelState.Clear();
 
             var clientdata = this.TempData["clientInfo"] as Client;
-
-            moreClient.Height = clientdata.Height;
-            moreClient.BodyWeight = clientdata.Weight;
 
             return View();
         }
@@ -232,14 +208,18 @@ namespace PersonalTrainer.Controllers
                 ViewBag.Message = "Please make sure all fields are completed";
                 return View();
             }
+            var clientData = new Client();
+            this.TempData["clientInfo"] = clientData;
 
-            var moreClientModel = this.TempData["Client"] as MoreClientData;
+            var moreClient = new MoreClientData();
+            clientData.Height = moreClient.Height;
+            clientData.Weight = moreClient.BodyWeight;
 
-            var client = new MoreClientData();
-
-            client.ClientId = moreClientModel.ClientId;
-
+            clientData.BodyMass = BodyMass(clientData);
+            
             db.SaveChanges();
+
+            // this.TempData["clientInfo"] = clientData;
 
             if (db.MoreClientDatas != null)
             {
@@ -247,7 +227,7 @@ namespace PersonalTrainer.Controllers
             }
             else
             {
-                db.MoreClientDatas.Add(moreClientModel);
+                db.MoreClientDatas.Add(moreClient);
                 db.SaveChanges();
             }
 
@@ -262,6 +242,7 @@ namespace PersonalTrainer.Controllers
             ModelState.Clear();
 
             var clientInfo = this.TempData["clientInfo"] as Client;
+            
             return View(clientInfo);
         }
 
@@ -413,6 +394,16 @@ namespace PersonalTrainer.Controllers
             test.ORM = weightX;
 
             return test.ORM;
+        }
+
+        public decimal BodyMass(Client client)
+        {
+            var weightDec = client.Weight;
+            var heightDec = client.Height;
+
+            var bodyMass = weightDec/heightDec*heightDec;
+
+            return bodyMass;
         }
 
     }

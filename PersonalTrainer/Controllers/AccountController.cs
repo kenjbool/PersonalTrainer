@@ -34,6 +34,7 @@ namespace PersonalTrainer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
+
             if (ModelState.IsValid && WebSecurity.Login(model.FullName, model.Password, persistCookie: model.RememberMe))
             {
                 return RedirectToLocal(returnUrl);
@@ -51,8 +52,9 @@ namespace PersonalTrainer.Controllers
         public ActionResult LogOff()
         {
             WebSecurity.Logout();
+            ViewBag.Message = "You have been logged out.";
 
-            return RedirectToAction("Index", "Home");
+            return View("Login");
         }
 
         //
@@ -406,6 +408,22 @@ namespace PersonalTrainer.Controllers
                 default:
                     return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
             }
+        }
+
+        public ActionResult MyProfile(LoginModel login)
+        {
+            bool ClientVal = false;
+
+            var client = new Client();
+
+            DateTime registration = client.RegistrationDate;
+
+            if (client == null)
+            {
+                var noClient = "You have not been set up yet, please speak to your PT.";
+            }
+            
+            return View("MyProfile");
         }
         #endregion
     }

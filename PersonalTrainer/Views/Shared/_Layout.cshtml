@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
 </head>
 <body>
     @if (!Request.IsAuthenticated)
@@ -60,17 +62,21 @@
                         <li>@Html.ActionLink("Nutrition", "MacroCounter", "Food")</li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="~/Views/Account/login.cshtml"><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li>
+                        <li>@Html.ActionLink("My Profile", "MyProfile", "Account")</li>
+                        <li>@Html.ActionLink("Log Off", "Login", "Account")</li>
                     </ul>
                 </div>
             </div>
         </nav>
     }
-    <header>
+<header>
+    <div class="container">
         <div class="jumbotron text-center">
             <h1>Paul Fawcett - Strength and Conditioning</h1>
+            <h3>Why be you when you could be an even better version of you?</h3>
         </div>
-    </header>
+    </div>
+</header>
     @RenderSection("featured", required: false)
     @RenderSection("Scripts", required: false)
 

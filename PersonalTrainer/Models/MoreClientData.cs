@@ -15,7 +15,7 @@ namespace PersonalTrainer.Models
         public string BodyComposition { get; set; }
 
         [Display(Name ="Body Weight")]
-        public decimal BodyWeight { get; set; }
+        public decimal Weight { get; set; }
 
         [Display(Name = "Body Fat %")]
         public double BodyFatPercentage { get; set; }

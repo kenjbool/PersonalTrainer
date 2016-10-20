@@ -75,12 +75,12 @@ namespace PersonalTrainer.Controllers
             {
                 if (!string.IsNullOrEmpty(parq.Name) && !string.IsNullOrEmpty(parq.Email))
                 {
-                    
+
                     var workout = new Client();
-                    
-                    if(!string.IsNullOrEmpty(TempData["clientId"] as string))
+
+                    if (!string.IsNullOrEmpty(TempData["clientId"] as string))
                     {
-                        workout.ClientId = (string) TempData["clientId"];
+                        workout.ClientId = (string)TempData["clientId"];
                     }
                     else
                     {
@@ -143,7 +143,7 @@ namespace PersonalTrainer.Controllers
         // POST: /Workout/Client
         [HttpPost]
         public ActionResult Client(Client client)
-       {
+        {
             int pass = 0;
             if (!ModelState.IsValid)
             {
@@ -188,7 +188,7 @@ namespace PersonalTrainer.Controllers
             }
 
             return RedirectToAction("MoreClient");
-       }
+        }
 
         [HttpGet]
         public ActionResult MoreClient(Client client)
@@ -213,10 +213,14 @@ namespace PersonalTrainer.Controllers
 
             var moreClient = new MoreClientData();
             clientData.Height = moreClient.Height;
-            clientData.Weight = moreClient.BodyWeight;
+            clientData.Weight = moreClient.Weight;
 
-            clientData.BodyMass = BodyMass(clientData);
-            
+
+            if(clientData.Height!=0M || clientData.Weight!=0M)
+            { 
+                clientData.BodyMass = BodyMass(clientData);
+            }
+
             db.SaveChanges();
 
             // this.TempData["clientInfo"] = clientData;
@@ -242,7 +246,7 @@ namespace PersonalTrainer.Controllers
             ModelState.Clear();
 
             var clientInfo = this.TempData["clientInfo"] as Client;
-            
+
             return View(clientInfo);
         }
 
@@ -398,10 +402,16 @@ namespace PersonalTrainer.Controllers
 
         public decimal BodyMass(Client client)
         {
-            var weightDec = client.Weight;
-            var heightDec = client.Height;
+            var weightDec = 00.00M;
+            var heightDec = 00.00M;
 
-            var bodyMass = weightDec/heightDec*heightDec;
+            if (client.Weight != 0 || client.Height != 0)
+            {
+                weightDec = client.Weight;
+                heightDec = client.Height;
+            }
+
+            var bodyMass = weightDec / heightDec * heightDec;
 
             return bodyMass;
         }

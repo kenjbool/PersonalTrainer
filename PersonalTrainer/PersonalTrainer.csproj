@@ -223,20 +223,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DayWorkout.cs" />
     <Compile Include="Models\DbColumnAttribute.cs" />
     <Compile Include="Models\Exercise.cs" />
     <Compile Include="Models\GoalDictionary.cs" />
-    <Compile Include="Models\MoreClientData.cs" />
     <Compile Include="Models\Routine.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Create.cs" />
     <Compile Include="Models\FitnessTest.cs" />
     <Compile Include="Models\list.cs" />
     <Compile Include="Models\MacroCounter.cs" />
-    <Compile Include="Models\Parq.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

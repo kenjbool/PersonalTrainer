@@ -197,7 +197,7 @@ namespace PersonalTrainer.Controllers
 
             var clientdata = this.TempData["clientInfo"] as Client;
 
-            return View();
+            return View(clientdata);
         }
 
         [HttpPost]
@@ -211,11 +211,6 @@ namespace PersonalTrainer.Controllers
             var clientData = new Client();
             this.TempData["clientInfo"] = clientData;
 
-            var moreClient = new MoreClientData();
-            clientData.Height = moreClient.Height;
-            clientData.Weight = moreClient.Weight;
-
-
             if(clientData.Height!=0M || clientData.Weight!=0M)
             { 
                 clientData.BodyMass = BodyMass(clientData);
@@ -225,13 +220,13 @@ namespace PersonalTrainer.Controllers
 
             // this.TempData["clientInfo"] = clientData;
 
-            if (db.MoreClientDatas != null)
+            if (db.Clients != null)
             {
                 db.SaveChanges();
             }
             else
             {
-                db.MoreClientDatas.Add(moreClient);
+                db.Clients.Add(clientData);
                 db.SaveChanges();
             }
 

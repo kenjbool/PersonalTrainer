@@ -1,5 +1,4 @@
-﻿@using PersonalTrainer.Models
-@model PersonalTrainer.Models.Client
+﻿@model PersonalTrainer.Models.Client
 
 <head>
     <title>
@@ -8,7 +7,6 @@
 
     @{
         var state = new ModelState();
-        var moreData = new MoreClientData();
     }
 </head>
 <body>
@@ -20,11 +18,11 @@
     <div id="accordion">
         <div class="container">
             <div class="panel panel-collapse">
-                <div class="panel panel-heading"><a href="#1">Personal</a></div>
+                <div class="panel panel-heading">Personal</div>
                 <div class="panel-body well">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="FName">First Name:</label>
-                        @Html.DisplayFor(x => x.FName, new {@class = "form-control disabled", @id = "FName"})
+                        @Html.TextBoxFor(x => x.FName, new {@class = "form-control disabled", @id = "FName"})
 
                         <label for="LName">Last Name:</label>
                         @Html.DisplayFor(x => x.LName, new {@class = "form-control disabled", @id = "LName"})

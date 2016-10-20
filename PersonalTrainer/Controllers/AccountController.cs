@@ -412,18 +412,9 @@ namespace PersonalTrainer.Controllers
 
         public ActionResult MyProfile(LoginModel login)
         {
-            bool ClientVal = false;
-
             var client = new Client();
-
-            DateTime registration = client.RegistrationDate;
-
-            if (client == null)
-            {
-                var noClient = "You have not been set up yet, please speak to your PT.";
-            }
             
-            return View("MyProfile");
+            return View(client);
         }
         #endregion
     }

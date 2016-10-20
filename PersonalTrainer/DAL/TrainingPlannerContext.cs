@@ -18,8 +18,6 @@ namespace PersonalTrainer.DAL
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<DayWorkout> DayWorkouts { get; set; }
 
-        public DbSet<MoreClientData> MoreClientDatas { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

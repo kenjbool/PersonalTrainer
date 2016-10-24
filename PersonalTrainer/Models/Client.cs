@@ -135,7 +135,7 @@ namespace PersonalTrainer.Models
     public class Parq
     {
         [Key]
-        [Required(ErrorMessage = "Please enter your Name")]
+        [Required(ErrorMessage = "Please enter your Full Name")]
         [RegularExpression("^[a-zA-Z\\s]+ [a-zA-Z\\s]+", ErrorMessage = "Please make sure you have entered your full name")]
         [Display(Name = "Name")]
         public string Name { get; set; }

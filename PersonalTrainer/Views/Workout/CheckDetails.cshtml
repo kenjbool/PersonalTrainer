@@ -11,122 +11,104 @@
 </head>
 <body>
 
-<h2>So... Let's just clarify those details</h2>
+    <h2 class="text-center">So... Let's just clarify those details</h2>
 
-@using (Html.BeginForm())
-{
-    <div id="accordion">
+    @using (Html.BeginForm())
+    {
         <div class="container">
-            <div class="panel panel-collapse">
-                <div class="panel panel-heading">Personal</div>
-                <div class="panel-body well">
-                    <div class="col-md-12">
-                        <label for="FName">First Name:</label>
-                        @Html.TextBoxFor(x => x.FName, new {@class = "form-control disabled", @id = "FName"})
+            <button class="accordion">Personal</button>
+            <div class="panel">
+                <div class="col-md-12">
+                    <label for="FName">First Name:</label>
+                    @Html.DisplayTextFor(x => x.FName)
 
-                        <label for="LName">Last Name:</label>
-                        @Html.DisplayFor(x => x.LName, new {@class = "form-control disabled", @id = "LName"})
+                    <label for="LName">Last Name:</label>
+                    @Html.DisplayTextFor(x => x.LName)
 
-                        <label for="Gender">Gender:</label>
-                        @Html.DisplayFor(x => x.Gender, new {@class = "form-control disabled", @id = "Gender"})
+                    <label for="Gender">Gender:</label>
+                    @Html.DisplayTextFor(x => x.Gender)
 
-                    </div>
-                    <div class="col-md-6">
-                        <label for="LName">Age:</label>
-                        @Html.DisplayFor(x => x.Age, new {@class = "form-control disabled", @id = "Age"})
+                </div>
+                <div class="col-md-6">
+                    <label for="LName">Age:</label>
+                    @Html.DisplayTextFor(x => x.Age)
 
-                        <label for="DateOfBirth">Date Of Birth:</label>
-                        @Html.DisplayFor(x => x.DateOfBirth, new {@class = "form-control disabled", @id = "DateOfBirth"})
-                    </div>
+                    <label for="DateOfBirth">Date Of Birth:</label>
+                    @Html.DisplayTextFor(x => x.DateOfBirth)
                 </div>
             </div>
         </div>
 
         <div class="container">
-            <div class="panel panel-collapse">
-                <div class="panel panel-heading"><a href="#2">Address Details</a></div>
-                <div class="panel-body well">
-                    <div class="col-md-6">
-                        <label for="AddressLine1">Address:</label>
-                        @Html.DisplayFor(x => x.AddressLine1, new {@class = "form-control", @id = "AddressLine1"})
+            <button class="accordion">Address details</button>
+            <div class="panel">
+                <div class="col-md-6">
+                    <label for="AddressLine1">Address:</label>
+                    @Html.DisplayTextFor(x => x.AddressLine1)
 
-                        <label for="AddressLine2">Address:</label>
-                        @Html.DisplayFor(x => x.AddressLine2, new {@class = "form-control", @id = "AddressLine2"})
+                    <label for="AddressLine2">Address:</label>
+                    @Html.DisplayTextFor(x => x.AddressLine2)
 
-                        <label for="Postcode">Postcode:</label>
-                        @Html.DisplayFor(x => x.Postcode, new {@class = "form-control", @id = "Postcode"})
+                    <label for="Postcode">Postcode:</label>
+                    @Html.DisplayTextFor(x => x.Postcode)
 
-                    </div>
-                    <div class="col-md-6">
-                        <label for="Email">Email:</label>
-                        @Html.DisplayFor(x => x.Email, new {@class = "form-control disabled", @id = "Email"})
+                </div>
+                <div class="col-md-6">
+                    <label for="Email">Email:</label>
+                    @Html.DisplayTextFor(x => x.Email)
 
-                        <label for="Phone">Phone:</label>
-                        @Html.DisplayFor(x => x.Phone, new {@class = "form-control disabled", @id = "Phone"})
-                    </div>
+                    <label for="Phone">Phone:</label>
+                    @Html.DisplayTextFor(x => x.Phone)
                 </div>
             </div>
         </div>
 
         <div class="container">
-            <div class="panel panel-collapse">
-                <div class="panel panel-heading">Stats</div>
-                <div class="panel-body well">
-                    <div class="col-md-6">
-                        <label for="Height">Height:</label>
-                        @Html.DisplayFor(x => x.Height, new {@class = "form-control disabled", @id = "Height"})
+            <button class="accordion">Stats</button>
+            <div class="panel">
+                <div class="col-md-6">
+                    <label for="Height">Height:</label>
+                    @Html.DisplayTextFor(x => x.Height)
 
-                        <label for="Weight">Weight:</label>
-                        @Html.DisplayFor(x => x.Weight, new {@class = "form-control disabled", @id = "Weight"})
+                    <label for="Weight">Weight:</label>
+                    @Html.DisplayTextFor(x => x.Weight)
 
-                    </div>
-                    <div class="col-md-6">
-                        <label for="GoalId">Goal:</label>
-                        @Html.DisplayFor(x => x.GoalId, new {@class = "form-control disabled", @id = "GoalId"})
+                </div>
+                <div class="col-md-6">
+                    <label for="GoalId">Goal:</label>
+                    @Html.DisplayTextFor(x => x.GoalId)
 
-
-
-                    </div>
                 </div>
             </div>
         </div>
         <div class="container">
-            <div class="panel panel-collapse">
-                <div class="panel-heading">Personal</div>
-                <div class="panel-body well">
-
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="container">
-            <div class="panel panel-collapse">
-                <div class="panel-heading well">Additional Information:</div>
-                <div class="panel-body well">
-                    @Html.TextBoxFor(x => x.AddInfo, new {@class = "form-control disabled", @id = "AddInfo", type = "text"})
-                </div>
+            <button class="accordion">Stats</button>
+            <div class="panel">
+                @Html.TextBoxFor(x => x.AddInfo)
             </div>
         </div>
 
+        <div class="container well">
+            <div class="col-md-6">
 
+                <input type="submit" value="Time for a fitness test!" />
 
-    </div>
-    <div class="container well">
-        <div class="col-md-6">
-
-            <input type="submit" value="Time for a fitness test!"/>
-
+            </div>
         </div>
-    </div>
 
-}
-</body>
+    }
+
 
 <script type="text/javascript">
-    $(function () {
-        $("#accordion").accordion();
-    });
-</script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].onclick = function () {
+                this.classList.toggle("active");
+                this.nextElementSibling.classList.toggle("show");
+            }
+        }
+    </script>
+</body>
 

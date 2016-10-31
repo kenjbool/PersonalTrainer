@@ -1,5 +1,5 @@
 ﻿@using PersonalTrainer.Models
-@model Client
+@model PersonalTrainer.ViewModel.ClientViewModel
 @{
     ViewBag.Title = "Client";
 }
@@ -15,18 +15,18 @@
 <body>
     @if (state.Errors.Count > 0 && ViewBag.Pass > 0)
     {
-        <div class="alert alert-danger" id="@state.Errors">
-            <strong>Warning!</strong> Please make sure all fields are completed.
-            @{
-                    foreach (var errorMessage in state.Errors[0].ErrorMessage)
-                    {
-                        <h4 class="alert alert-danger">@errorMessage.ToString()</h4>
-  
-                    }
-                }
-        </div>
+    <div class="alert alert-danger" id="@state.Errors">
+        <strong>Warning!</strong> Please make sure all fields are completed.
+        @{
+            foreach (var errorMessage in state.Errors[0].ErrorMessage)
+            {
+                <h4 class="alert alert-danger">@errorMessage.ToString()</h4>
+
+            }
+        }
+    </div>
     }
-    <div class="h3 text-center">Let's start with the basics</div>
+    <div class="h2 text-center"><strong>Let's start with the basics</strong></div>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -49,7 +49,7 @@
 
 
                     <label for="DateOfBirth">Date of Birth:</label>
-                    @Html.TextBoxFor(x => x.DateOfBirth, new {@type="date", @class = "form-control", @id = "DateOfBirth", @placeholder = "DateOfBirth" })
+                    @Html.TextBoxFor(x => x.DateOfBirth, new { @type = "date", @class = "form-control", @id = "DateOfBirth", @placeholder = "DateOfBirth" })
                     @Html.ValidationMessageFor(x => x.DateOfBirth)
                 </div>
             </div>
@@ -81,7 +81,7 @@
             <div class="container well">
                 <div class="form-group col-md-6">
                     <label for="GoalId">Goal:</label>
-                    @Html.DropDownListFor(x => x.GoalList, new SelectList(Enum.GetValues(typeof(Goal))), "Select Goal", new {@class = "form-control"})
+                    @Html.DropDownListFor(x => x.GoalList, new SelectList(Enum.GetValues(typeof(Goal))), "Select Goal", new { @class = "form-control" })
                 </div>
                 <div class="container">
                     <div class="form-group col-md-6">
@@ -95,7 +95,7 @@
             <div class="container well">
                 <div class="form-group col-md-12">
                     <label for="@Html.LabelFor(x => x.AddInfo)">Add Info:</label>
-                    @Html.TextAreaFor(x => x.AddInfo, new {@class = "form-control", @rows = "5", @id = "AddInfo"})
+                    @Html.TextAreaFor(x => x.AddInfo, new { @class = "form-control", @rows = "5", @id = "AddInfo" })
                 </div>
                 <div class="form-group col-md-12">
                     <button type="submit" class="btn btn-default">Next Stage...</button>
@@ -105,6 +105,8 @@
     }
 </body>
 </html>
+
+
 
 <script type="text/javascript">
 

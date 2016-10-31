@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using PersonalTrainer.Models;
+using PersonalTrainer.ViewModel;
 
 namespace PersonalTrainer.DAL
 {
@@ -9,12 +10,12 @@ namespace PersonalTrainer.DAL
     {
         protected override void Seed(TrainingPlannerContext context)
         {
-            var clients = new List<Client>
+            var clients = new List<ClientViewModel>
             {
-                new Client { ClientId = "12134525", FName = "Ken", LName = "Bool", DateOfBirth = DateTime.Parse("13/02/1982"), Weight = (decimal)75.20, Height = (decimal)170.50, Email = "aaa@aa.com", Gender = "Male", AddressLine1 = "12 The Street", AddressLine2 = "Norwich", Postcode = "NR1 1AA", Phone = "01234567890", Age = 34, BodyMass = (decimal)17.5, EmergencyContact = "Mr Sponge", EmergencyContactNumber = "01234567890", GoalId = "Lose weight", AddInfo = "bhjbjhb", SpecifiedGoal = false, GoalSpecificName = null, RegistrationDate = DateTime.Parse("13/05/2016")},
-                new Client { ClientId = "25160526", FName = "Test", LName = "Bool", DateOfBirth = DateTime.Parse("13/02/1982"), Weight = (decimal)75.20, Height = (decimal)170.50, Email = "kenjbool@gmail.com", Gender = "Male", AddressLine1 = "26, lenthall Close", AddressLine2 = "Norwich", Postcode = "NR7 0UU", Phone = "01234567890", Age =34, BodyMass = (decimal)17.5, EmergencyContact = "Mr Sponge", EmergencyContactNumber = "01234567890", GoalId = "Tone up, slim down", AddInfo = "jnuipnionpiojmniom", SpecifiedGoal = false, GoalSpecificName = null, RegistrationDate = DateTime.Parse("13/05/2016")}
+                new ClientViewModel() { ClientId = 12134525, FName = "Ken", LName = "Bool", DateOfBirth = DateTime.Parse("13/02/1982"), Email = "aaa@aa.com", Gender = "Male", AddressLine1 = "12 The Street", AddressLine2 = "Norwich", Postcode = "NR1 1AA", Phone = "01234567890", Age = 34, EmergencyContact = "Mr Sponge", EmergencyContactNumber = "01234567890", GoalId = "Lose weight", AddInfo = "bhjbjhb", RegistrationDate = DateTime.Parse("13/05/2016")},
+                new ClientViewModel() { ClientId = 25160526, FName = "Test", LName = "Bool", DateOfBirth = DateTime.Parse("13/02/1982"), Email = "kenjbool@gmail.com", Gender = "Male", AddressLine1 = "26, lenthall Close", AddressLine2 = "Norwich", Postcode = "NR7 0UU", Phone = "01234567890", Age =34, EmergencyContact = "Mr Sponge", EmergencyContactNumber = "01234567890", GoalId = "Tone up, slim down", AddInfo = "jnuipnionpiojmniom", RegistrationDate = DateTime.Parse("13/05/2016")}
             };
-            clients.ForEach(w => context.Clients.Add(w));
+            clients.ForEach(x => context.Clients.Add(x));
             context.SaveChanges();
 
             var fitnesstests = new List<FitnessTest>

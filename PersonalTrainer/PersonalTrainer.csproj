@@ -235,6 +235,10 @@
     <Compile Include="Models\list.cs" />
     <Compile Include="Models\MacroCounter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\AddClientInfoViewModel.cs" />
+    <Compile Include="ViewModel\ClientViewModel.cs" />
+    <Compile Include="ViewModel\ParqViewModel.cs" />
+    <Compile Include="ViewModel\WorkoutViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\TrainingPlannerContext.mdf" />

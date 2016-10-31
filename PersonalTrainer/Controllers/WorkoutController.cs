@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using PersonalTrainer.DAL;
 using PersonalTrainer.Models;
 using PagedList;
+using PersonalTrainer.ViewModel;
 
 namespace PersonalTrainer.Controllers
 {
@@ -17,7 +16,7 @@ namespace PersonalTrainer.Controllers
 
         public ActionResult Index()
         {
-            var clientId = TempData["clientId"];
+            var clientId = Session["clientId"];
             return View();
         }
 
@@ -56,10 +55,14 @@ namespace PersonalTrainer.Controllers
         public ActionResult ParQ()
         {
             ModelState.Clear();
-            var login = new LoginModel();
+            var loginName = new UserProfile().FullName;
             var parq = new Parq();
 
-            login.FullName = parq.Name;
+
+            if (loginName != null)
+            {
+                parq.Name = loginName;
+            }
 
             return View(parq);
         }
@@ -71,20 +74,21 @@ namespace PersonalTrainer.Controllers
         public ActionResult ParQ(Parq parq)
         {
             int pass = 0;
+
             if (ModelState.IsValid)
             {
                 if (!string.IsNullOrEmpty(parq.Name) && !string.IsNullOrEmpty(parq.Email))
                 {
 
-                    var workout = new Client();
+                    var client = new Client();
 
                     if (!string.IsNullOrEmpty(TempData["clientId"] as string))
                     {
-                        workout.ClientId = (string)TempData["clientId"];
+                        client.ClientId = (string)TempData["clientId"];
                     }
                     else
                     {
-                        workout.ClientId = DateTime.Today.ToString("Mddhhmmss");
+                        client.ClientId = DateTime.Today.ToString("Mddhhmmss");
                     }
 
                     if (!string.IsNullOrEmpty(parq.Name))
@@ -92,11 +96,12 @@ namespace PersonalTrainer.Controllers
                         var fullName = parq.Name;
                         const char splitChar = ' ';
                         var afterSplit = fullName.Split(splitChar);
-                        workout.FName = afterSplit[0];
-                        workout.LName = afterSplit[1];
+                        client.FName = afterSplit[0];
+                        client.LName = afterSplit[1];
                     }
 
-                    this.TempData["workout"] = workout;
+                    this.Session["myModel"] = client;
+
                     if (db.Parqs != null)
                     {
                         db.SaveChanges();
@@ -134,15 +139,28 @@ namespace PersonalTrainer.Controllers
         {
             ModelState.Clear();
 
-            var workoutModel = this.TempData["workout"] as Client ?? new Client();
+            var clientViewModel = new ClientViewModel();
 
-            return View(workoutModel);
+            var mainModel = this.Session["myModel"] as Client ?? new Client();
+
+            clientViewModel.FName = mainModel.FName;
+            clientViewModel.LName = mainModel.LName;
+            clientViewModel.Gender = mainModel.Gender;
+            clientViewModel.DateOfBirth = mainModel.DateOfBirth;
+            clientViewModel.AddressLine1 = mainModel.AddressLine1;
+            clientViewModel.AddressLine2 = mainModel.AddressLine2;
+            clientViewModel.Postcode = mainModel.Postcode;
+            clientViewModel.Phone = mainModel.Phone;
+            clientViewModel.Email = mainModel.Email;
+            clientViewModel.GoalId = mainModel.GoalId;
+
+            return View();
         }
 
         //
         // POST: /Workout/Client
         [HttpPost]
-        public ActionResult Client(Client client)
+        public ActionResult Client(ClientViewModel clientViewModel)
         {
             int pass = 0;
             if (!ModelState.IsValid)
@@ -157,33 +175,29 @@ namespace PersonalTrainer.Controllers
                 ModelState.Clear();
             }
             var today = DateTime.Today;
-            var clientInfo = client;
-            client.FName = clientInfo.FName;
-            client.LName = clientInfo.LName;
-            clientInfo.Gender = client.Gender == "Male" ? "Male" : "Female";
+            var clientInfo = clientViewModel;
+            clientViewModel.FName = clientInfo.FName;
+            clientViewModel.LName = clientInfo.LName;
+            clientInfo.Gender = clientViewModel.Gender == "Male" ? "Male" : "Female";
 
-            var dateOfBirthToString = client.DateOfBirth.ToString(CultureInfo.CurrentCulture);
+            var dateOfBirthToString = clientViewModel.DateOfBirth.ToString(CultureInfo.CurrentCulture);
 
             clientInfo.DateOfBirth.ToString(dateOfBirthToString);
 
-            clientInfo.Age = (today.Year - client.DateOfBirth.Year);
-            client.Height = clientInfo.Height;
-            client.Weight = clientInfo.Weight;
-            client.BodyMass = clientInfo.BodyMass;
-            client.GoalId = clientInfo.GoalId;
-            client.AddInfo = clientInfo.AddInfo;
-            client.EmergencyContact = clientInfo.EmergencyContact;
-            client.EmergencyContactNumber = clientInfo.EmergencyContactNumber;
-            clientInfo.RegistrationDate = today.Date;
+            clientInfo.Age = (today.Year - clientViewModel.DateOfBirth.Year);
+            clientViewModel.GoalId = clientInfo.GoalId;
+            clientViewModel.AddInfo = clientInfo.AddInfo;
+            clientViewModel.EmergencyContact = clientInfo.EmergencyContact;
+            clientViewModel.EmergencyContactNumber = clientInfo.EmergencyContactNumber;
 
-            this.TempData["clientInfo"] = clientInfo;
+            this.Session["myModel"] = clientInfo;
             if (db.Clients != null)
             {
                 db.SaveChanges();
             }
             else
             {
-                db.Clients.Add(clientInfo);
+                db.Clients.Add(clientViewModel);
                 db.SaveChanges();
             }
 
@@ -220,15 +234,15 @@ namespace PersonalTrainer.Controllers
 
             // this.TempData["clientInfo"] = clientData;
 
-            if (db.Clients != null)
-            {
-                db.SaveChanges();
-            }
-            else
-            {
-                db.Clients.Add(clientData);
-                db.SaveChanges();
-            }
+            //if (db.Clients != null)
+            //{
+            //    db.SaveChanges();
+            //}
+            //else
+            //{
+            //    db.Clients.Add();
+            //    db.SaveChanges();
+            //}
 
             return RedirectToAction("CheckDetails");
         }

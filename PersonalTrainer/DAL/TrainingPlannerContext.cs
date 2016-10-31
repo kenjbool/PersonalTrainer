@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Web.UI;
+using PersonalTrainer.ViewModel;
 
 namespace PersonalTrainer.DAL
 {
@@ -12,7 +13,7 @@ namespace PersonalTrainer.DAL
         }
 
         public DbSet<Parq> Parqs { get; set; }
-        public DbSet<Client> Clients { get; set; }
+        public DbSet<ClientViewModel> Clients { get; set; }
         public DbSet<FitnessTest> FitnessTests { get; set; }
         public DbSet<Routine> Routines { get; set; }
         public DbSet<Exercise> Exercises { get; set; }

@@ -1,137 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 using ExpressiveAnnotations.Attributes;
 
-namespace PersonalTrainer.Models
+namespace PersonalTrainer.ViewModel
 {
-    public class Client
-    {
-        public Client()
-        {
-        }
-
-        public string ClientId { get; set; }
-
-        [Required(ErrorMessage = "Please enter a first name")]
-        [Display(Name = "First Name:")]
-        public string FName { get; set; }
-
-        [Required(ErrorMessage = "Please enter your last name")]
-        [Display(Name = "Last Name:")]
-        public string LName { get; set; }
-
-        [Required(ErrorMessage = "Please enter house name/number")]
-        [Display(Name="Please enter your address:")]
-        public string AddressLine1 { get; set; }
-
-        public string AddressLine2 { get; set; }
-
-        [Required(ErrorMessage = "Please enter a valid postcode")]
-        [Display(Name = "Post code:")]
-        public string Postcode { get; set; }
-
-        [Required(ErrorMessage = "Please enter your age")]
-        [Display(Name = "Age:")]
-        public int Age { get; set; }
-
-        [Required(ErrorMessage = "Please select Gender")]
-        [Display(Name = "Gender:")]
-        public string Gender { get; set; }
-
-        [Required(ErrorMessage = "Please enter your Date of Birth")]
-        [Display(Name = "Date Of Birth:")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime DateOfBirth { get; set; }
-
-        [Required(ErrorMessage = "Please enter your email address")]
-        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Please enter a valid email address")]
-        [Display(Name = "Email Address:")]
-        public string Email { get; set; }
-
-        [Required(ErrorMessage = "Please enter a valid Phone number")]
-        // [RegularExpression("\b{5}[ ]{6}\b", ErrorMessage="Please enter a valid phone number in the format \"XXXXX XXXXXX\"")]
-        [Display(Name = "Phone Number:")]
-        public string Phone { get; set; }
-
-        [Display(Name = "Emergency Contact:")]
-        public string EmergencyContact { get; set; }
-
-        [Required(ErrorMessage = "Please enter an emergency contact number")]
-        [Display(Name = "Emergency Contact Number:")]
-        public string EmergencyContactNumber { get; set; }
-
-        [Required(ErrorMessage = "Please enter your height in centimeters")]
-        [Display(Name = "Height(cm):")]
-        public decimal Height { get; set; }
-
-        [Required(ErrorMessage = "Please enter your weight in kg's")]
-        [Display(Name = "Weight(kg):")]
-        public decimal Weight { get; set; }
-
-        [Display(Name = "Clients BMI:")]
-        public decimal BodyMass { get; set; }
-
-        public List<string> GoalList { get; set; }
-
-        [Display(Name = "Goal:")]
-        public string GoalId { get; set; }
-
-        public bool SpecifiedGoal { get; set; }
-
-        [RequiredIf("SpecifiedGoal == true")]
-        [Display(Name = "Specific Goal Name:")]
-        public string GoalSpecificName { get; set; }
-
-        public string Focus { get; set; }
-
-        public DateTime RegistrationDate { get; set; }
-
-        [Display(Name = "Additional Info:")]
-        public string AddInfo { get; set; }
-
-        [Display(Name = "Body Composition")]
-        public string BodyComposition { get; set; }
-
-        [Display(Name = "Body Fat %")]
-        public double BodyFatPercentage { get; set; }
-
-        [Display(Name = "Waist")]
-        public int Waist { get; set; }
-
-        [Display(Name = "Hips")]
-        public int Hips { get; set; }
-
-        [Display(Name = "Chest")]
-        public int Chest { get; set; }
-
-        [Display(Name = "Arm")]
-        public int Arm { get; set; }
-
-        [Display(Name = "Thigh")]
-        public int Thigh { get; set; }
-
-        [Display(Name = "Systolic BP")]
-        public int BloodPressureSystolic { get; set; }
-
-        [Display(Name = "Diastolic BP")]
-        public int BloodPressureDiastolic { get; set; }
-
-        [Display(Name = "Resting HR")]
-        public decimal RestingHeartRate { get; set; }
-
-        [Display(Name = "HR Zone 1")]
-        public decimal HeartRateZone1 { get; set; }
-
-        [Display(Name = "HR Zone 2")]
-        public decimal HeartRateZone2 { get; set; }
-
-        [Display(Name = "HR Zone 3")]
-        public decimal HeartRateZone3 { get; set; }
-    }
-
-    public class Parq
+    public class ParqViewModel
     {
         [Key]
         [Required(ErrorMessage = "Please enter your Full Name")]
@@ -260,20 +136,5 @@ namespace PersonalTrainer.Models
 
         [RequiredIf("Answer16 == true", ErrorMessage = "As you have answered 'Yes' please add further information")]
         public string AddInfo16 { get; set; }
-    }
-
-    public enum Gender
-    {
-        Male,
-        Female
-    }
-
-    public enum Goal
-    {
-        ToneUp,
-        LoseWeight,
-        BuildMuscle,
-        LookGoodNaked,
-        GoalSpecific
     }
 }

@@ -11,6 +11,8 @@ namespace PersonalTrainer.Models
         {
         }
 
+        public int ClientNum { get; set; }
+
         public string ClientId { get; set; }
 
         [Required(ErrorMessage = "Please enter a first name")]

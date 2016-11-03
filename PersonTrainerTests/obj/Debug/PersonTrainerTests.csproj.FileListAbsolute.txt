@@ -25,8 +25,8 @@ D:\SourceCode\PersonalTrainer\PersonTrainerTests\bin\Debug\System.Web.WebPages.d
 D:\SourceCode\PersonalTrainer\PersonTrainerTests\bin\Debug\System.Web.WebPages.Razor.dll
 D:\SourceCode\PersonalTrainer\PersonTrainerTests\bin\Debug\System.Web.Optimization.dll
 D:\SourceCode\PersonalTrainer\PersonTrainerTests\bin\Debug\System.Web.Http.dll
-D:\SourceCode\PersonalTrainer\PersonTrainerTests\bin\Debug\EntityFramework.dll
 D:\SourceCode\PersonalTrainer\PersonTrainerTests\bin\Debug\ExpressiveAnnotations.dll
+D:\SourceCode\PersonalTrainer\PersonTrainerTests\bin\Debug\EntityFramework.dll
 D:\SourceCode\PersonalTrainer\PersonTrainerTests\bin\Debug\DotNetOpenAuth.AspNet.dll
 D:\SourceCode\PersonalTrainer\PersonTrainerTests\bin\Debug\Microsoft.Web.WebPages.OAuth.dll
 D:\SourceCode\PersonalTrainer\PersonTrainerTests\bin\Debug\WebMatrix.WebData.dll

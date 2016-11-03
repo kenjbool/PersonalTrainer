@@ -207,6 +207,7 @@ D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\Microsoft.Web.Infrastructure.d
 D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\Microsoft.Web.WebPages.OAuth.dll
 D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\Newtonsoft.Json.dll
+D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\nunit.framework.dll
 D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\Owin.dll
 D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\PagedList.dll
 D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\PagedList.Mvc.dll
@@ -228,6 +229,7 @@ D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\WebMatrix.WebData.dll
 D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\ExpressiveAnnotations.xml
 D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\ExpressiveAnnotations.MvcUnobtrusive.xml
 D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\Microsoft.Owin.xml
+D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\nunit.framework.xml
 D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\PagedList.xml
 D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\PagedList.Mvc.xml
 D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\Newtonsoft.Json.xml
@@ -282,6 +284,3 @@ D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\zh-Hans\System.Spatial.resourc
 D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\zh-Hant\System.Spatial.resources.dll
 D:\SourceCode\PersonalTrainer\PersonalTrainer\obj\Debug\PersonalTrainer.dll
 D:\SourceCode\PersonalTrainer\PersonalTrainer\obj\Debug\PersonalTrainer.pdb
-D:\SourceCode\PersonalTrainer\PersonalTrainer\obj\Debug\PersonalTrainer.csprojResolveAssemblyReference.cache
-D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\nunit.framework.dll
-D:\SourceCode\PersonalTrainer\PersonalTrainer\bin\nunit.framework.xml

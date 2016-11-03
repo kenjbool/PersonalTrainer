@@ -10,7 +10,7 @@ namespace PersonTrainerTests.TestControllers
         [TestMethod]
         public void TestWorkoutView()
         {
-            var controller = new WorkoutController();
+            var controller = new ClientController();
             var result = controller.Index() as ViewResult;
             Assert.AreEqual("Index", result.ViewName);
         }

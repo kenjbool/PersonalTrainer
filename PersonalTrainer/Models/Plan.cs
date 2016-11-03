@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 
 namespace PersonalTrainer.Models
 {
-    public class Exercise
+    public class Plan
     {
-        public Exercise()
+        public Plan()
         {
             this.DaysList = new List<string>();
             DaysList.Add("Monday");
@@ -19,31 +18,34 @@ namespace PersonalTrainer.Models
             DaysList.Add("Friday");
             DaysList.Add("Saturday");
             DaysList.Add("Sunday");
+
+            this.WorkoutType = new List<string>();
+            WorkoutType.Add("Cardio");
+            WorkoutType.Add("Weight");
         }
-
-        public string ClientId { get; set; }
-
-
-        public int RoutineId { get; set; }
-
-        [Key]
-        public int ExerciseId { get; set; }
 
         public int NumberOfDays { get; set; }
 
         public List<string> DaysList { get; set; }
 
+        public bool? IsCardio { get; set; }
+        
         public string Day { get; set; }
 
-        public string WorkoutType { get; set; }
+        public List<string> WorkoutType { get; set; }
 
         public bool? Cardio { get; set; }
 
+#region exercise
+
         public string ExerciseName { get; set; }
 
-        public int Set { get; set; }
+        public double ExerciseWeight { get; set; }
 
-        public int Reps { get; set; }
+        public int ExerciseReps { get; set; }
+
+        public int ExerciseSets { get; set; }
+#endregion
+
     }
-
 }

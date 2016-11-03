@@ -15,5 +15,6 @@ namespace PersonalTrainer.Models
             {Goal.LookGoodNaked, "I wanna look realll good naked!"},
             {Goal.GoalSpecific, "I'm aiming for a specific event"}
         };
+
     }
 }

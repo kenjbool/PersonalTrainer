@@ -10,13 +10,13 @@ using PersonalTrainer.ViewModel;
 
 namespace PersonalTrainer.Controllers
 {
-    public class WorkoutController : Controller
+    public class ClientController : Controller
     {
         private TrainingPlannerContext db = new TrainingPlannerContext();
 
         public ActionResult Index()
         {
-            var clientId = Session["clientId"];
+            var clientId = Session["clientId"] as string;
             return View();
         }
 
@@ -80,16 +80,11 @@ namespace PersonalTrainer.Controllers
                 if (!string.IsNullOrEmpty(parq.Name) && !string.IsNullOrEmpty(parq.Email))
                 {
 
-                    var client = new Client();
+                    var client = new ClientViewModel();
 
-                    if (!string.IsNullOrEmpty(TempData["clientId"] as string))
-                    {
-                        client.ClientId = (string)TempData["clientId"];
-                    }
-                    else
-                    {
-                        client.ClientId = DateTime.Today.ToString("Mddhhmmss");
-                    }
+                    client.ClientId = !string.IsNullOrEmpty(TempData["clientId"] as string)
+                        ? (string) TempData["clientId"]
+                        : DateTime.Today.ToString("Mddhhmmss");
 
                     if (!string.IsNullOrEmpty(parq.Name))
                     {
@@ -152,7 +147,8 @@ namespace PersonalTrainer.Controllers
             clientViewModel.Postcode = mainModel.Postcode;
             clientViewModel.Phone = mainModel.Phone;
             clientViewModel.Email = mainModel.Email;
-            clientViewModel.GoalId = mainModel.GoalId;
+
+            // if(GoalDictionary._dictionary.ContainsKey(clientViewModel.GoalId))
 
             return View();
         }
@@ -185,7 +181,7 @@ namespace PersonalTrainer.Controllers
             clientInfo.DateOfBirth.ToString(dateOfBirthToString);
 
             clientInfo.Age = (today.Year - clientViewModel.DateOfBirth.Year);
-            clientViewModel.GoalId = clientInfo.GoalId;
+            // clientViewModel.GoalId = clientInfo.GoalId;
             clientViewModel.AddInfo = clientInfo.AddInfo;
             clientViewModel.EmergencyContact = clientInfo.EmergencyContact;
             clientViewModel.EmergencyContactNumber = clientInfo.EmergencyContactNumber;

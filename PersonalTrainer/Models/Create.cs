@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
 
 namespace PersonalTrainer.Models
 {

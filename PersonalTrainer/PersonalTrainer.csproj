@@ -215,7 +215,7 @@
     <Compile Include="Controllers\ActiveController.cs" />
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\WorkoutController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="DAL\TrainingPlannerContext.cs" />
     <Compile Include="DAL\TrainingPlannerInitializer.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -226,18 +226,20 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DayWorkout.cs" />
     <Compile Include="Models\DbColumnAttribute.cs" />
-    <Compile Include="Models\Exercise.cs" />
     <Compile Include="Models\GoalDictionary.cs" />
+    <Compile Include="Models\Plan.cs" />
     <Compile Include="Models\Routine.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Create.cs" />
     <Compile Include="Models\FitnessTest.cs" />
-    <Compile Include="Models\list.cs" />
     <Compile Include="Models\MacroCounter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AddClientInfoViewModel.cs" />
     <Compile Include="ViewModel\ClientViewModel.cs" />
     <Compile Include="ViewModel\ParqViewModel.cs" />
+    <Compile Include="ViewModel\PlanViewModel\CreatePlanViewModel.cs" />
+    <Compile Include="ViewModel\PlanViewModel\EditPlanViewModel.cs" />
+    <Compile Include="ViewModel\PlanViewModel\YourPlanViewModel.cs" />
     <Compile Include="ViewModel\WorkoutViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -451,17 +453,16 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Workout\Index.cshtml" />
-    <Content Include="Views\Workout\Create.cshtml" />
-    <Content Include="Views\Workout\Client.cshtml" />
-    <Content Include="Views\Workout\GetClient.cshtml" />
-    <Content Include="Views\Workout\CheckDetails.cshtml" />
-    <Content Include="Views\Workout\ParQ.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Client\Create.cshtml" />
+    <Content Include="Views\Client\Client.cshtml" />
+    <Content Include="Views\Client\GetClient.cshtml" />
+    <Content Include="Views\Client\CheckDetails.cshtml" />
+    <Content Include="Views\Client\ParQ.cshtml" />
     <Content Include="Views\Food\MacroCounter.cshtml" />
-    <Content Include="Views\Workout\FitnessTest.cshtml" />
-    <Content Include="Views\Workout\404.cshtml" />
-    <Content Include="Views\Workout\MoreClient.cshtml" />
-    <Content Include="Views\Workout\ClientLookup.cshtml" />
+    <Content Include="Views\Client\FitnessTest.cshtml" />
+    <Content Include="Views\Client\MoreClient.cshtml" />
+    <Content Include="Views\Client\ClientLookup.cshtml" />
     <Content Include="Views\Account\MyProfile.cshtml" />
   </ItemGroup>
   <ItemGroup />

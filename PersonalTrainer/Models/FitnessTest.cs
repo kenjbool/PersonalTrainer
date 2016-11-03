@@ -27,6 +27,8 @@ namespace PersonalTrainer.Models
             };
         }
 
+        public int ClientNum { get; set; }
+
         [Key]
         public string ClientId { get; set; }
 

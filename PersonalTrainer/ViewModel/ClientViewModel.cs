@@ -9,8 +9,10 @@ namespace PersonalTrainer.ViewModel
 {
     public class ClientViewModel
     {
+        public int ClientNum { get; set; }
+
         [Key]
-        public int ClientId { get; set; }
+        public string ClientId { get; set; }
 
         [Required(ErrorMessage = "Please enter a first name")]
         [Display(Name = "First Name:")]
@@ -60,9 +62,6 @@ namespace PersonalTrainer.ViewModel
         [Required(ErrorMessage = "Please enter an emergency contact number")]
         [Display(Name = "Emergency Contact Number:")]
         public string EmergencyContactNumber { get; set; }
-
-        [Display(Name = "Goal:")]
-        public string GoalId { get; set; }
 
         public List<string> GoalList { get; set; }
 

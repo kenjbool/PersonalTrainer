@@ -13,6 +13,6 @@ namespace PersonalTrainer.Models
         [Key]
         public int RoutineId { get; set; }
 
-        public ICollection<Exercise> Exercises { get; set; }
+       // public ICollection<Exercise> Exercises { get; set; }
     }
 }

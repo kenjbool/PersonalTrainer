@@ -16,7 +16,7 @@ namespace PersonalTrainer.DAL
         public DbSet<ClientViewModel> Clients { get; set; }
         public DbSet<FitnessTest> FitnessTests { get; set; }
         public DbSet<Routine> Routines { get; set; }
-        public DbSet<Exercise> Exercises { get; set; }
+        // public DbSet<Exercise> Exercises { get; set; }
         public DbSet<DayWorkout> DayWorkouts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
